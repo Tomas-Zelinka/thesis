@@ -31,11 +31,6 @@ SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale dnes se pou¾ívá p
 \subsubsection*{Tìsnì svázaný systém} 
  Tìsnì svázané (tightly coupled)\cite{SOA} systémy obsahují na sobì závislé komponenty, jejich¾ implementace je spojuje dohromady. V tìsnì vázaných systémech si nemù¾eme dovolit mìnit(implementace, verze, atd.) pouze jednu komponentu, ani¾ by to mìlo negativní následky na chod ostatních komponent nebo systému jako celku.
 
-
- 
-\subsubsection*{Webové slu¾by}
-Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Má rozhraní popsané strojovì zpracovatelným formátem. Ostatní systémy komunikují s webovými slu¾bami zpùsobem pøedepsaným v popisu za pou¾ití SOAP zpráv zalo¾ených na XML, které jsou pøená¹eny pomocí protokolu HTTP za pou¾ití serializace XML ve spojení s ostatními webovými standardy. Pro webové slu¾by byla vytvoøena øada specifikací, které mají ve svém názvu prefix WS-. Je mo¾né se setkat s oznaèením skupina specifikací WS-*.
-
 \subsubsection*{Middleware} 
 V distribuovaných systémech se jedná o vrstvu, která le¾í mezi operaèním systémem a aplikací na ka¾dé stranì systému. Hlavním úkolem middleware je skrytí distribuovanosti a rùznorodosti jednotlivých èástí systému.\cite{Middleware}
 
@@ -45,16 +40,22 @@ Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdroj
 
 
 \section{Testování softwaru}
-sss
+dd
+\subsection*{Proè testovat software}
+ddd
+\subsection*{Zpùsoby testování software}
+ddd
+\subsection*{Druhy nástrojù pro testování software}
+dd
 \section{Webové slu¾by}
-sss
+Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Má rozhraní popsané strojovì zpracovatelným formátem. Ostatní systémy komunikují s webovými slu¾bami zpùsobem pøedepsaným v popisu za pou¾ití SOAP zpráv zalo¾ených na XML, které jsou pøená¹eny pomocí protokolu HTTP za pou¾ití serializace XML ve spojení s ostatními webovými standardy. Pro webové slu¾by byla vytvoøena øada specifikací, které mají ve svém názvu prefix WS-. Je mo¾né se setkat s oznaèením skupina specifikací WS-*.
 
 %co je to soa, SOAP konstrukce zpravy a handlery, business activity a LRA, systemova integrace a ESB, proc soa a transakce
 \section{Architektura orientovaná na slu¾by}
 Architektura orientovaná na slu¾by(Services oriented architecture, SOA) \cite{SOA} \label{SOA} je sada principù a postupù pro návrh a vývoj softwaru. SOA se zamìøuje na pøesnì definované softwarové komponenty (èásti poèítaèových systému, datové struktury, apod.), které mohou být pou¾ity pro vícekrát, pro více úèelù a v kontextu SOA sem jim øíká slu¾by. Nyní si si uká¾eme hlavní principy a postupy, které se pou¾ívají pøi vytváøení slu¾eb v rámci SOA.
 
 \subsubsection*{Zapouzdøení operace}
-Pøi vytváøení systému obsahujících slu¾by, rozsah zapouzdøení mù¾e být men¹í i vìt¹í. Slu¾ba mù¾e zapouzdøovat jednu operaci v rámci systému nebo operaci, která reprezentuje celý systém.
+Pøi vytváøení systému obsahujících slu¾by, rozsah zapouzdøení mù¾e být men¹í i vìt¹í. Slu¾ba mù¾e zapouzdøit jednu operaci v rámci systému nebo operaci, která reprezentuje celý systém.
 
 \subsubsection*{Vztah mezi slu¾bami}
 Jednotlivé slu¾by mohou být vyu¾ívány jinými slu¾bami nebo programy. Aby mohly slu¾by a programy mezi sebou komunikovat, musí o sobì vìdìt. Toto povìdomí je realizováno pomocí popisu slu¾by. V popisu slu¾by je uveden název slu¾by a druh dat, které slu¾ba oèekává a vrací.
@@ -186,20 +187,26 @@ Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii 
 \end{itemize}
 
 
-
-\chapter{Testování softwaru}
-\section{Proè testovat software}
-\section{Zpùsoby testování software}
-\section{Druhy nástrojù pro testování software}
-\chapter{Webové slu¾by}
-ss
 \chapter{Testování webových slu¾eb}
+ddd
+\section{Po¾adavky na testování webových slu¾eb}
+dddd
+\section{Role pøi testování webových slu¾eb}
+ddd
+\subsection*{Klient}
+ddd
+\subsection*{Server}
+ddd
+\section{Mo¾né pøístupy testování webových slu¾eb}
+dd
+\subsection*{Server}
 
-
+\section{Ji¾ existující nástroje pro testování webových slu¾eb}
 
 
 \chapter{Specifikace po¾adavkù}
-ss
+\section{Navázání na pøedchozí práci}
+dd
 \chapter{Návrh implementace}
 ss
 \chapter{Popis implementace}
