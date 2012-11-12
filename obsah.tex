@@ -28,7 +28,7 @@ Universal Resource Identifier zkratka pro jednotný identifikátor zdroje. Je text
 XML je zkratka pro Extensible Markup Language \cite{XML}. Je to obecný znaèkovací jazyk, kterým je mo¾no vytváøet konkrétní znaèkovací jazyky. Pou¾ívá se pro pøená¹ení dat mezi webovými aplikacemi a vytváøení dokumentù. Pøi vytváøení dokumentù se pomocí znaèek oznaèuje význam textu, co¾ hraje velkou roli napø. pøi vyhledávání informací v dokumentu.
 
 \subsubsection*{SOAP} 
-SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale dnes se pou¾ívá pouze SOAP jako samostatný pojem \cite{SOAP}. Specifikuje protokol pro výmìnu strukturovaných a typovaných informací v decentralizovaných a distribuovaných sítích. Pou¾ívá XML pro definování sady funkcí pro vytváøení a výmìnu zpráv nad rùznými podpùrnými protokoly. SOAP byl vyvinut tak, aby byl nezávislý na transportních protokolech. 
+SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale od verze 1.2 se pou¾ívá pouze SOAP jako samostatný pojem \cite{SOAP}. Specifikuje protokol pro výmìnu strukturovaných a typovaných informací v decentralizovaných a distribuovaných sítích. Pou¾ívá XML pro definování sady funkcí pro vytváøení a výmìnu zpráv nad rùznými podpùrnými protokoly. SOAP byl vyvinut tak, aby byl nezávislý na transportních protokolech. 
 
 
 \subsubsection*{REST}
@@ -47,29 +47,28 @@ V distribuovaných systémech se jedná o vrstvu, která le¾í mezi operaèním systéme
 Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdrojovým kódem. Otevøenost znamená mo¾nost zdrojový kód vyu¾ívat pøi splnìní urèitých podmínek.
 
 
-
-\section{Testování software}
-dd
-\subsection*{Proè testovat software}
-ddd
-\subsection*{Zpùsoby testování software}
-\subsubsection*{Testování modulù}
-Testování modulù (Unit testing)
-\subsubsection*{Regresní testování}
-\subsubsection*{Integraèní testování}
-\subsubsection*{Integraèní testování}
-
 \section{Webové slu¾by}
 Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Má rozhraní popsané strojovì zpracovatelným formátem. Ostatní systémy komunikují s webovými slu¾bami zpùsobem pøedepsaným v popisu za pou¾ití SOAP zpráv zalo¾ených na XML, které jsou pøená¹eny pomocí protokolu HTTP za pou¾ití serializace XML ve spojení s ostatními webovými standardy. Pro webové slu¾by byla vytvoøena øada specifikací, které mají ve svém názvu prefix WS-. Je mo¾né se setkat s oznaèením skupina specifikací WS-*. Dále pak je mo¾no pou¾ít pro implementaci webových slu¾eb REST architekturu.
 
 
 \subsubsection*{XML-RPC webové slu¾by}
+XML-RPC byl první systém webových slu¾eb, který pou¾íval pro komunikaci XML dokument. XML-RPC webové slu¾by vycházely z architektury volání vzdálených procedur (RPC, Remote Procedure Call).  Pomocí XML-RPC je mo¾né volat procedury na vzdálených strojích, jejich¾ aplikace jsou napsané v rùzných jazycích. Tedy splòují aplikaèní nezávislost, která je typická pro pou¾ití webových slu¾eb.
 
 \subsubsection*{SOAP webové slu¾by}
+XML-RPC webové slu¾by postupnì pøestávaly staèit vzrùstajícím po¾adavkùm, byly vytvoøeny dal¹í specifikace a implementace, které jsou zalo¾ené na SOAP protokolu. SOAP je velmi podobný XML-RPC. Hlavní rozdíly spoèívají v roz¹íøení mo¾ností webových slu¾eb a formátu XML dokumentu. 
 
+Základem pro SOAP webové slu¾eby je SOAP protokol. SOAP je navr¾en jako bezstavový protokol. Pou¾ívá jednocestný zpùsob odesílání zpráv (one-way MEP, Message Exchange Pattern), ale je mo¾no jej pøizpùsobit k dal¹ím zpùsobùm odesílání zpráv jako napø. ¾ádost/odpovìï, ¾ádost/více odpovìdí. SOAP protokol je mo¾no pou¾ívat na libovolné platformì s libovolným programovacím jazykem. 
 
+Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje 
 
 \subsubsection*{REST webové slu¾by}
+
+
+
+
+
+
+
 
 
 
@@ -90,7 +89,7 @@ Slu¾by komunikují pomocí zpráv. Jakmile je zpráva odeslána, slu¾ba nad ní ztrácí
 
 \noindent Jedním z mo¾ných pøístupù SOA, kterým lze SOA implementovat, jsou webové slu¾by. Nutno poznamenat, ¾e ne v¹echny systémy implementované pomocí webových slu¾eb splòují koncept SOA.
 
-\subsubsection*{SOA pomocí webových slu¾eb}
+\subsubsection*{SOA pomocí SOAP webových slu¾eb}
 Co jsou to webové slu¾by jsme si popsali ji¾ døíve. Nyní se podíváme na jejich strukturu a jak pomocí nich lze implementovat principy SOA.
 
 Zapouzdøení operace do slu¾by je zde realizováno právì pomocí webové slu¾by. Popis slu¾by lze realizovat pomocí jazyka pro popis webových slu¾eb (WSDL, Web Service Definition Language). Komunikace je realizována pomocí SOAP protokolu. SOA pomocí webových slu¾eb obsahuje 3 role :
@@ -110,7 +109,7 @@ Registr vystavuje popisy slu¾eb dostupných od poskytovatelù pro ¾adatele, kteøí 
 \begin{figure}[h]
 \begin{center}
  \includegraphics[bb= 0mm 195mm 150mm 294mm]{pic/soa.pdf}
-\caption{Model SOA pomocí webových slu¾eb.}
+\caption{Model SOA pomocí  webových slu¾eb.}
 \end{center}
 \end{figure}
 \noindent Tyto role mohou hrát jakékoliv programy nebo uzly v síti. Webové slu¾by také obsahuje tøi operace, které definují vztahy mezi jednotlivými rolemi:
@@ -159,9 +158,8 @@ Na klientské stranì zpravidla pøidávají informace (bloky hlavièky) do zprávy. Na
 \end{figure}
 \newpage
 
-
-
-
+\section{Architektura orientovaná na zdroje}
+asdfasdf
 
 
 
@@ -209,6 +207,18 @@ Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii 
  \item {\bf Správa a zabezpeèení }\\
 	 Obsahuje technologie pro monitorování a zabezpeèení vytvoøených aplikací. Pro tvorbu monitorovacích aplikací se pou¾ívá specifikace Java Management Extensions (JMX). JMX umo¾òuje vytváøet aplikace s webovým rozhraním, které slou¾í k monitorování a správì rùzných zaøízení, aplikací nebo sítí se slu¾bami. Aplikace v rámci JMX jsou vytváøeny pomocí Managed Bean (MBean) komponent, které zaji¹»ují spojení se sledovaným objektem.
 \end{itemize}
+
+\section{Testování software}
+dd
+\subsection*{Proè testovat software}
+ddd
+\subsection*{Zpùsoby testování software}
+\subsubsection*{Testování modulù}
+Testování modulù (Unit testing)
+\subsubsection*{Regresní testování}
+\subsubsection*{Integraèní testování}
+\subsubsection*{Integraèní testování}
+
 
 
 \chapter{Testování webových slu¾eb}
