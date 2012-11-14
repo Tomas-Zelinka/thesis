@@ -36,25 +36,25 @@ SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale od verze 1.2 se p
 \subsubsection*{REST}
 Zkratka REST znamená REpresentation State Transfer. Oznaèuje architekturu pro hypermediální distribuované systémy. V tìchto systémech jsou ulo¾eny dokumenty nebo slu¾by, které jsou identifikovány pomocí URI. Architektura REST není pøímo svázaná s konkrétním komunikaèním protokolem. Jeliko¾ HTTP protokol nejlépe vyhovuje designu REST architektury, je s touto architekturou ve vìt¹inì pøípadù spojován.
 
-\subsubsection*{Volnì svázaný systém}
-\label{LC}Volnì svázané (loosely coupled)\cite{SOA} systémy obsahují na sobì nezávislé komponenty, které spolu komunikují a tak vytváøejí po¾adovaný systém. Nezávislost tìchto komponent spoèívá v mo¾nosti jejich obmìny. Ve volnì svázaném systému se mohou jednotlivé komponenty uvnitø mìnit(verze, implementace, atd.) ani¾ by to negativnì zasáhlo daný systém.
+\subsubsection*{Serializace}
+dfsadadfas
 
-\subsubsection*{Tìsnì svázaný systém} 
- Tìsnì svázané (tightly coupled)\cite{SOA} systémy obsahují na sobì závislé komponenty, jejich¾ implementace je spojuje dohromady. V tìsnì vázaných systémech si nemù¾eme dovolit mìnit(implementace, verze, atd.) pouze jednu komponentu, ani¾ by to mìlo negativní následky na chod ostatních komponent nebo systému jako celku.
+%\subsubsection*{Volnì svázaný systém}
+%\label{LC}Volnì svázané (loosely coupled)\cite{SOA} systémy obsahují na sobì nezávislé komponenty, které spolu komunikují a tak vytváøejí po¾adovaný systém. Nezávislost tìchto komponent %spoèívá v mo¾nosti jejich obmìny. Ve volnì svázaném systému se mohou jednotlivé komponenty uvnitø mìnit(verze, implementace, atd.) ani¾ by to negativnì zasáhlo daný systém.
 
-\subsubsection*{Middleware} 
-V distribuovaných systémech se jedná o vrstvu, která le¾í mezi operaèním systémem a aplikací na ka¾dé stranì systému. Hlavním úkolem middleware je skrytí distribuovanosti a rùznorodosti jednotlivých èástí systému.\cite{Middleware}
+%\subsubsection*{Tìsnì svázaný systém} 
+% Tìsnì svázané (tightly coupled)\cite{SOA} systémy obsahují na sobì závislé komponenty, jejich¾ implementace je spojuje dohromady. V tìsnì vázaných systémech si nemù¾eme dovolit %mìnit(implementace, verze, atd.) pouze jednu komponentu, ani¾ by to mìlo negativní následky na chod ostatních komponent nebo systému jako celku.
+
+%\subsubsection*{Middleware} 
+%V distribuovaných systémech se jedná o vrstvu, která le¾í mezi operaèním systémem a aplikací na ka¾dé stranì systému. Hlavním úkolem middleware je skrytí distribuovanosti a rùznorodosti %jednotlivých èástí systému.\cite{Middleware}
 
 \subsubsection*{Otevøený software}
 Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdrojovým kódem. Otevøenost znamená mo¾nost zdrojový kód vyu¾ívat pøi splnìní urèitých podmínek.
 
-
+\newpage
 \section{Webové slu¾by}
-Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Má rozhraní popsané strojovì zpracovatelným formátem. Ostatní systémy komunikují s webovými slu¾bami zpùsobem pøedepsaným v popisu za pou¾ití SOAP zpráv zalo¾ených na XML, které jsou pøená¹eny pomocí protokolu HTTP za pou¾ití serializace XML ve spojení s ostatními webovými standardy. Pro webové slu¾by byla vytvoøena øada specifikací, které mají ve svém názvu prefix WS-. Je mo¾né se setkat s oznaèením skupina specifikací WS-*. Dále pak je mo¾no pou¾ít pro implementaci webových slu¾eb REST architekturu.
+Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Slou¾í ke komunikaci a pøenosu dat v decentralizovaných, distribuovaných systémech. Webové slu¾by byly vytvoøeny jako dal¹í alternativa k systémùm jako jsou napø. CORBA nebo DCOM. Jejich základní úèel spoèívá v propojení heterogenních systémù. Pomocí webových slu¾eb je tedy mo¾né propojit systémy rùzných architektur, kde jsou aplikace napsány rùznými jazyky. Jejich rozhraní je popsané strojovì zpracovatelným formátem. Pro vytvoøení webových slu¾eb je mo¾no pou¾ít architekturu orientovanou na slu¾by (SOA, Service Oriented Architecture) nebo architekturu orientovanou na zdroje (ROA, Resource Oriented Architecture), v kontextu webových slu¾eb je tento pojem více znám pod akronymem REST.
 
-
-\subsubsection*{XML-RPC webové slu¾by}
-XML-RPC byl první systém webových slu¾eb, který pou¾íval pro komunikaci XML dokument. XML-RPC webové slu¾by vycházely z architektury volání vzdálených procedur (RPC, Remote Procedure Call).  Pomocí XML-RPC je mo¾né volat procedury na vzdálených strojích, jejich¾ aplikace jsou napsané v rùzných jazycích. Tedy splòují aplikaèní nezávislost, která je typická pro pou¾ití webových slu¾eb.
 
 \subsubsection*{SOAP webové slu¾by}
 XML-RPC webové slu¾by postupnì pøestávaly staèit vzrùstajícím po¾adavkùm, byly vytvoøeny dal¹í specifikace a implementace, které jsou zalo¾ené na SOAP protokolu. SOAP je velmi podobný XML-RPC. Hlavní rozdíly spoèívají v roz¹íøení mo¾ností webových slu¾eb a formátu XML dokumentu. 
@@ -62,6 +62,45 @@ XML-RPC webové slu¾by postupnì pøestávaly staèit vzrùstajícím po¾adavkùm, byly v
 Základem pro SOAP webové slu¾eby je SOAP protokol. SOAP je navr¾en jako bezstavový protokol. Pou¾ívá jednocestný zpùsob odesílání zpráv (one-way MEP, Message Exchange Pattern), ale je mo¾no jej pøizpùsobit k dal¹ím zpùsobùm odesílání zpráv jako napø. ¾ádost/odpovìï, ¾ádost/více odpovìdí. SOAP protokol je mo¾no pou¾ívat na libovolné platformì s libovolným programovacím jazykem. 
 
 Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje 
+
+
+\subsubsection*{SOAP zpráva}
+Jeliko¾ slu¾by mezi sebou komunikují pomocí zpráv, je nutné, aby zprávy mìly jednotný formát a slu¾by pou¾ívaly stejný transportní protokol. Formát zprávy musí být flexibilní a roz¹íøitelný. Z obrázku \ref{fig:SOAPMess} je patrné, ¾e SOAP zpráva se skládá ze 4 èástí:
+\begin{itemize}
+ \item {\bf Obálka }\\ 
+ Jak ji¾ název èásti napovídá, obálka se dá charakterizovat jako kontejner, který volitelnì obsahuje hlavièku a povinnì musí obsahovat tìlo zprávy. 
+ \item {\bf Hlavièka}\\ 
+ K dosa¾ení zmínìné inteligence zprávy se vyu¾ívá obsahu hlavièky SOAP zprávy. Obsah je slo¾en z jednotlivých blokù, které mohou nést rùzné druhy informace související s doruèováním zprávy, zpracování tìla zpráv, bezpeèností apod. Sémantika jednotlivých blokù není v SOAP specifikována. Ka¾dý blok mù¾e mít rozdílný význam, a tedy i specifikaci. 
+ \item {\bf Tìlo}\\ 
+  Tìlo zprávy obsahuje odesílaná data, které jsou ve formátu XML. V pøípadì potøeby mù¾e zpráva obsahovat informaci o chybì na stranì pøíjemce. Zpráva s informací o chybì je pak doruèena zpìt odesilateli. 
+\item {\bf Pøílohy}\\
+SOAP pøíloha umo¾òuje posílat zejména data, která nelze popsat XML dokumentem. Obecnì se jedná o binární data (multimédia, dokumenty, apod.).
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=1, bb= 0.0mm 230.0mm 130mm 294mmm]{pic/SOAPZprava.pdf}
+\caption{Obecný formát SOAP zprávy.}
+\label{fig:SOAPMess}
+\end{center}
+\end{figure}
+
+
+\subsubsection*{SOAP obslu¾né rutiny}
+SOAP obslu¾né rutiny (SOAP handlers)\cite{JAX-WS} mohou zpracovávat zprávu po pøíchodu a pøed odchodem zprávy. Jeliko¾ se v hlavièce zprávy nacházejí rùzné informace(zpùsob zpracování tìla zprávy, bezpeènostní kontext, transakèní kontext, apod.), které je potøeba zpracovat døíve ne¾ je slu¾ba spu¹tìna, zpráva je nejdøíve zachycena tìmito rutinami a ty vykonají pøíslu¹né operace pøed spu¹tìním slu¾by. SOAP obslu¾né rutiny se mohou nacházet na klientské stranì i na koncové stranì slu¾eb.
+
+Na klientské stranì zpravidla pøidávají informace (bloky hlavièky) do zprávy. Na koncové stranì slu¾eb ètou, pøípadnì odstraòují informace ze zprávy a vykonávají patøièné operace. Obslu¾né rutiny nemusejí být pøítomny vùbec nebo jich mu¾e být i více najednou.
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.8, bb= 0.0mm 220.0mm 210mm 294mmm]{pic/SOAPhandler.pdf}
+\caption{Pou¾ití SOAP obslu¾né rutiny.}
+\label{fig:HANDLER}
+\end{center}
+\end{figure}
+
+
+
 
 \subsubsection*{REST webové slu¾by}
 
@@ -109,8 +148,6 @@ Co jsou to webové slu¾by jsme si popsali ji¾ døíve. Nyní se podíváme na jejich s
 
 Zapouzdøení operace do slu¾by je zde realizováno právì pomocí webové slu¾by. Popis slu¾by lze realizovat pomocí jazyka pro popis webových slu¾eb (WSDL, Web Service Definition Language). Komunikace je realizována pomocí SOAP protokolu. SOA pomocí webových slu¾eb obsahuje 3 role :
 
-
-
 \begin{itemize}
 \item {\bf Poskytovatel slu¾by - Service provider}\\
 Je zodpovìdný za popis slu¾by a její spu¹tìní na serveru. Pak je slu¾ba dostupná ze sítì a je mo¾no zaregistrovat její popis v registrech, kde bude k nalezení pro ¾adatele o slu¾bu. Tuto roli lze pøipodobnit k serveru v architektuøe klient-server.
@@ -137,40 +174,7 @@ Je vztah operace mezi registrem slu¾eb a poskytovatelem, kdy poskytovatel zveøej
 Ustanovuje vztah klient-server mezi ¾adatelem o slu¾bu a poskytovatelem. Tento vztah mù¾e být dynamický, kdy mohou být za bìhu vybírány jiné implementace dané slu¾by daných kriterii. Také mù¾e být statický, kdy programátor pøímo implementuje zpùsob volání dané slu¾by.
 \end{itemize}
 
-\subsubsection*{SOAP zpráva}
-Jeliko¾ slu¾by mezi sebou komunikují pomocí zpráv, je nutné, aby zprávy mìly jednotný formát a slu¾by pou¾ívaly stejný transportní protokol. Formát zprávy musí být flexibilní a roz¹íøitelný. Z obrázku \ref{fig:SOAPMess} je patrné, ¾e SOAP zpráva se skládá ze 4 èástí:
-\begin{itemize}
- \item {\bf Obálka }\\ 
- Jak ji¾ název èásti napovídá, obálka se dá charakterizovat jako kontejner, který volitelnì obsahuje hlavièku a povinnì musí obsahovat tìlo zprávy. 
- \item {\bf Hlavièka}\\ 
- K dosa¾ení zmínìné inteligence zprávy se vyu¾ívá obsahu hlavièky SOAP zprávy. Obsah je slo¾en z jednotlivých blokù, které mohou nést rùzné druhy informace související s doruèováním zprávy, zpracování tìla zpráv, bezpeèností apod. Sémantika jednotlivých blokù není v SOAP specifikována. Ka¾dý blok mù¾e mít rozdílný význam, a tedy i specifikaci. 
- \item {\bf Tìlo}\\ 
-  Tìlo zprávy obsahuje odesílaná data, které jsou ve formátu XML. V pøípadì potøeby mù¾e zpráva obsahovat informaci o chybì na stranì pøíjemce. Zpráva s informací o chybì je pak doruèena zpìt odesilateli. 
-\item {\bf Pøílohy}\\
-SOAP pøíloha umo¾òuje posílat zejména data, která nelze popsat XML dokumentem. Obecnì se jedná o binární data (multimédia, dokumenty, apod.).
-\end{itemize}
 
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=1, bb= 0.0mm 230.0mm 130mm 294mmm]{pic/SOAPZprava.pdf}
-\caption{Obecný formát SOAP zprávy.}
-\label{fig:SOAPMess}
-\end{center}
-\end{figure}
-
-
-\subsubsection*{SOAP obslu¾né rutiny}
-SOAP obslu¾né rutiny (SOAP handlers)\cite{JAX-WS} mohou zpracovávat zprávu po pøíchodu a pøed odchodem zprávy. Jeliko¾ se v hlavièce zprávy nacházejí rùzné informace(zpùsob zpracování tìla zprávy, bezpeènostní kontext, transakèní kontext, apod.), které je potøeba zpracovat døíve ne¾ je slu¾ba spu¹tìna, zpráva je nejdøíve zachycena tìmito rutinami a ty vykonají pøíslu¹né operace pøed spu¹tìním slu¾by. SOAP obslu¾né rutiny se mohou nacházet na klientské stranì i na koncové stranì slu¾eb.
-
-Na klientské stranì zpravidla pøidávají informace (bloky hlavièky) do zprávy. Na koncové stranì slu¾eb ètou, pøípadnì odstraòují informace ze zprávy a vykonávají patøièné operace. Obslu¾né rutiny nemusejí být pøítomny vùbec nebo jich mu¾e být i více najednou.
-
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.8, bb= 0.0mm 220.0mm 210mm 294mmm]{pic/SOAPhandler.pdf}
-\caption{Pou¾ití SOAP obslu¾né rutiny.}
-\label{fig:HANDLER}
-\end{center}
-\end{figure}
 \newpage
 
 \section{Architektura orientovaná na zdroje}
