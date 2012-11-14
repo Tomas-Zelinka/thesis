@@ -13,6 +13,12 @@
 \chapter{Základní pojmy}
 V této kapitole je popsána vìt¹ina dùle¾itých pojmù a zkratek, které se vyskytují dále v práci nebo jsou dùle¾ité pro objasnìní nìkterého z pou¾itých principù. Nejdøíve budou popsány dvì základní architektury, kterých týká celá tato práce. Dále budou popsány principy transakcí a jejich roz¹íøení na distribuované systémy. V poslední èásti základních pojmù jsou popsány souèásti platformy programovacího jazyka Java.
 
+\subsubsection*{Hypermédia}
+Pojem hypermédia poprvé pou¾il Ted Nelson jako zobecnìní pojmu hypertext. Hypertext jsou textové dokumenty propojené pomocí odkazù, zatímco hypermédia roz¹iøuje pojem hypertext na jakoukoliv formu média. Tedy jsou to média propojené pomocí odkazù.
+
+\subsubsection*{Serializace a Deserializace}
+Postup, pøi kterém je objekt nebo datová struktura pøeveden do urèitého formátu. Tento formát musí umo¾òovat ulo¾ení datové struktury napø. na pevný disk nebo jej odeslat pomocí sítì na vzdálený stroj. Deserializace je inverzní postup, pøi kterém je datová struktura pøevedena z serializované podoby zpìt do své pùvodní.
+
 
 \subsubsection*{HTML}
 HTML je zkratka pro Hypertext Markup Language \cite{HTML}, co¾ je znaèkovací jazyk pro vytváøení strukturovaných dokumentù na webu. HTML umo¾òuje vkládat sémantické znaèky, které jsou zpravidla párové. Mezi páry znaèek tzv. tagù je umístìn text, který je na základì znaèek interpretován webovým prohlí¾eèem
@@ -21,7 +27,7 @@ HTML je zkratka pro Hypertext Markup Language \cite{HTML}, co¾ je znaèkovací jaz
 HTTP je zkratka pro Hypertext Transfer Protocol \cite{HTTP}. Je to protokol pro výmìnu hypertextových dokumentù ve formátu HTML. Výmìna dokumentù probíhá formou dotaz-odpovìï. 
 
 \subsubsection*{URI} 
-Universal Resource Identifier zkratka pro jednotný identifikátor zdroje. Je textový øetìzec, který má definovanou strukturu. Slou¾í k identifikaci zdroje v poèítaèových sítích, zejména internetu. Pod pojmem zdroj je v tomto kontextu my¹len dokument nebo slu¾ba. URI je slo¾eno 
+Universal Resource Identifier zkratka pro jednotný identifikátor zdroje. Je textový øetìzec, který má definovanou strukturu. Slou¾í k identifikaci zdroje v poèítaèových sítích, zejména internetu. Pod pojmem zdroj je v tomto kontextu my¹len dokument nebo slu¾ba. URI je slo¾eno z øetìzce umístìní zdroje (URL, Universal Resource Locator) a øetìzce názvu zdroje (URN, Univesal Resource Name).
 
 
 \subsubsection*{XML}
@@ -31,22 +37,15 @@ XML je zkratka pro Extensible Markup Language \cite{XML}. Je to obecný znaèkovac
 SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale od verze 1.2 se pou¾ívá pouze SOAP jako samostatný pojem \cite{SOAP}. Specifikuje protokol pro výmìnu strukturovaných a typovaných informací v decentralizovaných a distribuovaných sítích. Pou¾ívá XML pro definování sady funkcí pro vytváøení a výmìnu zpráv nad rùznými podpùrnými protokoly. SOAP byl vyvinut tak, aby byl nezávislý na transportních protokolech. 
 
 
-\subsubsection*{Hypermedia}
-
 \subsubsection*{REST}
 Zkratka REST znamená REpresentation State Transfer. Oznaèuje architekturu pro hypermediální distribuované systémy. V tìchto systémech jsou ulo¾eny dokumenty nebo slu¾by, které jsou identifikovány pomocí URI. Architektura REST není pøímo svázaná s konkrétním komunikaèním protokolem. Jeliko¾ HTTP protokol nejlépe vyhovuje designu REST architektury, je s touto architekturou ve vìt¹inì pøípadù spojován.
 
-\subsubsection*{Serializace}
-dfsadadfas
 
-%\subsubsection*{Volnì svázaný systém}
-%\label{LC}Volnì svázané (loosely coupled)\cite{SOA} systémy obsahují na sobì nezávislé komponenty, které spolu komunikují a tak vytváøejí po¾adovaný systém. Nezávislost tìchto komponent %spoèívá v mo¾nosti jejich obmìny. Ve volnì svázaném systému se mohou jednotlivé komponenty uvnitø mìnit(verze, implementace, atd.) ani¾ by to negativnì zasáhlo daný systém.
+\subsubsection*{Volnì svázaný systém}
+\label{LC}Volnì svázané (loosely coupled)\cite{SOA} systémy obsahují na sobì nezávislé komponenty, které spolu komunikují a tak vytváøejí po¾adovaný systém. Nezávislost tìchto komponent spoèívá v mo¾nosti jejich obmìny. Ve volnì svázaném systému se mohou jednotlivé komponenty uvnitø mìnit(verze, implementace, atd.) ani¾ by to negativnì zasáhlo daný systém.
 
-%\subsubsection*{Tìsnì svázaný systém} 
-% Tìsnì svázané (tightly coupled)\cite{SOA} systémy obsahují na sobì závislé komponenty, jejich¾ implementace je spojuje dohromady. V tìsnì vázaných systémech si nemù¾eme dovolit %mìnit(implementace, verze, atd.) pouze jednu komponentu, ani¾ by to mìlo negativní následky na chod ostatních komponent nebo systému jako celku.
-
-%\subsubsection*{Middleware} 
-%V distribuovaných systémech se jedná o vrstvu, která le¾í mezi operaèním systémem a aplikací na ka¾dé stranì systému. Hlavním úkolem middleware je skrytí distribuovanosti a rùznorodosti %jednotlivých èástí systému.\cite{Middleware}
+\subsubsection*{Tìsnì svázaný systém} 
+ Tìsnì svázané (tightly coupled)\cite{SOA} systémy obsahují na sobì závislé komponenty, jejich¾ implementace je spojuje dohromady. V tìsnì vázaných systémech si nemù¾eme dovolit mìnit(implementace, verze, atd.) pouze jednu komponentu, ani¾ by to mìlo negativní následky na chod ostatních komponent nebo systému jako celku.
 
 \subsubsection*{Otevøený software}
 Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdrojovým kódem. Otevøenost znamená mo¾nost zdrojový kód vyu¾ívat pøi splnìní urèitých podmínek.
@@ -57,12 +56,29 @@ Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\c
 
 
 \subsubsection*{SOAP webové slu¾by}
-XML-RPC webové slu¾by postupnì pøestávaly staèit vzrùstajícím po¾adavkùm, byly vytvoøeny dal¹í specifikace a implementace, které jsou zalo¾ené na SOAP protokolu. SOAP je velmi podobný XML-RPC. Hlavní rozdíly spoèívají v roz¹íøení mo¾ností webových slu¾eb a formátu XML dokumentu. 
-
 Základem pro SOAP webové slu¾eby je SOAP protokol. SOAP je navr¾en jako bezstavový protokol. Pou¾ívá jednocestný zpùsob odesílání zpráv (one-way MEP, Message Exchange Pattern), ale je mo¾no jej pøizpùsobit k dal¹ím zpùsobùm odesílání zpráv jako napø. ¾ádost/odpovìï, ¾ádost/více odpovìdí. SOAP protokol je mo¾no pou¾ívat na libovolné platformì s libovolným programovacím jazykem. 
 
-Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje 
+Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje dal¹í funkcionality, které byly vyvinuty nad SOAP protokolem. Patøí mezi nì napø. transakèní zpracování, bezpeènost, spolehlivost atd.
+\\\\ 
+Specifikace SOAP protokolu je rozdìlena na 4 èásti:
 
+\begin{itemize}
+ \item {\bf Model zpracování }\\ 
+ Model zpracování pøedstavuje jednotlivé èásti distribuovaného modelu, který je v SOAP pou¾it. Jsou zde popsány druhy uzlù, které vyu¾ívá distribuovaný model, pou¾ité zpùsoby výmìny zpráv mezi uzly a dal¹í nezbytnosti, které jsou potøeba pro zpracování SOAP zpráv.
+ \item {\bf Model roz¹íøení }\\ 
+SOAP protokol byl vytvoøen jako velmi dobøe roz¹íøitelný. Tento model popisuje zpùsob jak mají být zpracovány nové funkcionality a roz¹íøení SOAP protokolu.
+\item {\bf Spojení s protokolem pro pøenos zpráv }\\ 
+SOAP protokol není závislý na pøenosovém protokolu a mù¾e tak být spjat s rùznými protokoly. Jako nejvhodnìj¹í kandidáti byly vybrány protokoly HTTP a protokol pro elektronickou po¹tu (SMTP, Simple Mail Transport Protocol). Pro mnohem roz¹íøenìj¹í pou¾ití se dnes hlavnì pou¾ívá protokol HTTP. Pou¾ívá se také pro jeho snadný prùchod pøes sí»ová zabezpeèení (firewall apod.). 
+\item {\bf Vytváøení zpráv }\\ 
+Zprávy jsou v SOAP protokolu definovány jako XML dokument. Tento formát b
+\end{itemize}
+
+\subsubsection*{SOAP dokument styl}
+
+\subsubsection*{SOAP RPC styl}
+
+\subsubsection*{Jazyk pro popis slu¾eb}
+(WSDL, Web service definition language) 
 
 \subsubsection*{SOAP zpráva}
 Jeliko¾ slu¾by mezi sebou komunikují pomocí zpráv, je nutné, aby zprávy mìly jednotný formát a slu¾by pou¾ívaly stejný transportní protokol. Formát zprávy musí být flexibilní a roz¹íøitelný. Z obrázku \ref{fig:SOAPMess} je patrné, ¾e SOAP zpráva se skládá ze 4 èástí:
