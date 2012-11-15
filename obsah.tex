@@ -52,13 +52,14 @@ Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdroj
 
 \newpage
 \section{Webové slu¾by}
-Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Slou¾í ke komunikaci a pøenosu dat v decentralizovaných, distribuovaných systémech. Webové slu¾by byly vytvoøeny jako dal¹í alternativa k systémùm jako jsou napø. CORBA nebo DCOM. Jejich základní úèel spoèívá v propojení heterogenních systémù. Pomocí webových slu¾eb je tedy mo¾né propojit systémy rùzných architektur, kde jsou aplikace napsány rùznými jazyky. Jejich rozhraní je popsané strojovì zpracovatelným formátem. Pro vytvoøení webových slu¾eb je mo¾no pou¾ít architekturu orientovanou na slu¾by (SOA, Service Oriented Architecture) nebo architekturu orientovanou na zdroje (ROA, Resource Oriented Architecture), v kontextu webových slu¾eb je tento pojem více znám pod akronymem REST.
+Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Slou¾í ke komunikaci a pøenosu dat v decentralizovaných, distribuovaných systémech. Webové slu¾by byly vytvoøeny jako dal¹í alternativa k systémùm jako jsou napø. CORBA nebo DCOM. Jejich základní úèel spoèívá v propojení heterogenních systémù. Pomocí webových slu¾eb je tedy mo¾né propojit systémy rùzných architektur, kde jsou aplikace napsány rùznými jazyky. Jejich rozhraní je popsané strojovì zpracovatelným formátem. 
 
+Pøedchùdcem webových slu¾eb je technologie volání vzdálených procedur(RPC, Remote Procedure Call), proto je mo¾né pozorovat rùzné podobnosti s technologii webových slu¾eb a RPC. Dal¹ím vývojovým stupnìm je technologie XML-RPC, kterou se vyu¾ívala k implementaci webových slu¾eb, ale jejich funkcionalita postupnì pøestávala dostaèovat vzrùstajícím potøebám. Posledními technologiemi, které se dnes pou¾ívají pro implementaci webových slu¾eb jsou SOAP a REST. Ka¾dá z tìchto technologii má své pro a proti. O problematice SOAP versus REST bylo napsáno velké mno¾ství èlánkù a ve vìt¹inì knih zamìøených na problematiku webových slu¾eb je minimálnì zmínka o tom, zda pou¾ít REST nebo SOAP. Proto¾e tato práce se hlavnì zamìøuje na testování webových slu¾eb bez rozdílu jejich technologie, budou zde popsány oba dva pøístupy.
 
 \subsubsection*{SOAP webové slu¾by}
 Základem pro SOAP webové slu¾eby je SOAP protokol. SOAP je navr¾en jako bezstavový protokol. Pou¾ívá jednocestný zpùsob odesílání zpráv (one-way MEP, Message Exchange Pattern), ale je mo¾no jej pøizpùsobit k dal¹ím zpùsobùm odesílání zpráv jako napø. ¾ádost/odpovìï, ¾ádost/více odpovìdí. SOAP protokol je mo¾no pou¾ívat na libovolné platformì s libovolným programovacím jazykem. 
 
-Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje dal¹í funkcionality, které byly vyvinuty nad SOAP protokolem. Patøí mezi nì napø. transakèní zpracování, bezpeènost, spolehlivost atd.
+Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje dal¹í funkcionality, které byly vyvinuty nad SOAP protokolem. Patøí mezi nì napø. transakèní zpracování, bezpeènost, spolehlivost atd. Dal¹ími dùle¾itými  technologiemi jsou jazyk pro popis definice webové slu¾by (WSDL, Web Service Definition Language) a registr pro popis a lokalizaci webových slu¾eb (UDDI, Universal Description and Discovery Integration). Nejdøíve si popí¹eme specifikaci SOAP a po té budou pøedstaveny technologie WSDL a UDDI.
 \\\\ 
 Specifikace SOAP protokolu je rozdìlena na 4 èásti:
 
@@ -70,15 +71,9 @@ SOAP protokol byl vytvoøen jako velmi dobøe roz¹íøitelný. Tento model popisuje z
 \item {\bf Spojení s protokolem pro pøenos zpráv }\\ 
 SOAP protokol není závislý na pøenosovém protokolu a mù¾e tak být spjat s rùznými protokoly. Jako nejvhodnìj¹í kandidáti byly vybrány protokoly HTTP a protokol pro elektronickou po¹tu (SMTP, Simple Mail Transport Protocol). Pro mnohem roz¹íøenìj¹í pou¾ití se dnes hlavnì pou¾ívá protokol HTTP. Pou¾ívá se také pro jeho snadný prùchod pøes sí»ová zabezpeèení (firewall apod.). 
 \item {\bf Vytváøení zpráv }\\ 
-Zprávy jsou v SOAP protokolu definovány jako XML dokument. Tento formát b
+Zprávy jsou v SOAP protokolu definovány jako XML dokument. Tento formát má své výhody i nevýhody. XML je výhodné, proto¾e odpadají problémy s pøenositelnosti mezi systémy, proto¾e se jedná o textový dokument. Právì zpracování XML dokumentu pøiná¹í problémy s výkoností, proto¾e zpracování textových dokumentù pøiná¹í svá úskalí.
 \end{itemize}
 
-\subsubsection*{SOAP dokument styl}
-
-\subsubsection*{SOAP RPC styl}
-
-\subsubsection*{Jazyk pro popis slu¾eb}
-(WSDL, Web service definition language) 
 
 \subsubsection*{SOAP zpráva}
 Jeliko¾ slu¾by mezi sebou komunikují pomocí zpráv, je nutné, aby zprávy mìly jednotný formát a slu¾by pou¾ívaly stejný transportní protokol. Formát zprávy musí být flexibilní a roz¹íøitelný. Z obrázku \ref{fig:SOAPMess} je patrné, ¾e SOAP zpráva se skládá ze 4 èástí:
@@ -101,7 +96,6 @@ SOAP pøíloha umo¾òuje posílat zejména data, která nelze popsat XML dokumentem. O
 \end{center}
 \end{figure}
 
-
 \subsubsection*{SOAP obslu¾né rutiny}
 SOAP obslu¾né rutiny (SOAP handlers)\cite{JAX-WS} mohou zpracovávat zprávu po pøíchodu a pøed odchodem zprávy. Jeliko¾ se v hlavièce zprávy nacházejí rùzné informace(zpùsob zpracování tìla zprávy, bezpeènostní kontext, transakèní kontext, apod.), které je potøeba zpracovat døíve ne¾ je slu¾ba spu¹tìna, zpráva je nejdøíve zachycena tìmito rutinami a ty vykonají pøíslu¹né operace pøed spu¹tìním slu¾by. SOAP obslu¾né rutiny se mohou nacházet na klientské stranì i na koncové stranì slu¾eb.
 
@@ -114,6 +108,32 @@ Na klientské stranì zpravidla pøidávají informace (bloky hlavièky) do zprávy. Na
 \label{fig:HANDLER}
 \end{center}
 \end{figure}
+
+\subsubsection*{Jazyk pro popis slu¾eb}
+Popis slu¾by slou¾í jako strojovì zpracovatelný manuál pro zacházení s webovou slu¾bou(WSDL, Web Service Definition Language). WSDL je popisuje webovou slu¾bu pomocí XML dokumentu. WSDL patøí mezi jazyky definující rozhraní (IDL, Interface Definition Language). IDL jazyky slou¾í k pøesnému popsání rozhraní dané softwarové komponenty tak, aby bylo mo¾né jej strojovì zpracovat. Hlavní vlastností IDL jazykù je nezávislost na programovacím jazyku. V praxi to znamená, ¾e pomocí IDL jazyka lze vygenerovat rozhraní pro rùzné programovací jazyky. V pøípadì WSDL se generují rozhraní pro webové slu¾by. WSDL v¹ak neslou¾í pouze ke generování rozhraní, ale také k vyhledávání a rozpoznání webové slu¾by. V pøípadì vyhledání a rozpoznání je mo¾né WSDL dokument analyzovat a rozhodnout, zda-li daná webová slu¾ba odpovídá po¾adavkùm.
+
+WSDL dokument je rozdìlen na abstraktní èást a konkrétní èást. V abstraktní èásti jsou popsány souèásti rozhraní, které nejsou závislé na konkrétních technologiích tzn, datové typy, typy pøená¹ených zpráv. Definice z abstraktní èásti jsou pak pou¾ity pro pøesný popis spojení se slu¾bou a popis slu¾by samotné.
+
+XML struktura WSDL dokumentu zaèíná koøenovým elementem {\it description}, která obsahuje abstraktní souèásti  {\it types},  {\it  interfaces}. V konkretní èásti se pak definice z  {\it types} a {\it  interfaces} pou¾ijí pro souèásti {\it binding}a  {\it  service}. Toto je popis WSDL podle verze 2.0. Pøede¹lá verze obsahuje odli¹nosti v pojmenování a struktuøe jednotlivých elementù. WSDL verze 2.0 je také vhodná pro popis REST webových slu¾eb.
+\\\\
+Popis jednotlivých souèástí WSDL dokumentu:
+\begin{itemize}
+\item{\bf Typy}\\
+ V souèásti {\it types} jsou definovány pou¾ité datové typy. Je mo¾né pou¾ít rùzné druhy popisu datových typù, ale je doporuèeno a hlavnì se pou¾ívá XML schéma pro definici datových typu (XSD, XML Schema Definition Language). Také je zde popsán formát pøená¹ených zpráv. Je mo¾né tyto definice naèíst z externího zdroje pomocí elementu  {\it import}.
+\item{\bf Rozhraní }\\
+V souèásti  {\it interfaces} jsou popsány operace, které budou pou¾ity slu¾bou. Zde se jednotlivým operacím pøiøadí vstupní a výstupní zprávy, které jsou definovány v èásti  {\it types}.
+
+\item{\bf Spojení }\\
+Souèást  {\it bindings} slou¾í k definici spojení s danou technologii. Obvykle to jsou SOAP a HTTP protokoly. Dále je pak definováno jaký styl SOAP zprávy má být pou¾it. V tomto pøípadì jsou dvì mo¾nosti,  {\it document} nebo  {\it rpc} styl.  Je doporuèeno pou¾ívat  {\it document} styl. Styl  {\it document} nemá strukturální omezení obsahu SOAP zprávy, èili mù¾e to být libovolný XML dokument. Naproti tomu  {\it rpc} styl musí odpovídat pøedepsanému RPC schématu zprávy. Oba styly musí být XML dokumenty, proto mohou být naprosto stejné pouze z vý¹e popsanými omezeními.
+
+\item{\bf Slu¾ba }\\
+Souèást  {\it service} je pou¾ita pro konkrétní definici dané slu¾by pomocí vý¹e zmínìných souèástí. Je zde pou¾ito definované spojení a adresa, na které je slu¾ba dostupná.
+\end{itemize}
+WSDL má samozøejmì mnoho dal¹ích mo¾ností, ale vý¹e uvedené jsou postaèující k vytvoøení plnohodnotné slu¾by. Více informací o WSDL je mo¾no získat v pøíslu¹ných specifikacích.
+
+
+\subsubsection*{Registr pro popis a nalezení webových slu¾eb}
+UDDI 
 
 
 
