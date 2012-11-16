@@ -132,11 +132,21 @@ Souèást  {\it service} je pou¾ita pro konkrétní definici dané slu¾by pomocí vý¹e
 WSDL má samozøejmì mnoho dal¹ích mo¾ností, ale vý¹e uvedené jsou postaèující k vytvoøení plnohodnotné slu¾by. Více informací o WSDL je mo¾no získat v pøíslu¹ných specifikacích.
 
 
-\subsubsection*{Registr pro popis a nalezení webových slu¾eb}
-UDDI 
+\subsubsection*{Registr pro popis a nalezení webových slu¾eb - UDDI}
+UDDI slou¾í pro ukládání informací o webových slu¾bách. Informace jsou ulo¾eny jako XML dokumenty vìt¹inou v SQL databázích. UDDI se hlavnì pou¾ívá pro vyhledávání webových slu¾eb na základì jejich popisu, aby se potom mohly pou¾ít. Tento centralizovaný zpùsob má za cíl zpøehlednit a usnadnit vyhledání a následné pou¾ití webové slu¾by.
 
-
-
+Svého èasu se specifikace UDDI tì¹ila velké popularity a byla hojnì vyu¾ívána a rozvíjena. Vývoj specifikace se v¹ak zastavil pøed nìkolika lety na verzi 3.0. V této dobì velké firmy nabízel veøejné UDDI registry pro zaøazení veøejných webových slu¾eb. Av¹ak z této cesty bylo upu¹tìno a dnes ji¾ veøejných UDDI registrù je velmi málo. UDDI se v¹ak stále pou¾ívá, ale své místo získala tato technologie v privátních sítích a øe¹eních. Pou¾ívá se pøi pou¾ití sbìrnic slu¾eb (ESB, Enterprise Service Bus) a podobných integraèních øe¹eních, kde se automatizují procesy. Zde právì sbìrnice slu¾eb mù¾e dynamicky vyhledat v UDDI registrech  slu¾bu podle po¾adovaných kritérií, a tak vybrat vhodnou slu¾bu k pou¾ití.
+\\\\
+UDDI registr se skládá ze 3 èástí:
+\begin{itemize}
+\item {\bf Bílé stránky}\\
+V bílých stránkách jsou ulo¾eny informace o poskytovateli slu¾by. Pomocí bílých stránek lze najít slu¾bu napø. podle jména nebo názvu poskytovatele.	
+\item {\bf ®luté stránky}\\
+Ve ¾lutých stránkách jsou ulo¾eny informace o kategorii poskytované slu¾by. Jeliko¾ poskytovatel mù¾e poskytovat více kategorií slu¾eb, mù¾e se více ¾lutých stránek vztahovat k jedné bílé.
+\item {\bf Zelené stránky}\\
+V zelených stránkách jsou ulo¾eny technické informace o slu¾bách. Typické informace v zelených stránkách jsou spojení s webovou slu¾bou, adresa slu¾by nebo pøedávané parametry. Jeliko¾ slu¾ba mù¾e definovat více druhù spojení, mohou zelené stránky obsahovat více záznamù k jedné slu¾bì.
+\end{itemize}
+Jednou s velmi populárních implementací UDDI specifikace je jUDDI, která je pod správou Apache Foundation.
 
 \subsubsection*{REST webové slu¾by}
 
@@ -146,9 +156,9 @@ Pou¾ití HTTP protokolu :
 \begin{itemize}
 \item {\bf GET}\\
 sdfgsd
-\item {\bf HEAD}\\
-sdfgsdfg
 \item {\bf PUT}\\
+sdfgsdfg
+\item {\bf POST}\\
 sdfgsdfg
 \item {\bf DELETE }\\
 sdfgsdfg
