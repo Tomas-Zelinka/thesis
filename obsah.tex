@@ -38,7 +38,7 @@ SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale od verze 1.2 se p
 
 
 \subsubsection*{REST}
-Zkratka REST znamená REpresentation State Transfer. Oznaèuje architekturu pro hypermediální distribuované systémy. V tìchto systémech jsou ulo¾eny dokumenty nebo slu¾by, které jsou identifikovány pomocí URI. Architektura REST není pøímo svázaná s konkrétním komunikaèním protokolem. Jeliko¾ HTTP protokol nejlépe vyhovuje designu REST architektury, je s touto architekturou ve vìt¹inì pøípadù spojován.
+Zkratka REST znamená REpresentation State Transfer. Oznaèuje architektonický styl pro hypermediální distribuované systémy. V tìchto systémech jsou ulo¾eny dokumenty nebo slu¾by, které jsou identifikovány pomocí URI.  REST není pøímo svázán s konkrétním komunikaèním protokolem. Jeliko¾ HTTP protokol nejlépe vyhovuje principùm REST , je s tímto stylem ve vìt¹inì pøípadù spojován.
 
 
 \subsubsection*{Volnì svázaný systém}
@@ -51,6 +51,75 @@ Zkratka REST znamená REpresentation State Transfer. Oznaèuje architekturu pro hy
 Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdrojovým kódem. Otevøenost znamená mo¾nost zdrojový kód vyu¾ívat pøi splnìní urèitých podmínek.
 
 \newpage
+
+\section{Architektura orientovaná na slu¾by}
+Architektura orientovaná na slu¾by(Services oriented architecture, SOA) \cite{SOA} \label{SOA} je sada principù a postupù pro návrh a vývoj softwaru. SOA se zamìøuje na pøesnì definované softwarové komponenty (èásti poèítaèových systému, datové struktury, apod.), které mohou být pou¾ity vícekrát, pro více úèelù a v kontextu SOA sem jim øíká slu¾by. Nyní si si uká¾eme hlavní principy a postupy, které se pou¾ívají pøi vytváøení slu¾eb v rámci SOA.
+
+\subsubsection*{Zapouzdøení operace}
+Pøi vytváøení systému obsahujících slu¾by, rozsah zapouzdøení mù¾e být men¹í i vìt¹í. Slu¾ba mù¾e zapouzdøit jednu operaci v rámci systému nebo operaci, která reprezentuje celý systém.
+
+\subsubsection*{Vztah mezi slu¾bami}
+Jednotlivé slu¾by mohou být vyu¾ívány jinými slu¾bami nebo programy. Aby mohly slu¾by a programy mezi sebou komunikovat, musí o sobì vìdìt. Toto povìdomí je realizováno pomocí popisu slu¾by. V popisu slu¾by je uveden název slu¾by a druh dat, které slu¾ba oèekává a vrací.
+
+\subsubsection*{Komunikace mezi slu¾bami}
+Slu¾by komunikují pomocí zpráv. Jakmile je zpráva odeslána, slu¾ba nad ní ztrácí kontrolu. Podle SOA by mìla být zpráva nezávislou komunikaèní jednotkou, a tak zastávat stejnou pozici pøi komunikaci jako slu¾ba. Jinými slovy to znamená, ¾e zpráva si sama urèí slu¾bu, ke které bude doruèena. Abychom toho dosáhli, je nutné vybavit zprávu patøiènou inteligencí.
+
+
+\noindent Jedním z mo¾ných pøístupù SOA, kterým lze SOA implementovat, jsou webové slu¾by. Nutno poznamenat, ¾e ne v¹echny systémy implementované pomocí webových slu¾eb splòují koncept SOA a v systému vytvoøeném pomocí SOA konceptu nemusí být ka¾dá slu¾ba nutnì webová. Tedy SOA a webové slu¾by nejsou synonyma, ale velmi èasto spojované pojmy.
+
+\subsubsection*{SOA pomocí webových slu¾eb}
+Co jsou to webové slu¾by jsme si popsali ji¾ døíve. Nyní se podíváme na jejich strukturu a jak pomocí nich lze implementovat principy SOA.
+
+Zapouzdøení operace do slu¾by je zde realizováno právì pomocí webové slu¾by. Popis slu¾by lze realizovat pomocí jazyka pro popis webových slu¾eb (WSDL, Web Service Definition Language). Komunikace je realizována pomocí SOAP protokolu. SOA pomocí webových slu¾eb obsahuje 3 role :
+
+\begin{itemize}
+\item {\bf Poskytovatel slu¾by - Service provider}\\
+Je zodpovìdný za popis slu¾by a její spu¹tìní na serveru. Pak je slu¾ba dostupná ze sítì a je mo¾no zaregistrovat její popis v registrech, kde bude k nalezení pro ¾adatele o slu¾bu. Tuto roli lze pøipodobnit k serveru v architektuøe klient-server.
+\item{\bf ®adatel o slu¾bu - Service requester }\\
+Vyhledá po¾adovanou slu¾bu v jednom nebo více registrech. Po nalezení popisu dané slu¾by se ¾adatel spojí se slu¾bou u poskytovatele a mù¾e ji pou¾ívat. Tuto roli lze pøipodobnit ke klientovi v architektuøe klient-server.
+\item{\bf Registr slu¾by - Service registry}\\
+Registr vystavuje popisy slu¾eb dostupných od poskytovatelù pro ¾adatele, kteøí v tìchto registrech vyhledávají po¾adované slu¾by. Jakmile je jednou slu¾ba v registru nalezena, není ji¾ tato role potøebná.
+\\\\
+
+\end{itemize}
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[bb= 0mm 195mm 150mm 294mm]{pic/soa.pdf}
+\caption{Model SOA pomocí  webových slu¾eb.}
+\end{center}
+\end{figure}
+\noindent Tyto role mohou hrát jakékoliv programy nebo uzly v síti. Webové slu¾by také obsahuje tøi operace, které definují vztahy mezi jednotlivými rolemi:
+\begin{itemize}
+\item{\bf Zveøejnìní }\\
+Je vztah operace mezi registrem slu¾eb a poskytovatelem, kdy poskytovatel zveøejní popis slu¾by v registru, a tak ho zpøístupní ¾adatelùm. Konkretní mechanizmus zveøejnìní závisí na implementaci registru. V urèitých pøípadech roli registru pøejímá sama sí», kdy je popis slu¾by zveøejnìn pøímo v pøístupné èásti souborového systému na serveru.
+\item{\bf Nalezení }\\
+®adatel definuje vlastnosti transakce a podle nich je vyhledána slu¾ba v registrech. Výsledkem hledání je seznam slu¾eb, které odpovídají kriteriím. Nejjednodu¹¹í vyhledávací dotaz je HTTP GET\footnote{ Hypertext transfer protokol - protokol pro pøená¹ení hypertextových HTML dokumentù \\ GET - jedna z metod HTTP pro získání webové stránky klientem ze serveru} bez parametrù, který v¾dy vrátí v¹echny slu¾by, které jsou k dispozici. Pak je na ¾adateli, aby vybral správnou slu¾bu. Pro komplexní registraci a vyhledání slu¾eb se pou¾ívá standardu pro univerzální popis, vyhledání a integraci(UDDI, Universal descrition, discovery and integration). 
+\item{\bf Spojení }\\
+Ustanovuje vztah klient-server mezi ¾adatelem o slu¾bu a poskytovatelem. Tento vztah mù¾e být dynamický, kdy mohou být za bìhu vybírány jiné implementace dané slu¾by daných kriterii. Také mù¾e být statický, kdy programátor pøímo implementuje zpùsob volání dané slu¾by.
+\end{itemize}
+
+
+\section{REST}
+Architektonický styl REST byl navr¾en Roy Fieldingem v rámci jeho disertaèní práci v roce 2000. REST není architekturou ani technologii. REST je sada omezení, které musí dané øe¹ení obsahovat. REST byl vytvoøen pro prostøedí internetu a webu. REST je orientován na zdroje, kdy zdrojem jsou po¾adováná data nebo stav daného vzdáleného systému. Tento styl získávání dat je velmi podobný SQL dotazùm, kde také po¾adujeme urèitá data(deklarativní programování). V kontrastu s tímto je SOAP protokol, pomocí kterého jsou na vzdálené stranì vyvolávány procedury(procedurální programování).
+
+Aèkoliv je mo¾né se doèíst o soupeøení a porovnávání mezi SOA a REST, tak hlavní smysl REST je být alternativou k procedurálnímu charakteru SOA architektury. 
+\\\\
+Nyní se podíváme na základní sadu charakteristik REST:
+\begin{itemize}
+\item {\bf Architektura klient/server}\\
+Zde je klientem u¾ivatelské rozhraní a server je úlo¾i¹tì dat. Díky oddìlení u¾ivatelského rozhraní a úlo¾i¹tì dat má být dosa¾eno lep¹í pøenositelnosti u¾ivatelského rozhraní a lep¹í ¹kálovatelnosti serverové strany.
+\item {\bf Bezstavovost}\\
+Kontext nesmí být ulo¾en na stranì serveru a odeslaný po¾adavek musí obsahovat v¹e potøebné. Ve¹keré informace o aktuálním sezení jsou ulo¾eny na stranì klienta. Toto omezení má umo¾òovat lep¹í viditelnost, spolehlivost a ¹kálovatelnost. Lep¹í viditelnost je dosa¾eno, proto¾e monitorovací systémy mohou monitorovat pouze odesílané po¾adavky, kde jsou kompletní informace. Lep¹í spolehlivosti je dosa¾eno díky snadnìj¹í obnovì po chybách, proto¾e na serveru nejsou ulo¾eny kontextové informace. Díky neukládání kontextových informací na serveru je dosa¾eno i lep¹í ¹kálovatelnosti.
+\item {\bf Mezi-pamì»}\\
+Pro lep¹í výkonost dotazù by mìla být na stranì klienta mezipamì»(cache), která ukládá výsledky ji¾ provedených dotazù. Toto zlep¹ení výkonosti je vykoupeno men¹í spolehlivostí dat, která nemusí být v danou chvíli aktuální.
+\item {\bf Vrstvy}\\
+Systém podle REST by mìl být sestaven z více vrstev a ka¾dá vrstva komunikuje pouze se sousedními vrstvami. Napøíklad webový prohlí¾eè si vy¾ádá data od web serveru, ale ji¾ neví o databázi, kterou server vyu¾ívá k získání po¾adovaných dat.
+\item {\bf Jednotné komunikaèní rozhraní}\\
+Jednotlivé komponenty systému musí mít jednotné rozhraní. Co¾ mù¾e mít za následek men¹í výkon systému, proto¾e rozhraní nebude vytvoøeno podle vlastností aplikace. Pro vytvoøení jednotného rozhraní jsou vytvoøeny omezení, která musí daný systém splòovat. Mezi nì patøí identifikace zdrojù, manipulace se zdrojem skrze jeho reprezentaci, zprávy mezi komponentami systému musejí být sebe popisující,  hypermédia jsou prostøedkem ke stavu aplikace. 
+\item {\bf Kód na vy¾ádání}\\
+Nepovinnou funkcionalitou je tzv. kód na vy¾ádání. Tento pojem souvisí s roz¹íøeními, které jsou zasílána klientské aplikaci na vy¾ádání. Jedná se o dodateèný kód (Java applet, Javascript), který se spou¹tí na stranì klienta. Kód na vy¾ádání je nepovinnou charakteristikou, proto¾e vykonávání takovéhoto kódu mù¾e být na klientské stranì zakázáno.
+\end{itemize}
+Tyto vlastnosti nemusí být na první pohled úplnì srozumitelné, proto budou dále popsány na konkrétní technologii viz sekce REST webové slu¾by
 \section{Webové slu¾by}
 Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Slou¾í ke komunikaci a pøenosu dat v decentralizovaných, distribuovaných systémech. Webové slu¾by byly vytvoøeny jako dal¹í alternativa k systémùm jako jsou napø. CORBA nebo DCOM. Jejich základní úèel spoèívá v propojení heterogenních systémù. Pomocí webových slu¾eb je tedy mo¾né propojit systémy rùzných architektur, kde jsou aplikace napsány rùznými jazyky. Jejich rozhraní je popsané strojovì zpracovatelným formátem. 
 
@@ -149,9 +218,34 @@ V zelených stránkách jsou ulo¾eny technické informace o slu¾bách. Typické inform
 Jednou s velmi populárních implementací UDDI specifikace je jUDDI, která je pod správou Apache Foundation.
 
 \subsubsection*{REST webové slu¾by}
+ Druhou koncepcí webových slu¾eb, se kterou se mù¾eme setkat a stává se velmi populární, jsou webové slu¾by respektující REST architektonický styl. Proto¾e REST stylu vyhovují vlastnosti HTTP protokolu a HTTP protokol je vyu¾íván ke konstrukci webových slu¾eb, byly vlastnosti REST pou¾ity pro konstrukci webových slu¾eb. Nyní si bude popsáno propojení REST vlastností a omezení, která byla pøedstavena døíve v textu, s protokolem HTTP a následnì spojení s technologii webových slu¾eb. 
+\\\\
+HTTP protokol splòuje REST vlastnosti a omezení díky následujícím vlastnostem:
+\begin{itemize}
+\item {\bf Architektura klient/server}\\
+Samotný protokol HTTP je konstruován stylem dotaz/odpovìï klienta a serveru. Toto spojení je dáno ji¾ samotnou konstrukcí protokolu.
+\item {\bf Bezstavovost}\\
+Tato vlastnost u¾ musí být implementována specificky na dané architektuøe, která je postavena nad HTTP protokolem. Pokud je kontext ukládán na serveru, tak se nejedná o aplikaci zalo¾enou na èistì principech REST.  
+\item {\bf Mezi-pamì»}\\
+Mezi-pamì» vyu¾ívá i HTTP protokol pro ukládání odpovìdí na klientské stranì.
+\item {\bf Vrstvy}\\
+Vícevrstvé rozdìlení je vyu¾ito v rámci HTTP protokolu. Kdy¾ si webový prohlí¾eè vy¾ádá od serveru data, není si vìdom napø. databáze, se kterou server dále komunikuje. 
+\item {\bf Identifikace zdrojù}\\
+Zdroje v HTTP mohou být identifikovány pomocí URI.
+\item {\bf Manipulace se zdroji pomocí jejich reprezentace }\\
+Data, která jsou odesílání pomocí HTTP mohou být pøená¹ená v jiné reprezentaci ne¾ je jejich ulo¾ení, èili mohou být pøená¹eny jednotným zpùsobem(JSON, XML apod.).
+\item {\bf Sebe popisující zprávy }\\
+Tuto vlastnost nemusí HTTP protokol splòovat, je tøeba tuto vlastnost doplnit ve vrstvì, která je nad HTTP protokolem.
+\item {\bf Hypermédia jako prostøedek stavu aplikace}\\
+asfasf
+\item {\bf Kód na vy¾ádání}\\
+Kód na vy¾ádání je mo¾ností HTTP protokolu,
+\end{itemize}
 
 
-Pou¾ití HTTP protokolu :
+
+CRUD operace 
+Pou¾ití HTTP protokolu pøi konstrukci webových slu¾eb:
 
 \begin{itemize}
 \item {\bf GET}\\
@@ -166,7 +260,7 @@ sdfgsdfg
 
 \end{itemize}
 
-
+Vyu¾ití mezipamìti
 
 
 
@@ -174,57 +268,7 @@ sdfgsdfg
 
 
 %co je to soa, SOAP konstrukce zpravy a handlery, business activity a LRA, systemova integrace a ESB, proc soa a transakce
-\section{Architektura orientovaná na slu¾by}
-Architektura orientovaná na slu¾by(Services oriented architecture, SOA) \cite{SOA} \label{SOA} je sada principù a postupù pro návrh a vývoj softwaru. SOA se zamìøuje na pøesnì definované softwarové komponenty (èásti poèítaèových systému, datové struktury, apod.), které mohou být pou¾ity pro vícekrát, pro více úèelù a v kontextu SOA sem jim øíká slu¾by. Nyní si si uká¾eme hlavní principy a postupy, které se pou¾ívají pøi vytváøení slu¾eb v rámci SOA.
 
-\subsubsection*{Zapouzdøení operace}
-Pøi vytváøení systému obsahujících slu¾by, rozsah zapouzdøení mù¾e být men¹í i vìt¹í. Slu¾ba mù¾e zapouzdøit jednu operaci v rámci systému nebo operaci, která reprezentuje celý systém.
-
-\subsubsection*{Vztah mezi slu¾bami}
-Jednotlivé slu¾by mohou být vyu¾ívány jinými slu¾bami nebo programy. Aby mohly slu¾by a programy mezi sebou komunikovat, musí o sobì vìdìt. Toto povìdomí je realizováno pomocí popisu slu¾by. V popisu slu¾by je uveden název slu¾by a druh dat, které slu¾ba oèekává a vrací.
-
-\subsubsection*{Komunikace mezi slu¾bami}
-Slu¾by komunikují pomocí zpráv. Jakmile je zpráva odeslána, slu¾ba nad ní ztrácí kontrolu. Podle SOA by mìla být zpráva nezávislou komunikaèní jednotkou, a tak zastávat stejnou pozici pøi komunikaci jako slu¾ba. Jinými slovy to znamená, ¾e zpráva si sama urèí slu¾bu, ke které bude doruèena. Abychom toho dosáhli, je nutné vybavit zprávu patøiènou inteligencí.
-
-
-\noindent Jedním z mo¾ných pøístupù SOA, kterým lze SOA implementovat, jsou webové slu¾by. Nutno poznamenat, ¾e ne v¹echny systémy implementované pomocí webových slu¾eb splòují koncept SOA.
-
-\subsubsection*{SOA pomocí SOAP webových slu¾eb}
-Co jsou to webové slu¾by jsme si popsali ji¾ døíve. Nyní se podíváme na jejich strukturu a jak pomocí nich lze implementovat principy SOA.
-
-Zapouzdøení operace do slu¾by je zde realizováno právì pomocí webové slu¾by. Popis slu¾by lze realizovat pomocí jazyka pro popis webových slu¾eb (WSDL, Web Service Definition Language). Komunikace je realizována pomocí SOAP protokolu. SOA pomocí webových slu¾eb obsahuje 3 role :
-
-\begin{itemize}
-\item {\bf Poskytovatel slu¾by - Service provider}\\
-Je zodpovìdný za popis slu¾by a její spu¹tìní na serveru. Pak je slu¾ba dostupná ze sítì a je mo¾no zaregistrovat její popis v registrech, kde bude k nalezení pro ¾adatele o slu¾bu. Tuto roli lze pøipodobnit k serveru v architektuøe klient-server.
-\item{\bf ®adatel o slu¾bu - Service requester }\\
-Vyhledá po¾adovanou slu¾bu v jednom nebo více registrech. Po nalezení popisu dané slu¾by se ¾adatel spojí se slu¾bou u poskytovatele a mù¾e ji pou¾ívat. Tuto roli lze pøipodobnit ke klientovi v architektuøe klient-server.
-\item{\bf Registr slu¾by - Service registry}\\
-Registr vystavuje popisy slu¾eb dostupných od poskytovatelù pro ¾adatele, kteøí v tìchto registrech vyhledávají po¾adované slu¾by. Jakmile je jednou slu¾ba v registru nalezena, není ji¾ tato role potøebná.
-\\\\
-
-\end{itemize}
-\begin{figure}[h]
-\begin{center}
- \includegraphics[bb= 0mm 195mm 150mm 294mm]{pic/soa.pdf}
-\caption{Model SOA pomocí  webových slu¾eb.}
-\end{center}
-\end{figure}
-\noindent Tyto role mohou hrát jakékoliv programy nebo uzly v síti. Webové slu¾by také obsahuje tøi operace, které definují vztahy mezi jednotlivými rolemi:
-\begin{itemize}
-\item{\bf Zveøejnìní }\\
-Je vztah operace mezi registrem slu¾eb a poskytovatelem, kdy poskytovatel zveøejní popis slu¾by v registru, a tak ho zpøístupní ¾adatelùm. Konkretní mechanizmus zveøejnìní závisí na implementaci registru. V urèitých pøípadech roli registru pøejímá sama sí», kdy je popis slu¾by zveøejnìn pøímo v pøístupné èásti souborového systému na serveru.
-\item{\bf Nalezení }\\
-®adatel definuje vlastnosti transakce a podle nich je vyhledána slu¾ba v registrech. Výsledkem hledání je seznam slu¾eb, které odpovídají kriteriím. Nejjednodu¹¹í vyhledávací dotaz je HTTP GET\footnote{ Hypertext transfer protokol - protokol pro pøená¹ení hypertextových HTML dokumentù \\ GET - jedna z metod HTTP pro získání webové stránky klientem ze serveru} bez parametrù, který v¾dy vrátí v¹echny slu¾by, které jsou k dispozici. Pak je na ¾adateli, aby vybral správnou slu¾bu. Pro komplexní registraci a vyhledání slu¾eb se pou¾ívá standardu pro univerzální popis, vyhledání a integraci(UDDI, Universal descrition, discovery and integration). 
-\item{\bf Spojení }\\
-Ustanovuje vztah klient-server mezi ¾adatelem o slu¾bu a poskytovatelem. Tento vztah mù¾e být dynamický, kdy mohou být za bìhu vybírány jiné implementace dané slu¾by daných kriterii. Také mù¾e být statický, kdy programátor pøímo implementuje zpùsob volání dané slu¾by.
-\end{itemize}
-
-
-\newpage
-
-\section{Architektura orientovaná na zdroje}
-asdfasdf
 
 
 
