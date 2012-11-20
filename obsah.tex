@@ -219,13 +219,13 @@ Jednou s velmi populárních implementací UDDI specifikace je jUDDI, která je pod 
 
 \subsubsection*{REST webové slu¾by}
  Druhou koncepcí webových slu¾eb, se kterou se mù¾eme setkat a stává se velmi populární, jsou webové slu¾by respektující REST architektonický styl. Proto¾e REST stylu vyhovují vlastnosti HTTP protokolu a HTTP protokol je vyu¾íván ke konstrukci webových slu¾eb, byly vlastnosti REST pou¾ity pro konstrukci webových slu¾eb. Nyní si bude popsáno propojení REST vlastností a omezení, která byla pøedstavena døíve v textu, s protokolem HTTP a následnì spojení s technologii webových slu¾eb. 
-\\\\
+\\\\\\
 HTTP protokol splòuje REST vlastnosti a omezení díky následujícím vlastnostem:
 \begin{itemize}
 \item {\bf Architektura klient/server}\\
 Samotný protokol HTTP je konstruován stylem dotaz/odpovìï klienta a serveru. Toto spojení je dáno ji¾ samotnou konstrukcí protokolu.
 \item {\bf Bezstavovost}\\
-Tato vlastnost u¾ musí být implementována specificky na dané architektuøe, která je postavena nad HTTP protokolem. Pokud je kontext ukládán na serveru, tak se nejedná o aplikaci zalo¾enou na èistì principech REST.  
+Tato vlastnost u¾ musí být implementována specificky na dané architektuøe, která je postavena nad HTTP protokolem. Pokud je kontext ukládán na serveru, tak se nejedná o aplikaci zalo¾enou èistì na principech REST.  
 \item {\bf Mezi-pamì»}\\
 Mezi-pamì» vyu¾ívá i HTTP protokol pro ukládání odpovìdí na klientské stranì.
 \item {\bf Vrstvy}\\
@@ -233,45 +233,28 @@ Vícevrstvé rozdìlení je vyu¾ito v rámci HTTP protokolu. Kdy¾ si webový prohlí¾eè
 \item {\bf Identifikace zdrojù}\\
 Zdroje v HTTP mohou být identifikovány pomocí URI.
 \item {\bf Manipulace se zdroji pomocí jejich reprezentace }\\
-Data, která jsou odesílání pomocí HTTP mohou být pøená¹ená v jiné reprezentaci ne¾ je jejich ulo¾ení, èili mohou být pøená¹eny jednotným zpùsobem(JSON, XML apod.).
+Data, která jsou odesílání pomocí HTTP mohou být pøená¹ená v jiné reprezentaci ne¾ jak jsou ulo¾ena, èili mohou být pøená¹eny jednotným zpùsobem(JSON, XML apod.).
 \item {\bf Sebe popisující zprávy }\\
-Tuto vlastnost nemusí HTTP protokol splòovat, je tøeba tuto vlastnost doplnit ve vrstvì, která je nad HTTP protokolem.
+Tuto vlastnost HTTP protokol implicitnì nesplòuje, je tøeba tuto vlastnost doplnit ve vrstvì, která je implementována nad HTTP protokolem.
 \item {\bf Hypermédia jako prostøedek stavu aplikace}\\
-asfasf
-\item {\bf Kód na vy¾ádání}\\
-Kód na vy¾ádání je mo¾ností HTTP protokolu,
+Toto omezení se vztahuje k vyu¾ití HTML dokumentù. Klient komunikuje se serverem pomocí hypermédii, které jsou dynamicky zprostøedkovány serverem. Klient nemusí nutnì být schopen interpretovat ka¾dý druh média, který je mu serverem nabídnut. Správnou interpretaci urèitých druhù médii je mo¾no dosáhnout kódem na vy¾ádání, který dodateènì umo¾ní správnou interpretaci.
 \end{itemize}
+\newpage
+\noindent Nyní jsme si ukázali, ¾e HTTP protokol je mo¾no pou¾ít pro aplikace zalo¾ených na REST principech. 
 
-
-
-CRUD operace 
-Pou¾ití HTTP protokolu pøi konstrukci webových slu¾eb:
+ Základní princip webových slu¾eb je zprostøedkování aplikaènì nezávislého komunikaèního rozhraní. Pro vytvoøení jednotného a aplikaènì nezávislého komunikaèního rozhraní je mo¾né pou¾ít HTTP protokol, a zprostøedkovat tak aplikace, které jsou vytvoøeny rùznými technologiemi. HTTP disponuje sadou pøíkazù, které je mo¾no vyu¾ít právì ke konstrukci webových slu¾eb respektující omezení REST. Základní pøíkazy, které se nejèastìji pou¾ívají jsou GET, PUT, POST, DELETE. Tato skupina operací se obecnì oznaèuje akronymem CRUD (Create,Read,Update,Delete ) a je mo¾né se s ní setkat v deklarativních zpùsobech programování.
 
 \begin{itemize}
 \item {\bf GET}\\
-sdfgsd
+získání stavu zdroje
 \item {\bf PUT}\\
-sdfgsdfg
+vytvoøení nového zdroje
 \item {\bf POST}\\
-sdfgsdfg
+upravení zdroje
 \item {\bf DELETE }\\
-sdfgsdfg
-\\\\
-
+odstranìní zdroje
 \end{itemize}
-
-Vyu¾ití mezipamìti
-
-
-
-
-
-
-%co je to soa, SOAP konstrukce zpravy a handlery, business activity a LRA, systemova integrace a ESB, proc soa a transakce
-
-
-
-
+ Pro REST charakter webových slu¾eb jsou tyto operace naprosto dostaèující. Z akronymu REST - Representative State Transfer (pøenos reprezentativního stavu) - je patrné, ¾e se bude pøená¹et pouze stav. V pøípadì REST se pøená¹í stav po¾adovaného zdroje, pøesnìji jeho reprezentace. Aèkoliv se to na první pohled mù¾e zdát velmi limitující, ve skuteènosti mù¾e v pozadí tìchto pøíkazù pracovat velmi komplexní logika. 	 
 
 
 
