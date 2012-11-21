@@ -300,18 +300,46 @@ Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii 
 	 Obsahuje technologie pro monitorování a zabezpeèení vytvoøených aplikací. Pro tvorbu monitorovacích aplikací se pou¾ívá specifikace Java Management Extensions (JMX). JMX umo¾òuje vytváøet aplikace s webovým rozhraním, které slou¾í k monitorování a správì rùzných zaøízení, aplikací nebo sítí se slu¾bami. Aplikace v rámci JMX jsou vytváøeny pomocí Managed Bean (MBean) komponent, které zaji¹»ují spojení se sledovaným objektem.
 \end{itemize}
 
+\newpage
+
 \section{Testování software}
-dd
-\subsection*{Proè testovat software}
-ddd
-\subsection*{Zpùsoby testování software}
+Testování je souèástí ¾ivotního cyklu software. Testování je obecnì neodmyslitelnou souèástí jakéhokoliv produktu, nejenom z oblasti IT. Pøeci jen, pokud chceme zaruèit urèité vlastnosti produktu, je tøeba tyto vlastnosti vyzkou¹et - otestovat. Jeliko¾ software vytváøejí lidé a ti nejsou neomylní, je tøeba provìøit mo¾né pochybení pøi vývoji software.
+
+V ideálním pøípadì bychom pøi testování vyzkou¹eli v¹echny mo¾né zpùsoby pou¾ití, vstupy, prostøedí, abychom dùkladnì otestovali vytvoøený program. V reálném svìtì tento zpùsob není mo¾ný, proto¾e vyzkou¹et v¹echny mo¾né vstupy i jednoduchého programu je prakticky neøe¹itelný problém. K tomuto tvrzení staèí poukázat program, který seète dvì èísla z mno¾iny reálných èísel. Ne v¾dy je kompletní testování neøe¹itelný problém, minimálnì je v¹ak kompletní testování velmi nepraktické a hlavnì neekonomické.
+
+Proto je tøeba si uvìdomit, ¾e nemù¾eme testovat v¹echny mo¾né vstupy. Aèkoliv nemù¾eme zaruèit absolutní bezchybovost software, mù¾eme se pokusit sní¾it poèet  chyb v software na minimum. Hlavním cílem testování je tedy odhalit co nejvìt¹í poèet chyb. Co¾ je paradox testování, proto¾e úspì¹né testování znamená odhalení chyby. Aby bylo testování úspì¹né a odhalilo co nejvíce chyb, je nutné k nìmu pøistupovat komplexním zpùsobem a poèínat si obdobnì jako pøi vývoji samotného software.  Podívejme se tedy na základní techniky testování software.
+
+\subsection*{Základní techniky testování software}
+K popsání v¹ech dùle¾itých technik testování software by bylo potøeba celá kniha, zde budou popsány pouze ty základní metody nebo ty metody, které souvisejí s touto prací.
+\subsubsection*{Statické a Dynamické testování}
+Pokud pøi testování není tøeba spustit samotný program, jedná se o statické testování. To mù¾e být napøíklad procházení zdrojových kódù nebo dokumentace. Dùle¾ité je odhalení chyb ji¾ ve specifikaci po¾adavkù, proto¾e vytvoøení programu podle chybné specifikace patøí mezi ty opravdu nákladné chyby.
+
+Dynamické testování vy¾aduje spu¹tìní urèité verze programu. Testování probíhá vkládáním mno¾iny vstupù a hodnocení dosa¾ených výstupù.
+\subsubsection*{Blackbox a Whitebox testování}
+Black box(èerná krabièka) je technika testování, pøi které  neznáme vnitøní strukturu programu. Blackbox testování se navrhuje hlavnì podle specifikace a je tøeba vhodnì navrhnout vstupní data tak, abychom dosáhli vyvá¾enosti mezi efektivitou a úplností testování. Pou¾ívají se dal¹í podpùrné techniky jako rozdìlení dat podle intervalù, rozdìlení dat podle ekvivalenèních tøíd apod.
+
+White box(bílá krabièka) nebo také transparent box (prùhledná krabièka) je naproti black box testování zamìøena na vnitøní strukturu programu. Zamìøuje se hlavnì na provedení ka¾dého pøíkazu, který je v programu napsán. V tomto smìru je lehce podobné black box testování, proto¾e otestování ka¾dého pøíkazu v tìle programu mù¾e být prakticky nemo¾né, minimálnì neefektivní. Dal¹ím aspektem testování struktury programu je také skuteènost, ¾e aèkoliv otestujeme ka¾dý mo¾ný pøíkaz v programu, pøesto v nìm mù¾e být chyba. Pøíkladem mù¾e být nedodr¾ení specifikace nebo chybná specifikace. 
+
+\subsection*{Základní úrovnì testování software}
+Vý¹e zmínìné techniky testování se mohou provádìt v rùzných úrovních vývoje softwaru. Podle úrovnì vývoje jsou pojmenovány i dal¹í techniky testování 
+
+
 \subsubsection*{Testování modulù}
-Testování modulù (Unit testing)
+Také známé jako Unit testing neboli testování jednotek. Zde se testují vìt¹í celky kódu programu. Pøi objektovì orientovaném programování se jedná o testování jednotlivých tøíd, jinak je mo¾no testovat vhodnì vymezené úseky kódu.
+\subsubsection*{Integraèní testování}
+zxcv
+\subsubsection*{Systémové testování}
+zxcvxcz
+\subsubsection*{Akceptaèní testování}
+zxcvzxvc
+\subsection*{Dal¹í techniky testování software}
+sdfa
 \subsubsection*{Regresní testování}
-\subsubsection*{Integraèní testování}
-\subsubsection*{Integraèní testování}
-
-
+asdfasd
+\subsubsection*{Výkonnostní testování}
+asdfsadf
+\subsubsection*{Bezpeènostní testování}
+asdfsadf
 
 \chapter{Testování webových slu¾eb}
 ddd
