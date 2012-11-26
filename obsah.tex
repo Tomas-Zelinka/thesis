@@ -260,47 +260,7 @@ odstranìní zdroje
 
 
 %co je Java EE, jednotlive vrstvy, hlavni technologie v EE
-\section{Platforma jazyka Java }
-\label{java}
-\subsubsection*{Java Enterprise edition}
-Platforma Java 	poskytuje více druhù pou¾ití jazyka Java. Tato práce se zamìøuje na pou¾ití podniková edice Java platformy (Java EE, Java Enterprise edition)\cite{Java}. Existuje více èástí platformy Java, které jsou urèené pro rùzné pou¾ití. Java EE se pou¾ívá pro vytváøení rozsáhlých podnikových aplikací a informaèních systémù. Základem Java EE je standardní edice jazyka Java (Java SE, Java Standard Edition), která se postupným vývojem roz¹íøila a musela být rozdìlena na více edici vèetnì Java EE.
 
-Aplikaèní logika Java EE je rozdìlena do komponent podle funkce. Jednotlivé komponenty jsou umístìny v nìkolika aplikaèních vrstvách:
-\begin{itemize}
-\item {\bf Klientská vrstva} - umístìna na stranì klienta\\
-Tato vrstva typicky obsahuje u¾ivatelské rozhraní pro ovládání cele aplikace.
-\item {\bf Webová vrstva} - umístìna na stranì Java EE serveru\\
-Na této vrstvì jsou umístìny komponenty vytváøející obsah, který je následnì odeslán klientovi.
-\item {\bf Business vrstva} - umístìna na stranì Java EE serveru\\
-Zde je implementována aplikaèní logika, která pøijímá vstupy od klienta, zpracovává je, pøípadnì je ulo¾í do databáze.
-\item {\bf Vrstva Podnikový informaèní systém(EIS)}\\
-Komponentami této vrstvy jsou databáze a podobné aplikace pro ukládání dat.
-\end{itemize}
-
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.5]{pic/JAVAEESTACK.png}
-\caption{Jednotlivé vrstvy Java EE architektury. \cite{Java} }
-\label{fig:JAVAEE}
-\end{center}
-\end{figure}
-
-\noindent Takto navr¾ené vícevrstvé aplikace je obtí¾né vytváøet, proto jsou komponenty vytváøeny tak, aby byly znovupou¾itelné. Pak je mnohem snadnìj¹í vytváøet slo¾ité aplikace. Ka¾dá komponenta musí být umístìna do kontejneru. Kontejner je rozhraní mezi komponentou a funkcemi ni¾¹í úrovnì, které jsou implementaènì závislé. Obecným kontejnerem je aplikaèní server, který zprostøedkovává slu¾by ostatním kontejnerùm a komponentám. Na aplikaèní server je mo¾né nasadit tzv. Enterprise JavaBeans (EJB)\footnote{EJB je  kontejner, vhodný pro implementaci aplikaèní logiky} a Web kontejner, do kterých lze umis»ovat patøièné komponenty. Dále existují klientský a applet kontejner, které jsou vhodné pro klientskou èást aplikace.
-
-Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii a jejich specifikací, které je mo¾no rozdìlit do nìkolika kategorii:
-
-\begin{itemize}
- \item {\bf Webové slu¾by}\\
-	Zahrnuje specifikace technologii pro implementaci SOA pomocí webových slu¾eb. Napøíklad obsahuje specifikaci pro tvorbu webových slu¾eb zalo¾ených na XML (JAX-WS). JAX-WS je mo¾né vyu¾ít k tvorbì klientských aplikací a webových slu¾eb zalo¾ených na XML .  Mezi klienty a slu¾bami lze vytvoøit komunikaci zalo¾enou na zprávách nebo vzdálené volání procedur (RPC, Remote Procedure Call).
- \item {\bf Webové aplikace}\\
-	Zde jsou uvedeny technologie pro tvorbu webových aplikací a podporu pro implementaci modelu model-view-controller(MVC). Významnou specifikací z této kategorie je JavaServer Pages (JSP), která se pou¾ívá k tvorbì dynamických webových stránek. Pou¾ívá se spoleènì se specifikací Java Servlet. Servlet je komponenta bì¾ící v rámci webového serveru. Pøijímá dotazy od klientù a generuje odpovìdi ve formì HTML dokumentu. JSP slou¾í k oddìlení u¾ivatelského rozhraní od aplikaèní logiky. Pomocí JSP se vytváøí HTML dokument s vnoøenými úseky Java kódu. 
- \item {\bf Podnikové aplikace}\\
-	 V této kategorii jsou uvedeny technologie pro implementaci business logiky a rùzných podpùrných technologii. Pro vytváøení podnikových aplikací je vhodná specifikace Enterprise JavaBeans (EJB). Pomocí EJB jsou vytváøeny komponenty, které oddìlují aplikaèní logiku od prezentaèní vrstvy. Hlavní vlastnosti EJB komponent by mìla být znovupou¾itelnost. EJB komponenty je mo¾no vyu¾ít k zaji¹tìní bezpeènosti, transakèního zpracování nebo také k testování. Pro komunikaci mezi jednotlivými komponentami je vhodná specifikace Java Messaging Service (JMS). 
- \item {\bf Správa a zabezpeèení }\\
-	 Obsahuje technologie pro monitorování a zabezpeèení vytvoøených aplikací. Pro tvorbu monitorovacích aplikací se pou¾ívá specifikace Java Management Extensions (JMX). JMX umo¾òuje vytváøet aplikace s webovým rozhraním, které slou¾í k monitorování a správì rùzných zaøízení, aplikací nebo sítí se slu¾bami. Aplikace v rámci JMX jsou vytváøeny pomocí Managed Bean (MBean) komponent, které zaji¹»ují spojení se sledovaným objektem.
-\end{itemize}
-
-\newpage
 
 \section{Testování software}
 Testování je souèástí ¾ivotního cyklu software. Testování je obecnì neodmyslitelnou souèástí jakéhokoliv produktu, nejenom z oblasti IT. Pøeci jen, pokud chceme zaruèit urèité vlastnosti produktu, je tøeba tyto vlastnosti vyzkou¹et - otestovat. Jeliko¾ software vytváøejí lidé a ti nejsou neomylní, je tøeba provìøit mo¾né pochybení pøi vývoji software.
@@ -351,13 +311,57 @@ Akceptaèní testování je zále¾itostí u¾ivatele, zákazníka nebo je provádìno prost
 S akceptaèním testováním jsou spojené i pojmy Alfa a Beta testování. Alfa testování se provádí ve vývojovém prostøedí programátory a patøí do nìj vý¹e zmínìné úrovnì a techniky. Beta testování se provádí pøed oficiálním vydání softwaru, kdy si daný software nainstalují u¾ivatelé v reálném prostøedí a provádìjí testy. Beta testování se provádí v pøípadì, ¾e je software urèen pro ¹irokou ¹kálu u¾ivatelù.   
 \end{itemize}
 
+\section{Platforma jazyka Java }
+\label{java}
+\subsubsection*{Java Enterprise edition}
+Platforma Java 	poskytuje více druhù pou¾ití jazyka Java. Tato práce se zamìøuje na pou¾ití podniková edice Java platformy (Java EE, Java Enterprise edition)\cite{Java}. Existuje více èástí platformy Java, které jsou urèené pro rùzné pou¾ití. Java EE se pou¾ívá pro vytváøení rozsáhlých podnikových aplikací a informaèních systémù. Základem Java EE je standardní edice jazyka Java (Java SE, Java Standard Edition), která se postupným vývojem roz¹íøila a musela být rozdìlena na více edici vèetnì Java EE.
+
+Aplikaèní logika Java EE je rozdìlena do komponent podle funkce. Jednotlivé komponenty jsou umístìny v nìkolika aplikaèních vrstvách:
+\begin{itemize}
+\item {\bf Klientská vrstva} - umístìna na stranì klienta\\
+Tato vrstva typicky obsahuje u¾ivatelské rozhraní pro ovládání cele aplikace.
+\item {\bf Webová vrstva} - umístìna na stranì Java EE serveru\\
+Na této vrstvì jsou umístìny komponenty vytváøející obsah, který je následnì odeslán klientovi.
+\item {\bf Business vrstva} - umístìna na stranì Java EE serveru\\
+Zde je implementována aplikaèní logika, která pøijímá vstupy od klienta, zpracovává je, pøípadnì je ulo¾í do databáze.
+\item {\bf Vrstva Podnikový informaèní systém(EIS)}\\
+Komponentami této vrstvy jsou databáze a podobné aplikace pro ukládání dat.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.5]{pic/JAVAEESTACK.png}
+\caption{Jednotlivé vrstvy Java EE architektury. \cite{Java} }
+\label{fig:JAVAEE}
+\end{center}
+\end{figure}
+
+\noindent Takto navr¾ené vícevrstvé aplikace je obtí¾né vytváøet, proto jsou komponenty vytváøeny tak, aby byly znovupou¾itelné. Pak je mnohem snadnìj¹í vytváøet slo¾ité aplikace. Ka¾dá komponenta musí být umístìna do kontejneru. Kontejner je rozhraní mezi komponentou a funkcemi ni¾¹í úrovnì, které jsou implementaènì závislé. Obecným kontejnerem je aplikaèní server, který zprostøedkovává slu¾by ostatním kontejnerùm a komponentám. Na aplikaèní server je mo¾né nasadit tzv. Enterprise JavaBeans (EJB)\footnote{EJB je  kontejner, vhodný pro implementaci aplikaèní logiky} a Web kontejner, do kterých lze umis»ovat patøièné komponenty. Dále existují klientský a applet kontejner, které jsou vhodné pro klientskou èást aplikace.
+
+Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii a jejich specifikací, které je mo¾no rozdìlit do nìkolika kategorii:
+
+\begin{itemize}
+ \item {\bf Webové slu¾by}\\
+	Zahrnuje specifikace technologii pro implementaci SOA pomocí webových slu¾eb. Napøíklad obsahuje specifikaci pro tvorbu webových slu¾eb zalo¾ených na XML (JAX-WS). JAX-WS je mo¾né vyu¾ít k tvorbì klientských aplikací a webových slu¾eb zalo¾ených na XML .  Mezi klienty a slu¾bami lze vytvoøit komunikaci zalo¾enou na zprávách nebo vzdálené volání procedur (RPC, Remote Procedure Call).
+ \item {\bf Webové aplikace}\\
+	Zde jsou uvedeny technologie pro tvorbu webových aplikací a podporu pro implementaci modelu model-view-controller(MVC). Významnou specifikací z této kategorie je JavaServer Pages (JSP), která se pou¾ívá k tvorbì dynamických webových stránek. Pou¾ívá se spoleènì se specifikací Java Servlet. Servlet je komponenta bì¾ící v rámci webového serveru. Pøijímá dotazy od klientù a generuje odpovìdi ve formì HTML dokumentu. JSP slou¾í k oddìlení u¾ivatelského rozhraní od aplikaèní logiky. Pomocí JSP se vytváøí HTML dokument s vnoøenými úseky Java kódu. 
+ \item {\bf Podnikové aplikace}\\
+	 V této kategorii jsou uvedeny technologie pro implementaci business logiky a rùzných podpùrných technologii. Pro vytváøení podnikových aplikací je vhodná specifikace Enterprise JavaBeans (EJB). Pomocí EJB jsou vytváøeny komponenty, které oddìlují aplikaèní logiku od prezentaèní vrstvy. Hlavní vlastnosti EJB komponent by mìla být znovupou¾itelnost. EJB komponenty je mo¾no vyu¾ít k zaji¹tìní bezpeènosti, transakèního zpracování nebo také k testování. Pro komunikaci mezi jednotlivými komponentami je vhodná specifikace Java Messaging Service (JMS). 
+ \item {\bf Správa a zabezpeèení }\\
+	 Obsahuje technologie pro monitorování a zabezpeèení vytvoøených aplikací. Pro tvorbu monitorovacích aplikací se pou¾ívá specifikace Java Management Extensions (JMX). JMX umo¾òuje vytváøet aplikace s webovým rozhraním, které slou¾í k monitorování a správì rùzných zaøízení, aplikací nebo sítí se slu¾bami. Aplikace v rámci JMX jsou vytváøeny pomocí Managed Bean (MBean) komponent, které zaji¹»ují spojení se sledovaným objektem.
+\end{itemize}
+
 
 
 
 \chapter{Testování webových slu¾eb}
 ddd
-\section{Po¾adavky na testování webových slu¾eb}
+\section{Po¾adavky na webové slu¾by a jejich testování}
 dddd
+
+
+
+
 \section{Role pøi testování webových slu¾eb}
 ddd
 \subsection*{Klient}
@@ -367,6 +371,9 @@ ddd
 \section{Mo¾né pøístupy testování webových slu¾eb}
 dd
 \subsection*{Server}
+
+\section{Testování odolnosti webových slu¾eb}
+
 
 \section{Ji¾ existující nástroje pro testování webových slu¾eb}
 
