@@ -314,32 +314,45 @@ K popsání v¹ech dùle¾itých technik testování software by bylo potøeba celá kniha
 \subsubsection*{Statické a Dynamické testování}
 Pokud pøi testování není tøeba spustit samotný program, jedná se o statické testování. To mù¾e být napøíklad procházení zdrojových kódù nebo dokumentace. Dùle¾ité je odhalení chyb ji¾ ve specifikaci po¾adavkù, proto¾e vytvoøení programu podle chybné specifikace patøí mezi ty opravdu nákladné chyby.
 
-Dynamické testování vy¾aduje spu¹tìní urèité verze programu. Testování probíhá vkládáním mno¾iny vstupù a hodnocení dosa¾ených výstupù.
+Dynamické testování vy¾aduje spu¹tìní urèité verze programu. Testování probíhá vkládáním mno¾iny vstupù a hodnocení dosa¾ených výstupù. Celá tato práce je zamìøena právì na dynamické testování, kam lze zaøadit i ní¾e popsané techniky.
 \subsubsection*{Blackbox a Whitebox testování}
 Black box(èerná krabièka) je technika testování, pøi které  neznáme vnitøní strukturu programu. Blackbox testování se navrhuje hlavnì podle specifikace a je tøeba vhodnì navrhnout vstupní data tak, abychom dosáhli vyvá¾enosti mezi efektivitou a úplností testování. Pou¾ívají se dal¹í podpùrné techniky jako rozdìlení dat podle intervalù, rozdìlení dat podle ekvivalenèních tøíd apod.
 
 White box(bílá krabièka) nebo také transparent box (prùhledná krabièka) je naproti black box testování zamìøena na vnitøní strukturu programu. Zamìøuje se hlavnì na provedení ka¾dého pøíkazu, který je v programu napsán. V tomto smìru je lehce podobné black box testování, proto¾e otestování ka¾dého pøíkazu v tìle programu mù¾e být prakticky nemo¾né, minimálnì neefektivní. Dal¹ím aspektem testování struktury programu je také skuteènost, ¾e aèkoliv otestujeme ka¾dý mo¾ný pøíkaz v programu, pøesto v nìm mù¾e být chyba. Pøíkladem mù¾e být nedodr¾ení specifikace nebo chybná specifikace. 
 
+\subsubsection*{Regresní testování}
+Regresní testování  se obvykle provádí po implementaci nové funkcionality. Má za úkol provést testy star¹ích èástí programu, které ji¾ byly testovány. Tento druh testování je dùle¾itý, proto¾e zavedením nové funkcionality je mo¾né zanést chyby i do star¹ích èástí programu.
+\subsubsection*{Výkonnostní testování}
+Výkonnostní testování se vìnuje výkonu programu. Testovat výkon aplikace lze více zpùsoby. Program mù¾eme podrobit stresovému testování, kdy jsou softwaru ztí¾eny podmínky pro fungování (odebrání pamìti, èas procesoru apod.) nebo je vystaven krátkodobému pøetí¾ení mno¾stvím vstupních dat. Pak je mo¾né testovat dlouhodobou zátì¾, kdy je program pøetí¾en mno¾stvím vstupních dat po del¹í dobu. Je¹tì je mo¾né opakovat jednu a tu samou operaci neustále do kola, co¾ má za cíl testovat zacházení s pamìtí.
+\subsubsection*{Bezpeènostní testování}
+Dùle¾itou souèástí testování je i test bezpeènostních opatøení. Pøi bezpeènostních testech se testuje zaji¹tìní základních po¾adavkù na bezpeènost, co¾ jsou Dostupnost, Dùvìryhodnost, Integrita.  Pro bezpeènou aplikaci je nutné zabezpeèit v¹echny tyto tøi vlastnosti souèasnì, jinak nelze pova¾ovat aplikaci za bezpeènou. Proto¾e bez dostupnosti u¾ivatel nebude mít pøístup k datùm, aèkoliv jsou dùvìryhodná a bez po¹kození. Bez integrity jsou data dostupná a nebyly zobrazeny jiným u¾ivatelùm, ne¾ pro které byly urèeny, ale mohou být po¹kozená. Nakonec pokud data budou nezmìnìná i dostupná, mohou být vystavena nepatøièným u¾ivatelùm. 
+
+
+
 \subsection*{Základní úrovnì testování software}
 Vý¹e zmínìné techniky testování se mohou provádìt v rùzných úrovních vývoje softwaru. Podle úrovnì vývoje jsou pojmenovány i dal¹í techniky testování 
 
+\begin{itemize}
+\item{\bf Testování modulù} \\
+Také známé jako Unit testing neboli testování jednotek. Zde se testují vìt¹í celky kódu programu. Pøi objektovì orientovaném programování se èasto jedná o testování jednotlivých tøíd. Obecnì se v¹ak testují vhodnì oddìlené úseky kódu, které jsou testovatelné oddìlenì. Pøi testování modulù je èasto nutné simulovat interakci s ostatními moduly. Existují dva základní pøístupy k integraènímu testování. 
 
-\subsubsection*{Testování modulù}
-Také známé jako Unit testing neboli testování jednotek. Zde se testují vìt¹í celky kódu programu. Pøi objektovì orientovaném programování se jedná o testování jednotlivých tøíd, jinak je mo¾no testovat vhodnì vymezené úseky kódu.
-\subsubsection*{Integraèní testování}
-zxcv
-\subsubsection*{Systémové testování}
-zxcvxcz
-\subsubsection*{Akceptaèní testování}
-zxcvzxvc
-\subsection*{Dal¹í techniky testování software}
-sdfa
-\subsubsection*{Regresní testování}
-asdfasd
-\subsubsection*{Výkonnostní testování}
-asdfsadf
-\subsubsection*{Bezpeènostní testování}
-asdfsadf
+\item{\bf  Integraèní testování}\\
+Pøi integraèním testování se provádìjí testy spojení jednotlivých modulù. Testuje se rozhraní a interakce mezi jednotlivými moduly. Obecnì je pøedpokládáno, ¾e èím má integrace vìt¹í rozsah, tím je obtí¾nìj¹í odhalit rozhraní, ve kterém vznikla chyba. Z tohoto dùvodu vzniklo nìkolik pøístupù k integraènímu testování. 
+
+První pøístup spoèívá v kompletní integraci v¹ech modulù, co¾ je jeden pól extrému. Pøi tomto pøístupu se nejdøíve sestaví v¹echny moduly a po té je zahájeno integraèní testování. Na první pohled se mù¾e takovýto pøístup jevit velmi výhodnì, pokud naivnì pøedpokládáme, ¾e se bìhem testování neobjeví ¾ádná chyba. Tento pøístup má hlavní nevýhodu právì ve vý¹e zmínìném pøedpokladu. Pokud je nalezena chyba je obtí¾né a èasovì nároènì ji odstranit. 
+
+Protipólem je testovat spojení ka¾dého modulu zvlá¹». Tento pøístup je výhodný pro nacházení a odstraòování vzniklých chyb, ale zároveò je velmi èasovì nároèný, tedy neefektivní. Proto se pou¾ívají techniky, které jsou nìkde mezi tìmito dvìma extrémy.
+
+\item{\bf Systémové testování}\\
+Systémové testování se zamìøuje na program nebo produkt jako celek. Mù¾e obsahovat testy zalo¾ené na specifikaci, testování pøípadu u¾ití programu apod. Systémové testování je poslední úroveò vývojového testování, kdy se ovìøuje zda program odpovídá specifikaci. Pøi systémovém testování by se mìly testovat funkèní po¾adavky i ty, které pøímo s funkèností nesouvisejí. Mezi nefunkcionální testování patøí napøíklad výkonnostní testy, testy spolehlivosti, bezpeènostní testy apod. 
+\item{\bf Akceptaèní testování}\\
+Akceptaèní testování je zále¾itostí u¾ivatele, zákazníka nebo je provádìno prostøedí témìø identickém produkènímu, ne-li pøímo v produkèním prostøedí\footnote{Produkèní prostøední nebo produkce oznaèuje prostøedí, ve kterém bude program, produkt nasazen a pou¾íván}. Testuje je se hlavnì splnìní specifikovaných po¾adavkù na software a jestli dodaný software je schopen pracovat v daném prostøedí a je vhodný pro daný úèel. 
+
+S akceptaèním testováním jsou spojené i pojmy Alfa a Beta testování. Alfa testování se provádí ve vývojovém prostøedí programátory a patøí do nìj vý¹e zmínìné úrovnì a techniky. Beta testování se provádí pøed oficiálním vydání softwaru, kdy si daný software nainstalují u¾ivatelé v reálném prostøedí a provádìjí testy. Beta testování se provádí v pøípadì, ¾e je software urèen pro ¹irokou ¹kálu u¾ivatelù.   
+\end{itemize}
+
+
+
 
 \chapter{Testování webových slu¾eb}
 ddd
