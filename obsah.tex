@@ -358,7 +358,7 @@ Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii 
  Tato èást se tedy vìnovat aspektùm testování webových slu¾eb  se zamìøením na testování robustnosti a odolnosti. Na testování webových slu¾eb se mù¾eme dívat jako na testování jakéhokoliv jiného software, av¹ak musíme vzít v úvahu nìkolik zásadních skuteèností. Webové slu¾by a» u¾ s pou¾itím SOAP protokolu nebo REST principù jedná se o vzdálené aplikace, které se mohou skládat z nìkolika vrstev. Dále pak webové slu¾by mohou být kompletnì bez grafického u¾ivatelského rozhraní, co¾ znesnadòuje manuální testování, na druhou stranu je zde vìt¹í prostor pro automatizaci testování.
 
 
-\section{Rùzné pohledy na testování webových slu¾eb}
+\section{Rùzné pohledy na webové slu¾by}
 Pøi testování webových slu¾eb se mù¾eme setkat s rùznými aspekty, které vyplývají z jejich pou¾ití. Webové slu¾by jsou velice èasto implementovány s typem komunikace dotaz/odpovìï nebo alespoò odvozeným zpùsobem. Tedy lze rozdìlit úèastníky v komunikaci na klienty a server, kdy klient ode¹le dotaz a server (slu¾ba) ode¹le odpovìï. Zde je nutné si uvìdomit, ¾e pokud testujeme klient/server aplikace, je nutné otestovat tyto èásti oddìlenì. Musíme si být jistí, ¾e server dává správnì odpovìdi a klient odesílá správnì dotazy. Proto¾e pokud jedna èást (napø. klient) odesílá chybná data, druhá èást pak nemusí odesílat data adekvátním zpùsobem.
 
 \subsection*{Server}
@@ -367,14 +367,14 @@ Pro webové slu¾by je toto základní pohled, proto¾e slu¾ba je umístìna na vzdálen
 \subsection*{Klient}
 Pokud vyu¾íváme webových slu¾eb vìt¹inou se nespokojíme s vygenerovanou klientskou èástí aplikace a je tøeba ji roz¹íøit. Proto je tøeba klientskou èást aplikace také podrobit testování. Nejdøíve otestujeme klientskou èást s tzv. fale¹ným serverem (stub server). Stub server má pouze shodné rozhraní se skuteènì pou¾itým. Co¾ umo¾òuje velmi rychle vytvoøit testovací server, se kterým je mo¾no vyhodnotit vlastnosti odesílaných dotazù.
 
-\section{Rùzné umístìní  testovaných webových slu¾eb}
-Dále pak je nutné uva¾ovat umístìní webových slu¾eb. Webové slu¾by mohou být dostupné z intranetu, kdy jsou slu¾by umístìny v uvnitø podnikové sítì a pøístup k nim mají pouze zamìstnanci nebo u¾ivatelé s pøístupem do dané uzavøené sítì. Pak existují webové  slu¾by dostupné z internetu, ke kterým mù¾e pøistupovat kdokoliv.
+\section{Rùzné umístìní webových slu¾eb}
+Dále pak je nutné uva¾ovat umístìní webových slu¾eb. Webové slu¾by mohou být dostupné z intranetu, kdy jsou slu¾by umístìny v uvnitø podnikové sítì a pøístup k nim mají pouze zamìstnanci nebo u¾ivatelé s pøístupem do dané uzavøené sítì. Pak existují webové  slu¾by dostupné z internetu, které jsou veøejnì dostupné.
 
 \subsection*{Intranet}
-sdfsadf
+Pokud je slu¾ba dostupná pouze z vnitøní sítì je mo¾né pøibli¾nì odhadnou kolik u¾ivatelù bude danou webovou slu¾bu vyu¾ívat, proto¾e pøístup do vnitøní sítì obvykle má omezený poèet u¾ivatelù. Pokud u¾ivatelé  pøistupují ke slu¾bì ve vnitøní síti z vnìj¹í sítì, mù¾e simulaci tohoto pøípadu u¾ití komplikovat pou¾itá bezpeènostní opatøení ( firewall, autentizace, VPN, apod.).
 
 \subsection*{Internet}
-dsfasdfs
+U veøejnì dostupných webových slu¾eb je obtí¾nìj¹í odhadnout kolik u¾ivatelù bude tuto slu¾bu vyu¾ívat. Na druhou stranu, zde nemusejí být tak vysoké nároky na zabezpeèení jako na webové slu¾by dostupné z intranetu.
 
 
 
@@ -389,9 +389,9 @@ Webová slu¾ba je druh webové aplikace tedy k ní mù¾e pøistupovat velké mno¾ství 
 
 
 \section{Testování odolnosti webových slu¾eb}
-asdsadf
+Pøi testování odolnosti se zkou¹í, jak software zareaguje na neèekané události. Pro testování odolnosti webových slu¾eb existuje více technik, které se sna¾í simulovat rùzné chování prostøedí nebo u¾ivatelù. K testování odolnosti patøí zátì¾ové testování, které lze rozdìlit na stresové testování a testování dlouhodobé zátì¾e. Dal¹í technikou, která simuluje chování slu¾by na nestandardní vstupy, je injekce chyb. Tyto techniky jsou ní¾e podrobnì rozebrány ní¾e, proto¾e tato práce bude zamìøena právì na pou¾ití tìchto technik.
 \subsection*{Injekce chyb}
-adfasd
+Injekce chyb pøedstavuje 
 
 \subsection*{Stresové testování}
 sdfasdf
@@ -409,6 +409,9 @@ asdfdsadf
 asdfasdf
 \subsection*{LoadUI}
 asdsadf
+
+
+
 
 \chapter{Specifikace po¾adavkù}
 \section{Navázání na pøedchozí práci}
