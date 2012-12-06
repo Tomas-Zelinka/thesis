@@ -419,15 +419,20 @@ U webových slu¾eb se provádí tzv. penetraèní testování, které má za cíl odhalit 
 
 
 \section{Ji¾ existující nástroje pro testování webových slu¾eb}
+Cílem této práce je vytvoøit nástroj pro testování webových slu¾eb. Pøi vytváøení nejen programových nástrojù by se mìl tvùrce zabývat tím, zda-li u¾ nebylo nìco podobného vytvoøeno. Takovýto prùzkum je dùle¾itý, aby se nástroj nevytváøel zbyteènì znovu, kvùli inspiraci funkcionality nebo právì kvùli chybìjícím funkcionalitám v ji¾ existujících øe¹eních.
+
+Aèkoliv
+\subsection*{soapUI}
+soapUI je nástroj s otevøeným kódem\footnote{Otevøený kód - open source - znamená, ¾e kód programu je dostupný a jeho licence umo¾òuje jeho úpravu a nasazení pokud se dodr¾í ustanovené podmínky(napø. opìtovné zveøejnìní zdrojového kódu po jeho úpravì ).} zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI lze provádìt i zátì¾ové testy. Roz¹íøení LoadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
+
+Projekt lze provázat s automatizaèním nástrojem Apache Ant. Po vytvoøení a vyladìní testovacích scénáøù pomocí nativního u¾ivatelského rozhraní lze tyto testovací scénáøe provádìt automaticky s pou¾itím nástroje Ant. Tento zpùsob integrace je velmi efektivním øe¹ením a tato práce bude tímto zpùsobem inspirována. Zároveò lze integrovat soapUI s JUnit, co¾ je implementace testování modulù v jazyce Java.
 
 \subsection*{JMeter}
-asdfdsadf
+JMeter je alternativou k soapUI pouze nenabízí tak ¹iroký zábìr funkcionalit jako soapUI. JMeter je specializován na testování webových slu¾eb. Disponuje distribuovaným modelem pro testování webových slu¾eb a mo¾ností integrace s automatizaèními nástrojem Ant a testování modulù JUnit. U¾ivatelské rozhraní je obdobné jako u soapUI a je také intuitivní. Projekt JMeter nedisponuje zásuvným modulem do vývojových prostøedí.
 
-\subsection*{SOAPUI}
-asdfasdf
 
 \subsection*{Grinder}
-asdsadf
+
 
 \subsection*{Navázání na pøedchozí práci - FIWS}
 asdsadf
