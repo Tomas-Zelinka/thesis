@@ -378,56 +378,87 @@ U veøejnì dostupných webových slu¾eb je obtí¾nìj¹í odhadnout kolik u¾ivatelù bud
 
 
 
-\section{Po¾adavky na webové slu¾by a jejich testování}
-Webové slu¾by vy¾adují pro správné fungovaní specifické po¾adavky. Jeliko¾ webové slu¾by patøí mezi distribuované aplikace je nutné nejdøíve testovat dostupnost dané slu¾by. Pokud slu¾ba není z nìjakého dùvodu dostupná, dal¹í druhy testování (rozhraní, zátì¾ové, bezpeènostní) ztrácejí na významu. Po té co zjistíme, ¾e slu¾ba je dostupná, je vhodné ovìøit její správné fungování funkèními testy. Pokud webová slu¾ba vykazuje správnou funkcionalitu, je vhodné otestovat dal¹í vlastnosti jako napøíklad bezpeènost nebo ¹kálovatelnost slu¾by.
+\section{Po¾adavky na webové slu¾by}
+Webové slu¾by vy¾adují pro správné fungovaní specifické po¾adavky. Tìchto po¾adavkù je nìkolik skupin a obecnì se dají shrnout do jednoho pojmu - kvalita slu¾eb (QoS, Quality of Service). Pojem kvalita slu¾eb souvisí s více vrstvami TCP/IP modelu, proto¾e informace proudí skrze internet. V této práci se v¹ak hlavnì budeme zabývat kvalitou slu¾eb z pohledu aplikaèní vrstvy\footnote{Pojem QoS je také spojován s protokoly ni¾¹ích vrstev, kde zaji¹»uje speciální zacházení s urèitými typy informací (video, hlas apod.)}. 
+
+Základními pojmy kvality slu¾eb jsou spolehlivost, výkon, robustnost, bezpeènost a ostatní jsou spí¹e odvozeny od tìchto základních po¾adavkù. Pokud je tøeba formální a pøesné rozli¹ení jednotlivých pojmù je vytvoøena tzv. dohoda o úrovni poskytování slu¾by (SLA, Service Level Agreement).
+
+\begin{itemize}
+\item {\bf Spolehlivost}\\
+Spolehlivost u webových slu¾eb souvisí s plnìním definovaných po¾adavkù na slu¾bu. Pokud slu¾ba splòuje definované po¾adavky jako èas odezvy, dostupnost, schopnost zpracovat urèitý poèet transakcí za daný èasový okam¾ik apod. , je oznaèena za spolehlivou. Spolehlivost tak mù¾e být a èasto také je provázána s ostatními po¾adavky.
+\item {\bf Výkon }\\
+Výkon webové slu¾by vyjadøuje jak rychle doká¾e webová slu¾ba plnit po¾adované operace. Výkon lze dále rozdìlit na propustnost, doba odezvy. S výkoností souvisí i ¹kálovatelnost, proto¾e webová slu¾ba musí být ¹kálovatelná. Webové slu¾by by mìly být pøipraveny na pøípadné roz¹íøení v pøípadì nedostateèného výkonu.
+\item {\bf Robustnost}\\
+Robustnost je schopnost slu¾by fungovat pøedvídatelným zpùsobem pøi nesprávných, chybných, neúplných vstupech
+\item {\bf Bezpeènost}\\
+Jeliko¾ jsou webové slu¾by èasto exponovány velkému poètu u¾ivatelù, je nutné se zaruèit její bezpeènost. Mezi základní bezpeènostní vlastnosti patøí dostupnost, integrita a dùvìrnost.
+\end{itemize}
+
+
+\section{Zpùsoby testování webových slu¾eb}
+Jeliko¾ webové slu¾by patøí mezi distribuované aplikace, je nutné nejdøíve testovat dostupnost dané slu¾by. Pokud slu¾ba není z nìjakého dùvodu dostupná, dal¹í druhy testování (rozhraní, zátì¾ové, bezpeènostní) ztrácejí na významu. Po té co zjistíme, ¾e slu¾ba je dostupná, je vhodné ovìøit její správné fungování funkèními testy. Pokud webová slu¾ba vykazuje správnou funkcionalitu, je vhodné otestovat dal¹í vlastnosti jako napøíklad bezpeènost nebo ¹kálovatelnost 
+slu¾by.
+
+Pøi testování spolehlivosti se zkou¹í, jak software zareaguje na neèekané události. Pro testování odolnosti webových slu¾eb existuje více technik, které se sna¾í simulovat rùzné chování prostøedí nebo u¾ivatelù. K testování odolnosti patøí zátì¾ové testování, které lze rozdìlit na stresové testování a testování dlouhodobé zátì¾e. Dal¹í technikou, která simuluje chování slu¾by na nestandardní vstupy, je injekce chyb. Tyto techniky jsou ní¾e podrobnì rozebrány ní¾e, proto¾e tato práce bude zamìøena právì na pou¾ití tìchto technik.
+
+
 \subsection*{Funkèní testování}
 Cíl funkèního testování v rámci webových slu¾eb je zji¹tìní, zda-li slu¾ba je dostupná a její funkcionalita odpovídá její specifikaci. V první øadì se testuje spojení, ve vìt¹inì pøípadù se jedná o HTTP po¾adavek. Pøijaté odpovìdi jsou pak podrobeny patøièné analýze.  Do kategorie funkèního testování spadá i technika injekce chyb, kdy se testuje reakce webové slu¾by na nevhodný nebo po¹kozený vstup.
+
+Injekce chyb pøedstavuje techniku testování odolnosti aplikace. Pøi injekci chyb se zámìrnì vkládají chyby buï do zdrojového kódu pøed kompilací nebo za bìhu programu. Pøi vkládání chyb do zdrojového kódu programu pøed kompilací se jedná o tzv. {Compile-Time Injection}. Tuto techniku je mo¾no pou¾ít jak pro simulování softwarových chyb, tak i hardwarových. Technika zalo¾ená na vkládání chyb za bìhu programu se nazývá {Run-Time Injection}.Pro injekci chyb do webových slu¾eb lze vyu¾ít  techniku vkládání chyb za bìhu programu. Více informací obsahuje diplomová práce Martina ®ou¾elky, na kterou tato práce bude navazovat.
+
 
 \subsection*{Zátì¾ové testování}
 Webová slu¾ba je druh webové aplikace tedy k ní mù¾e pøistupovat velké mno¾ství u¾ivatelù. Proto je nutné vìdìt kolik u¾ivatelù je daná webová slu¾ba schopna obslou¾it za urèitý èasový okam¾ik. V tomto smìru existuje více zpùsobu jak pohlí¾et na výkonnost webové slu¾by. Je mo¾né mìøit poèet zpracovaných po¾adavkù za sekundu, poèet u¾ivatelù pøi zachování stejné latence. Zátì¾ové testy se v¹ak musí provádìt automaticky, proto¾e je obtí¾né testovat napø. obsluhu 1000 u¾ivatelù.
 
 
+\subsection*{Bezpeènostní testování}
+Bezpeènost je velmi dùle¾itou vlastností webových slu¾eb. Také je obtí¾né jí dosáhnout kvùli jejich vlastnostem.  Bezpeènostní rizika pøedstavují sebe-popisující zprávy, které øeknou o webové slu¾bì velmi mnoho informací. Dále pak zprávy mohou putovat nepøedvídatelnou cestou. 
 
-\section{Testování odolnosti webových slu¾eb}
-Pøi testování odolnosti se zkou¹í, jak software zareaguje na neèekané události. Pro testování odolnosti webových slu¾eb existuje více technik, které se sna¾í simulovat rùzné chování prostøedí nebo u¾ivatelù. K testování odolnosti patøí zátì¾ové testování, které lze rozdìlit na stresové testování a testování dlouhodobé zátì¾e. Dal¹í technikou, která simuluje chování slu¾by na nestandardní vstupy, je injekce chyb. Tyto techniky jsou ní¾e podrobnì rozebrány ní¾e, proto¾e tato práce bude zamìøena právì na pou¾ití tìchto technik.
-
-
-\subsection*{Injekce chyb}
-Injekce chyb pøedstavuje 
-
-\subsection*{Stresové testování}
-sdfasdf
-
-\subsection*{Testování dlouhodobé zátì¾e}
-asdsdfdsf
-
-
+U webových slu¾eb se provádí tzv. penetraèní testování, které má za cíl odhalit zranitelnosti webové slu¾by rùznými druhy útokù. Dal¹í zpùsob pasivnì odchytává komunikaci webových slu¾eb a analyzuje obsah zpráv. Tedy k bezpeènostnímu testování lze pøistupovat aktivním nebo pasivním zpùsobem.
 
 
 \section{Ji¾ existující nástroje pro testování webových slu¾eb}
+
 \subsection*{JMeter}
 asdfdsadf
+
 \subsection*{SOAPUI}
 asdfasdf
-\subsection*{LoadUI}
+
+\subsection*{Grinder}
+asdsadf
+
+\subsection*{Navázání na pøedchozí práci - FIWS}
 asdsadf
 
 
 
-
 \chapter{Specifikace po¾adavkù}
-\section{Navázání na pøedchozí práci}
-dd
+
+\section{Základní koncept}
+dsadfsd
+
 \section{Distribuované testování}
 adfsadf
-\section{Komunikaèní rozhraní }
-sdfsa
 
+\section{Navázání na pøedchozí práci}
+dd
 \section{Integrace s nástroji pro testování spolehlivosti}
 sadfasdf
 
 \chapter{Návrh implementace}
-ss
+
+\section{Základní koncept}
+	sdfggfs
+\section{Distribuovaný model}
+sfdgdf
+\section{Pou¾ití injekce chyb}
+sdfg
+\section{Provázání s nástroji pro testování spolehlivosti}
+sdfg
+
+
 \chapter{Popis implementace}
 ss
 \chapter{Prùbìh testování webových slu¾eb}
