@@ -56,7 +56,7 @@ Otevøený software (open-source software)\cite{OSI} je software s otevøeným zdroj
 Architektura orientovaná na slu¾by(Services oriented architecture, SOA) \cite{SOA} \label{SOA} je sada principù a postupù pro návrh a vývoj softwaru. SOA se zamìøuje na pøesnì definované softwarové komponenty (èásti poèítaèových systému, datové struktury, apod.), které mohou být pou¾ity vícekrát, pro více úèelù a v kontextu SOA sem jim øíká slu¾by. Nyní si si uká¾eme hlavní principy a postupy, které se pou¾ívají pøi vytváøení slu¾eb v rámci SOA.
 
 \subsubsection*{Zapouzdøení operace}
-Pøi vytváøení systému obsahujících slu¾by, rozsah zapouzdøení mù¾e být men¹í i vìt¹í. Slu¾ba mù¾e zapouzdøit jednu operaci v rámci systému nebo operaci, která reprezentuje celý systém.
+Pøi vytváøení systému obsahujících slu¾by mù¾e být rozsah zapouzdøení men¹í i vìt¹í. Slu¾ba mù¾e zapouzdøit jednu operaci v rámci systému nebo operaci, která reprezentuje celý systém.
 
 \subsubsection*{Vztah mezi slu¾bami}
 Jednotlivé slu¾by mohou být vyu¾ívány jinými slu¾bami nebo programy. Aby mohly slu¾by a programy mezi sebou komunikovat, musí o sobì vìdìt. Toto povìdomí je realizováno pomocí popisu slu¾by. V popisu slu¾by je uveden název slu¾by a druh dat, které slu¾ba oèekává a vrací.
@@ -421,50 +421,48 @@ U webových slu¾eb se provádí tzv. penetraèní testování, které má za cíl odhalit 
 \section{Ji¾ existující nástroje pro testování webových slu¾eb}
 Cílem této práce je vytvoøit nástroj pro testování webových slu¾eb. Pøi vytváøení nejen programových nástrojù by se mìl tvùrce zabývat tím, zda-li u¾ nebylo nìco podobného vytvoøeno. Takovýto prùzkum je dùle¾itý, aby se nástroj nevytváøel zbyteènì znovu, kvùli inspiraci funkcionality nebo právì kvùli chybìjícím funkcionalitám v ji¾ existujících øe¹eních.
 
-Aèkoliv
+V této èásti práce jsou vybrány nástroje související s funkèním a zátì¾ovým testováním. Jako poslední bude struènì popsán nástroj FIWS, který je výsledkem pøedcházející diplomové práce.
 \subsection*{soapUI}
-soapUI je nástroj s otevøeným kódem\footnote{Otevøený kód - open source - znamená, ¾e kód programu je dostupný a jeho licence umo¾òuje jeho úpravu a nasazení pokud se dodr¾í ustanovené podmínky(napø. opìtovné zveøejnìní zdrojového kódu po jeho úpravì ).} zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI lze provádìt i zátì¾ové testy. Roz¹íøení LoadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
+soapUI je nástroj s otevøeným kódem  zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI lze provádìt i zátì¾ové testy. Roz¹íøení LoadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
 
 Projekt lze provázat s automatizaèním nástrojem Apache Ant. Po vytvoøení a vyladìní testovacích scénáøù pomocí nativního u¾ivatelského rozhraní lze tyto testovací scénáøe provádìt automaticky s pou¾itím nástroje Ant. Tento zpùsob integrace je velmi efektivním øe¹ením a tato práce bude tímto zpùsobem inspirována. Zároveò lze integrovat soapUI s JUnit, co¾ je implementace testování modulù v jazyce Java.
 
 \subsection*{JMeter}
-JMeter je alternativou k soapUI pouze nenabízí tak ¹iroký zábìr funkcionalit jako soapUI. JMeter je specializován na testování webových slu¾eb. Disponuje distribuovaným modelem pro testování webových slu¾eb a mo¾ností integrace s automatizaèními nástrojem Ant a testování modulù JUnit. U¾ivatelské rozhraní je obdobné jako u soapUI a je také intuitivní. Projekt JMeter nedisponuje zásuvným modulem do vývojových prostøedí.
+JMeter je alternativou k soapUI pouze nenabízí tak ¹iroký zábìr funkcionalit jako soapUI. JMeter je specializován na testování webových slu¾eb. Disponuje distribuovaným modelem pro testování webových slu¾eb a mo¾ností integrace s automatizaèními nástrojem Ant a testování modulù JUnit. U¾ivatelské rozhraní je obdobné jako u soapUI a je také intuitivní. Projekt JMeter nedisponuje zásuvným modulem do vývojových prostøedí. Dal¹í odli¹ností od soapUI je mo¾nost upravit si vzhled XML výstupù pomocí roz¹íøitelného jazyka pro styly (XSL, eXtensible Stylesheet Language).
 
 
-\subsection*{Grinder}
+\subsection*{The Grinder}
+Tento nástroj je opìt velmi podobný pøedchozím. Jeho hlavní odli¹nost spoèívá v jeho ovládání. The Grinder je uzpùsoben k ovládání pomocí skriptù v jazycích Jython a Closure. The Grinder je vytvoøen v jazyce Java, tedy i jazyky Jython a Closure jsou pou¾ívány, aby mohly ovládat The Grinder v rámci Java virtuálního stroje. Tento zpùsob ovládání má nabízí ¹irokou ¹kálu mo¾ností, na druhou stranu vy¾aduje znalost jednoho z tìchto jazykù. The Grinder ve verzi 2 nabízí zásuvný modul pro testování s JUnit, av¹ak ve verzi 3 byl odstranìn. The Grinder disponuje zásuvným modulem pro vývojové prostøedí Eclipse, který umo¾òuje spou¹tìní a ladìní testovacích skriptù
+
+\subsection*{Pøedchozí diplomová práce - FIWS}
+FIWS reprezentuje nástroj pro injekci poruch. Je specializován na vkládání poruch do komunikace webových slu¾eb pomocí proxy monitorovací jednotky. Tato jednotka zachytává pøíchozí a odchozí HTTP komunikaci, analyzuje ji, pøípadnì modifikuje procházející zprávu. Nástroj je mo¾no ovládat pomocí u¾ivatelského rozhraní 
 
 
-\subsection*{Navázání na pøedchozí práci - FIWS}
-asdsadf
+%\chapter{Specifikace po¾adavkù}
+
+%\section{Základní koncept}
 
 
-
-\chapter{Specifikace po¾adavkù}
-
-\section{Základní koncept}
-dsadfsd
-
-\section{Distribuované testování}
-adfsadf
-
-\section{Navázání na pøedchozí práci}
-dd
-\section{Integrace s nástroji pro testování spolehlivosti}
-sadfasdf
-
-\chapter{Návrh implementace}
-
-\section{Základní koncept}
-	sdfggfs
-\section{Distribuovaný model}
-sfdgdf
-\section{Pou¾ití injekce chyb}
-sdfg
-\section{Provázání s nástroji pro testování spolehlivosti}
-sdfg
+%\section{Distribuované testování}
 
 
-\chapter{Popis implementace}
-ss
-\chapter{Prùbìh testování webových slu¾eb}
+%\section{Navázání na pøedchozí práci}
+
+%\section{Integrace s nástroji pro testování spolehlivosti}
+
+
+%\chapter{Návrh implementace}
+
+%\section{Základní koncept}
+	
+%\section{Distribuovaný model}
+
+%\section{Pou¾ití injekce chyb}
+
+%\section{Provázání s nástroji pro testování spolehlivosti}
+
+
+%\chapter{Popis implementace}
+
+%\chapter{Prùbìh testování webových slu¾eb}
 %=========================================================================
