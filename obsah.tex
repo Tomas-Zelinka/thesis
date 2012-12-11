@@ -3,18 +3,18 @@
 
 \chapter{Úvod}
 
-%dodelat SOA a zpùsoby testovani webovych sluzeb - funcionalni testovani, priklad generovani SOAP klienta, 
- 
+%zpùsoby testovani webovych sluzeb - funcionalni testovani, 
+
 
 
 \chapter{Základní pojmy}
 V této kapitole je popsána vìt¹ina dùle¾itých pojmù a zkratek, které se vyskytují dále v práci nebo jsou dùle¾ité pro objasnìní nìkterého z pou¾itých principù. Nejdøíve budou popsány dvì základní architektury, kterých týká celá tato práce. Dále budou popsány principy transakcí a jejich roz¹íøení na distribuované systémy. V poslední èásti základních pojmù jsou popsány souèásti platformy programovacího jazyka Java.
 
 \subsubsection*{Hypermédia}
-Pojem hypermédia poprvé pou¾il Ted Nelson jako zobecnìní pojmu hypertext. Hypertext jsou textové dokumenty propojené pomocí odkazù, zatímco hypermédia roz¹iøuje pojem hypertext na jakoukoliv formu média. Tedy jsou to média propojené pomocí odkazù.
+Pojem hypermédia \cite{hypermedia} poprvé pou¾il Ted Nelson jako zobecnìní pojmu hypertext. Hypertext jsou textové dokumenty propojené pomocí odkazù, zatímco hypermédia roz¹iøuje pojem hypertext na jakoukoliv formu média. Tedy jsou to média propojené pomocí odkazù.
 
 \subsubsection*{Serializace a Deserializace}
-Postup, pøi kterém je objekt nebo datová struktura pøeveden do urèitého formátu. Tento formát musí umo¾òovat ulo¾ení datové struktury napø. na pevný disk nebo jej odeslat pomocí sítì na vzdálený stroj. Deserializace je inverzní postup, pøi kterém je datová struktura pøevedena z serializované podoby zpìt do své pùvodní.
+Postup, pøi kterém je objekt nebo datová struktura pøeveden do urèitého formátu \cite{serial}. Tento formát musí umo¾òovat ulo¾ení datové struktury napø. na pevný disk nebo jej odeslat pomocí sítì na vzdálený stroj. Deserializace je inverzní postup, pøi kterém je datová struktura pøevedena z serializované podoby zpìt do své pùvodní.
 
 
 \subsubsection*{HTML}
@@ -24,7 +24,7 @@ HTML je zkratka pro Hypertext Markup Language \cite{HTML}, co¾ je znaèkovací jaz
 HTTP je zkratka pro Hypertext Transfer Protocol \cite{HTTP}. Je to protokol pro výmìnu hypertextových dokumentù ve formátu HTML. Výmìna dokumentù probíhá formou dotaz-odpovìï. 
 
 \subsubsection*{URI} 
-Universal Resource Identifier zkratka pro jednotný identifikátor zdroje. Je textový øetìzec, který má definovanou strukturu. Slou¾í k identifikaci zdroje v poèítaèových sítích, zejména internetu. Pod pojmem zdroj je v tomto kontextu my¹len dokument nebo slu¾ba. URI je slo¾eno z øetìzce umístìní zdroje (URL, Universal Resource Locator) a øetìzce názvu zdroje (URN, Univesal Resource Name).
+Universal Resource Identifier zkratka pro jednotný identifikátor zdroje \cite{URI}. Je textový øetìzec, který má definovanou strukturu. Slou¾í k identifikaci zdroje v poèítaèových sítích, zejména internetu. Pod pojmem zdroj je v tomto kontextu my¹len dokument nebo slu¾ba. URI je slo¾eno z øetìzce umístìní zdroje (URL, Universal Resource Locator) a øetìzce názvu zdroje (URN, Univesal Resource Name).
 
 
 \subsubsection*{XML}
@@ -211,7 +211,7 @@ Ustanovuje vztah klient-server mezi ¾adatelem o slu¾bu a poskytovatelem. Tento v
 
 
 \section{REST}
-Architektonický styl REST byl navr¾en Roy Fieldingem v rámci jeho disertaèní práce v roce 2000. REST není architekturou ani technologii. REST je sada omezení, které musí dané øe¹ení obsahovat. REST byl vytvoøen pro prostøedí internetu a webu. REST je orientován na zdroje, kde zdroj pøedstavují po¾adováná data nebo stav daného vzdáleného systému. Tento styl získávání dat je velmi podobný SQL dotazùm, kde také po¾adujeme urèitá data(deklarativní programování). V kontrastu s tímto je SOAP protokol, pomocí kterého jsou na vzdálené stranì vyvolávány procedury(procedurální programování).
+Architektonický styl REST byl navr¾en Roy Fieldingem  v rámci jeho disertaèní práce v roce 2000 \cite{fielding}. REST není architekturou ani technologii. REST je sada omezení, které musí dané øe¹ení obsahovat. REST byl vytvoøen pro prostøedí internetu a webu. REST je orientován na zdroje, kde zdroj pøedstavují po¾adováná data nebo stav daného vzdáleného systému. Tento styl získávání dat je velmi podobný SQL dotazùm, kde také po¾adujeme urèitá data(deklarativní programování). V kontrastu s tímto je SOAP protokol, pomocí kterého jsou na vzdálené stranì vyvolávány procedury(procedurální programování).
 
 Aèkoliv je mo¾né se doèíst o soupeøení a porovnávání mezi SOA a REST, tak hlavní smysl REST je být alternativou k procedurálnímu charakteru SOA architektury. 
 \\\\
@@ -233,7 +233,7 @@ Nepovinnou funkcionalitou je tzv. kód na vy¾ádání. Tento pojem souvisí s roz¹íøe
 Tyto vlastnosti nemusí být na první pohled úplnì srozumitelné, proto budou dále popsány na konkrétní technologii viz sekce REST webové slu¾by
 
 \subsection*{REST webové slu¾by}
- Druhou koncepcí webových slu¾eb, se kterou se mù¾eme setkat a stává se velmi populární, jsou webové slu¾by respektující REST architektonický styl. Proto¾e REST stylu vyhovují vlastnosti HTTP protokolu a HTTP protokol je vyu¾íván ke konstrukci webových slu¾eb, byly vlastnosti REST pou¾ity pro konstrukci webových slu¾eb. Nyní bude popsáno propojení REST vlastností a omezení, která byla pøedstavena døíve v textu, s protokolem HTTP a následnì spojení s technologii webových slu¾eb. 
+ Druhou koncepcí webových slu¾eb \cite{wsupandrunning}, se kterou se mù¾eme setkat a stává se velmi populární, jsou webové slu¾by respektující REST architektonický styl. Proto¾e REST stylu vyhovují vlastnosti HTTP protokolu a HTTP protokol je vyu¾íván ke konstrukci webových slu¾eb, byly vlastnosti REST pou¾ity pro konstrukci webových slu¾eb. Nyní bude popsáno propojení REST vlastností a omezení, která byla pøedstavena døíve v textu, s protokolem HTTP a následnì spojení s technologii webových slu¾eb. 
 \\\\\\
 HTTP protokol splòuje REST vlastnosti a omezení díky následujícím vlastnostem:
 \begin{itemize}
@@ -272,33 +272,22 @@ odstranìní zdroje
  Pro REST charakter webových slu¾eb jsou tyto operace naprosto dostaèující. Z akronymu REST - Representative State Transfer (pøenos reprezentativního stavu) - je patrné, ¾e se bude pøená¹et pouze stav. V pøípadì REST se pøená¹í stav po¾adovaného zdroje, pøesnìji jeho reprezentace. Aèkoliv se to na první pohled mù¾e zdát velmi limitující, ve skuteènosti mù¾e v pozadí tìchto pøíkazù pracovat velmi komplexní logika. 	 
 
 
-
-
-
-
-%\section{Webové slu¾by}
-%Webová slu¾ba je softwarový systém vytvoøen k podpoøe interakce mezi uzly sítì\cite{JAX-WS}. Slou¾í ke komunikaci a pøenosu dat v decentralizovaných, distribuovaných systémech. Webové slu¾by byly vytvoøeny jako dal¹í alternativa k systémùm jako jsou napø. CORBA nebo DCOM. Jejich základní úèel spoèívá v propojení heterogenních systémù. Pomocí webových slu¾eb je tedy mo¾né propojit systémy rùzných architektur, kde jsou aplikace napsány rùznými jazyky. Jejich rozhraní je popsané strojovì zpracovatelným formátem. 
-
-%Pøedchùdcem webových slu¾eb je technologie volání vzdálených procedur(RPC, Remote Procedure Call), proto je mo¾né pozorovat rùzné podobnosti s technologii webových slu¾eb a RPC. Dal¹ím vývojovým stupnìm je technologie XML-RPC, kterou se vyu¾ívala k implementaci webových slu¾eb, ale jejich funkcionalita postupnì pøestávala dostaèovat vzrùstajícím potøebám. Posledními technologiemi, které se dnes pou¾ívají pro implementaci webových slu¾eb jsou SOAP a REST. Ka¾dá z tìchto technologii má své pro a proti. O problematice SOAP versus REST bylo napsáno velké mno¾ství èlánkù a ve vìt¹inì knih zamìøených na problematiku webových slu¾eb je minimálnì zmínka o tom, zda pou¾ít REST nebo SOAP. Proto¾e tato práce se hlavnì zamìøuje na testování webových slu¾eb bez rozdílu jejich technologie, budou zde popsány oba dva pøístupy.
-
-
-
-%co je Java EE, jednotlive vrstvy, hlavni technologie v EE
-
-
 \section{Testování software}
-Testování je souèástí ¾ivotního cyklu software. Testování je obecnì neodmyslitelnou souèástí jakéhokoliv produktu, nejenom z oblasti IT. Pøeci jen, pokud chceme zaruèit urèité vlastnosti produktu, je tøeba tyto vlastnosti vyzkou¹et - otestovat. Jeliko¾ software vytváøejí lidé a ti nejsou neomylní, je tøeba provìøit mo¾né pochybení pøi vývoji software.
+Testování je souèástí ¾ivotního cyklu software \cite{art_of_testing} \cite{testing_found}. Testování je obecnì neodmyslitelnou souèástí jakéhokoliv produktu, nejenom z oblasti IT. Pøeci jen, pokud chceme zaruèit urèité vlastnosti produktu, je tøeba tyto vlastnosti vyzkou¹et - otestovat. Jeliko¾ software vytváøejí lidé a ti nejsou neomylní, je tøeba provìøit mo¾né pochybení pøi vývoji software.
 
 V ideálním pøípadì bychom pøi testování vyzkou¹eli v¹echny mo¾né zpùsoby pou¾ití, vstupy, prostøedí, abychom dùkladnì otestovali vytvoøený program. V reálném svìtì tento zpùsob není mo¾ný, proto¾e vyzkou¹et v¹echny mo¾né vstupy i jednoduchého programu je prakticky neøe¹itelný problém. K tomuto tvrzení staèí poukázat program, který seète dvì èísla z mno¾iny reálných èísel. Ne v¾dy je kompletní testování neøe¹itelný problém, minimálnì je v¹ak kompletní testování velmi nepraktické a hlavnì neekonomické.
 
-Proto je tøeba si uvìdomit, ¾e nemù¾eme testovat v¹echny mo¾né vstupy. Aèkoliv nemù¾eme zaruèit absolutní bezchybovost software, mù¾eme se pokusit sní¾it poèet  chyb v software na minimum. Hlavním cílem testování je tedy odhalit co nejvìt¹í poèet chyb. Co¾ je paradox testování, proto¾e úspì¹né testování znamená odhalení chyby. Aby bylo testování úspì¹né a odhalilo co nejvíce chyb, je nutné k nìmu pøistupovat komplexním zpùsobem a poèínat si obdobnì jako pøi vývoji samotného software.  Podívejme se tedy na základní techniky testování software.
+Proto je tøeba si uvìdomit, ¾e nemù¾eme testovat v¹echny mo¾né vstupy. Aèkoliv nemù¾eme zaruèit absolutní bezchybovost software, mù¾eme se pokusit sní¾it poèet  chyb v software na minimum. Hlavním cílem testování je tedy odhalit co nejvìt¹í poèet chyb. Co¾ je paradox testování, proto¾e úspì¹né testování znamená odhalení chyby. Aby bylo testování úspì¹né a odhalilo co nejvíce chyb, je nutné k nìmu pøistupovat komplexním zpùsobem a poèínat si obdobnì jako pøi vývoji samotného software.  Podívejme se tedy na základní techniky testování software. 
 
 \subsection*{Základní techniky testování software}
 K popsání v¹ech dùle¾itých technik testování software by bylo potøeba celá kniha, zde budou popsány pouze ty základní metody nebo ty metody, které souvisejí s touto prací.
+
 \subsubsection*{Statické a Dynamické testování}
 Pokud pøi testování není tøeba spustit samotný program, jedná se o statické testování. To mù¾e být napøíklad procházení zdrojových kódù nebo dokumentace. Dùle¾ité je odhalení chyb ji¾ ve specifikaci po¾adavkù, proto¾e vytvoøení programu podle chybné specifikace patøí mezi ty opravdu nákladné chyby.
 
 Dynamické testování vy¾aduje spu¹tìní urèité verze programu. Testování probíhá vkládáním mno¾iny vstupù a hodnocení dosa¾ených výstupù. Celá tato práce je zamìøena právì na dynamické testování, kam lze zaøadit i ní¾e popsané techniky.
+
+
 \subsubsection*{Black box a White box testování}
 Black box(èerná krabièka) je technika testování, pøi které  neznáme vnitøní strukturu programu. Black box testování se navrhuje hlavnì podle specifikace a je tøeba vhodnì navrhnout vstupní data tak, abychom dosáhli vyvá¾enosti mezi efektivitou a úplností testování. Pou¾ívají se dal¹í podpùrné techniky jako rozdìlení dat podle intervalù, rozdìlení dat podle ekvivalenèních tøíd apod.
 
@@ -336,6 +325,7 @@ Protipólem je testovat spojení ka¾dého modulu zvlá¹». Tento pøístup je výhodný p
 
 \item{\bf Systémové testování}\\
 Systémové testování se zamìøuje na program nebo produkt jako celek. Mù¾e obsahovat testy zalo¾ené na specifikaci, testování pøípadu u¾ití programu apod. Systémové testování je poslední úroveò vývojového testování, kdy se ovìøuje zda program odpovídá specifikaci. Pøi systémovém testování by se mìly testovat funkèní po¾adavky i ty, které pøímo s funkèností nesouvisejí. Mezi nefunkcionální testování patøí napøíklad výkonnostní testy, testy spolehlivosti, bezpeènostní testy apod. 
+
 \item{\bf Akceptaèní testování}\\
 Akceptaèní testování je zále¾itostí u¾ivatele, zákazníka nebo je provádìno prostøedí témìø identickém produkènímu, ne-li pøímo v produkèním prostøedí\footnote{Produkèní prostøední nebo produkce oznaèuje prostøedí, ve kterém bude program, produkt nasazen a pou¾íván}. Testuje je se hlavnì splnìní specifikovaných po¾adavkù na software a jestli dodaný software je schopen pracovat v daném prostøedí a je vhodný pro daný úèel. 
 
@@ -386,14 +376,14 @@ Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii 
 
 
 \chapter{Testování webových slu¾eb}
- Tato èást se bude vìnovat aspektùm testování webových slu¾eb  se zamìøením na testování robustnosti a odolnosti. Na testování webových slu¾eb se mù¾eme dívat jako na testování jakéhokoliv jiného software, av¹ak musíme vzít v úvahu nìkolik zásadních skuteèností. Webové slu¾by a» u¾ s pou¾itím SOAP protokolu nebo REST principù jedná se o vzdálené aplikace, které se mohou skládat z nìkolika vrstev. Dále pak webové slu¾by mohou být kompletnì bez grafického u¾ivatelského rozhraní, co¾ znesnadòuje manuální testování, na druhou stranu je zde vìt¹í prostor pro automatizaci testování.
+ Tato èást se bude vìnovat aspektùm testování webových slu¾eb  se zamìøením na testování robustnosti a odolnosti \cite{webservices}. Na testování webových slu¾eb se mù¾eme dívat jako na testování jakéhokoliv jiného software, av¹ak musíme vzít v úvahu nìkolik zásadních skuteèností. Webové slu¾by a» u¾ s pou¾itím SOAP protokolu nebo REST principù jedná se o vzdálené aplikace, které se mohou skládat z nìkolika vrstev. Dále pak webové slu¾by mohou být kompletnì bez grafického u¾ivatelského rozhraní, co¾ znesnadòuje manuální testování, na druhou stranu je zde vìt¹í prostor pro automatizaci testování.
 
 
 \section{Rùzné pohledy na webové slu¾by}
 Pøi testování webových slu¾eb se mù¾eme setkat s rùznými aspekty, které vyplývají z jejich pou¾ití. Webové slu¾by jsou velice èasto implementovány s typem komunikace dotaz/odpovìï nebo alespoò odvozeným zpùsobem. Tedy lze rozdìlit úèastníky v komunikaci na klienty a server, kdy klient ode¹le dotaz a server (slu¾ba) ode¹le odpovìï. Zde je nutné si uvìdomit, ¾e pokud testujeme klient/server aplikace, je nutné otestovat tyto èásti oddìlenì. Musíme si být jistí, ¾e server dává správnì odpovìdi a klient odesílá správnì dotazy. Proto¾e pokud jedna èást (napø. klient) odesílá chybná data, druhá èást pak nemusí odesílat data adekvátním zpùsobem.
 
 \subsection*{Server}
-Pro webové slu¾by je toto základní pohled, proto¾e slu¾ba je umístìna na vzdáleném stroji a plní tak roli serveru v architektuøe klient/server. Z tohoto pohledu se testují reakce webové slu¾by na zaslané dotazy a analyzují se pøijaté odpovìdi. Pro tento typ testování je nutno vytvoøit klientskou èást aplikace. Klientskou èást aplikace pro testování je mo¾no vytvoøit automatizovanì. Existují nástroje pro generování klientských aplikací jak pro SOAP webové slu¾by, tak i pro webové slu¾by zalo¾ené na REST principech
+Pro webové slu¾by je toto základní pohled, proto¾e slu¾ba je umístìna na vzdáleném stroji a plní tak roli serveru v architektuøe klient/server. Z tohoto pohledu se testují reakce webové slu¾by na zaslané dotazy a analyzují se pøijaté odpovìdi. Pro tento typ testování je nutno vytvoøit klientskou èást aplikace. Klientskou èást aplikace pro testování je mo¾no vytvoøit automatizovanì. Existují nástroje pro generování klientských rozhraní jak pro SOAP webové slu¾by, tak i pro webové slu¾by zalo¾ené na REST principech. Pøíkladem takové technologie je JBoss Wise.
 
 \subsection*{Klient}
 Pokud vyu¾íváme webových slu¾eb vìt¹inou se nespokojíme s vygenerovanou klientskou èástí aplikace a je tøeba ji roz¹íøit. Proto je tøeba klientskou èást aplikace také podrobit testování. Nejdøíve otestujeme klientskou èást s tzv. fale¹ným serverem (stub server). Stub server má pouze shodné rozhraní se skuteènì pou¾itým. Co¾ umo¾òuje velmi rychle vytvoøit testovací server, se kterým je mo¾no vyhodnotit vlastnosti odesílaných dotazù.
@@ -427,14 +417,13 @@ Jeliko¾ jsou webové slu¾by èasto exponovány velkému poètu u¾ivatelù, je nutné se
 
 
 \section{Zpùsoby testování webových slu¾eb}
-Jeliko¾ webové slu¾by patøí mezi distribuované aplikace, je nutné nejdøíve testovat dostupnost dané slu¾by. Pokud slu¾ba není z nìjakého dùvodu dostupná, dal¹í druhy testování (rozhraní, zátì¾ové, bezpeènostní) ztrácejí na významu. Po té co zjistíme, ¾e slu¾ba je dostupná, je vhodné ovìøit její správné fungování funkcionálními testy. Pokud webová slu¾ba vykazuje správnou funkcionalitu, je vhodné otestovat dal¹í vlastnosti jako napøíklad bezpeènost nebo ¹kálovatelnost 
-slu¾by.
-
-Pøi testování spolehlivosti se zkou¹í, jak software zareaguje na neèekané události. Pro testování odolnosti webových slu¾eb existuje více technik, které se sna¾í simulovat rùzné chování prostøedí nebo u¾ivatelù. K testování odolnosti patøí zátì¾ové testování, které lze rozdìlit na stresové testování a testování dlouhodobé zátì¾e. Dal¹í technikou, která simuluje chování slu¾by na nestandardní vstupy, je injekce chyb. Tyto techniky jsou ní¾e podrobnì rozebrány ní¾e, proto¾e tato práce bude zamìøena právì na pou¾ití tìchto technik.
-
+Jeliko¾ webové slu¾by patøí mezi distribuované aplikace, je nutné nejdøíve testovat dostupnost dané slu¾by. Pokud slu¾ba není z nìjakého dùvodu dostupná, dal¹í druhy testování (rozhraní, zátì¾ové, bezpeènostní) ztrácejí na významu. Po té co zjistíme, ¾e slu¾ba je dostupná, je vhodné ovìøit její správné fungování funkcionálními testy. Pokud webová slu¾ba vykazuje správnou funkcionalitu, je vhodné otestovat dal¹í vlastnosti jako napøíklad bezpeènost nebo výkonost slu¾by.
 
 \subsection*{Funkcionální testování}
-Cílem funkcionálního testování v rámci webových slu¾eb je zji¹tìní, zda-li slu¾ba je dostupná a její funkcionalita odpovídá její specifikaci. V první øadì se testuje spojení, ve vìt¹inì pøípadù se jedná o HTTP po¾adavek. Pøijaté odpovìdi jsou pak podrobeny patøièné analýze.  Do kategorie funkcionálního testování spadá i technika injekce chyb, kdy se testuje reakce webové slu¾by na nevhodný nebo po¹kozený vstup.
+Cílem funkcionálního testování v rámci webových slu¾eb je zji¹tìní, zda-li slu¾ba je dostupná a její funkcionalita odpovídá její specifikaci. V první øadì se testuje spojení, ve vìt¹inì pøípadù se jedná o HTTP po¾adavek. Pøijaté odpovìdi jsou pak podrobeny patøièné analýze.  
+
+\subsection*{Testování odolnosti}
+Testování odolnosti software døíve zmínìna nebyla, proto¾e bývá zahrnuta do obvyklého testování. V pøípadì webových slu¾eb v¹ak nabývá zvlá¹tního významu, proto¾e se jedná o distribuovanou technologii. Testování odolnosti se zabývá simulováním prostøedí, kde se vyskytuje vìt¹í èi men¹í mno¾ství chyb. Chyby jsou vkládány do dat, se kterými aplikace pracuje, do komunikace mezi jednotlivými èástmi aplikace apod. Do kategorie testování odolnosti spadá i technika injekce chyb, kdy se testuje reakce webové slu¾by na nevhodný nebo po¹kozený vstup.
 
 Injekce chyb pøedstavuje techniku testování odolnosti aplikace. Pøi injekci chyb se zámìrnì vkládají chyby buï do zdrojového kódu pøed kompilací nebo za bìhu programu. Pøi vkládání chyb do zdrojového kódu programu pøed kompilací se jedná o tzv. {Compile-Time Injection}. Tuto techniku je mo¾no pou¾ít jak pro simulování softwarových chyb, tak i hardwarových. Technika zalo¾ená na vkládání chyb za bìhu programu se nazývá {Run-Time Injection}.Pro injekci chyb do webových slu¾eb lze vyu¾ít  techniku vkládání chyb za bìhu programu. Více informací obsahuje diplomová práce Martina ®ou¾elky, na kterou tato práce bude navazovat.
 
@@ -450,20 +439,20 @@ U webových slu¾eb se provádí tzv. penetraèní testování, které má za cíl odhalit 
 
 
 \section{Ji¾ existující nástroje pro testování webových slu¾eb}
-Cílem této práce je vytvoøit nástroj pro testování webových slu¾eb. Pøi vytváøení nejen programových nástrojù by se mìl tvùrce zabývat tím, zda-li u¾ nebyl podobný nástroj vytvoøen. Takovýto prùzkum je dùle¾itý, aby se nástroj nevytváøel zbyteènì znovu, kvùli inspiraci funkcionality nebo právì kvùli chybìjícím funkcionalitám v ji¾ existujících øe¹eních.
+Cílem této práce je vytvoøit nástroj pro testování webových slu¾eb. Pøi vytváøení nejen programových nástrojù by se mìl tvùrce zabývat tím, zda-li u¾ nebyl podobný nástroj vytvoøen. Takovýto prùzkum je dùle¾itý, aby se nástroj nevytváøel zbyteènì znovu, kvùli inspiraci funkcionality nebo právì kvùli chybìjícím funkcionalitám v ji¾ existujících øe¹eních.	
 
 V této èásti práce jsou vybrány nástroje související s funkèním a zátì¾ovým testováním. Jako poslední bude struènì popsán nástroj FIWS, který je výsledkem pøedcházející diplomové práce.
 \subsection*{soapUI}
-soapUI je nástroj s otevøeným kódem  zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI, lze provádìt i zátì¾ové testy. Roz¹íøení LoadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
+soapUI \cite{soapUI}je nástroj s otevøeným kódem  zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI, lze provádìt i zátì¾ové testy. Roz¹íøení LoadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
 
 Projekt lze provázat s automatizaèním nástrojem Apache Ant. Po vytvoøení a vyladìní testovacích scénáøù pomocí nativního u¾ivatelského rozhraní lze tyto testovací scénáøe provádìt automaticky s pou¾itím nástroje Ant. Tento zpùsob integrace je velmi efektivním øe¹ením a tato práce bude tímto zpùsobem inspirována. Zároveò lze integrovat soapUI s JUnit, co¾ je implementace testování modulù v jazyce Java.
 
 \subsection*{JMeter}
-JMeter je alternativou k soapUI, av¹ak nenabízí tak ¹iroký zábìr funkcionalit jako soapUI. JMeter je specializován na testování webových slu¾eb. Disponuje distribuovaným modelem pro testování webových slu¾eb a mo¾ností integrace s automatizaèními nástrojem Ant a testování modulù JUnit. U¾ivatelské rozhraní je obdobné jako u soapUI a je také intuitivní. Projekt JMeter nedisponuje zásuvným modulem do vývojových prostøedí. Dal¹í odli¹ností od soapUI je mo¾nost upravit si vzhled XML výstupù pomocí roz¹íøitelného jazyka pro styly (XSL, eXtensible Stylesheet Language).
+JMeter\textsuperscript{\texttrademark} \cite{jmeter}  je alternativou k soapUI, av¹ak nenabízí tak ¹iroký zábìr funkcionalit jako soapUI. JMeter je specializován na testování webových slu¾eb. Disponuje distribuovaným modelem pro testování webových slu¾eb a mo¾ností integrace s automatizaèními nástrojem Ant a testování modulù JUnit. U¾ivatelské rozhraní je obdobné jako u soapUI a je také intuitivní. Projekt JMeter nedisponuje zásuvným modulem do vývojových prostøedí. Dal¹í odli¹ností od soapUI je mo¾nost upravit si vzhled XML výstupù pomocí roz¹íøitelného jazyka pro styly (XSL, eXtensible Stylesheet Language).
 
 
 \subsection*{The Grinder}
-Tento nástroj je opìt velmi podobný pøedchozím. Jeho hlavní odli¹nost spoèívá v jeho ovládání. The Grinder je uzpùsoben k ovládání pomocí skriptù v jazycích Jython a Closure. The Grinder je vytvoøen v jazyce Java, tedy i jazyky Jython a Closure jsou pou¾ívány pro ovládání The Grinder v rámci Java virtuálního stroje. Tento zpùsob ovládání  nabízí ¹irokou ¹kálu mo¾ností, na druhou stranu vy¾aduje znalost jednoho z tìchto jazykù. The Grinder ve verzi 2 nabízí zásuvný modul pro testování s JUnit, av¹ak ve verzi 3 byl odstranìn. The Grinder disponuje zásuvným modulem pro vývojové prostøedí Eclipse, který umo¾òuje spou¹tìní a ladìní testovacích skriptù
+Tento nástroj je opìt velmi podobný pøedchozím. Jeho hlavní odli¹nost spoèívá v jeho ovládání. The Grinder \cite{grinder} je uzpùsoben k ovládání pomocí skriptù v jazycích Jython a Closure. The Grinder je vytvoøen v jazyce Java, tedy i jazyky Jython a Closure jsou pou¾ívány pro ovládání The Grinder v rámci Java virtuálního stroje. Tento zpùsob ovládání  nabízí ¹irokou ¹kálu mo¾ností, na druhou stranu vy¾aduje znalost jednoho z tìchto jazykù. The Grinder ve verzi 2 nabízí zásuvný modul pro testování s JUnit, av¹ak ve verzi 3 byl odstranìn. The Grinder disponuje zásuvným modulem pro vývojové prostøedí Eclipse, který umo¾òuje spou¹tìní a ladìní testovacích skriptù.
 
 \subsection*{Pøedchozí diplomová práce - FIWS}
 FIWS reprezentuje nástroj pro injekci poruch. Je specializován na vkládání poruch do komunikace webových slu¾eb pomocí proxy monitorovací jednotky. Tato jednotka zachytává pøíchozí a odchozí HTTP komunikaci, analyzuje ji, pøípadnì modifikuje procházející zprávu. Nástroj je mo¾no ovládat pomocí u¾ivatelského rozhraní. Kompletní popis obsahuje daná diplomová práce.
