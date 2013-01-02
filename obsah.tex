@@ -458,28 +458,73 @@ Tento nástroj je opìt velmi podobný pøedchozím. Jeho hlavní odli¹nost spoèívá v 
 FIWS reprezentuje nástroj pro injekci poruch. Je specializován na vkládání poruch do komunikace webových slu¾eb pomocí proxy monitorovací jednotky. Tato jednotka zachytává pøíchozí a odchozí HTTP komunikaci, analyzuje ji, pøípadnì modifikuje procházející zprávu. Nástroj je mo¾no ovládat pomocí u¾ivatelského rozhraní. Kompletní popis obsahuje daná diplomová práce.
 
 
-%\chapter{Specifikace po¾adavkù}
-
-%\section{Základní koncept}
-
-
-%\section{Distribuované testování}
+\chapter{Specifikace po¾adavkù}
+V této èásti bude roz¹íøeno a upøesnìno oficiální zadání.  specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje dále pak bude následovat roz¹íøení v podobì distribuované architektury. Dal¹í dva body detailnìji specifikují po¾adavky ze zadání. Jedná se o specifikaci  
 
 
-%\section{Navázání na pøedchozí práci}
+\section{Základní koncept}
+Základní koncept obsahuje základní po¾adavky, bez kterých by nástroj byl nefunkèní. Jedná se tedy o jádro nástroje. 
 
-%\section{Integrace s nástroji pro testování spolehlivosti}
+\subsection*{Základní funkce nástroje}
+Nástroj bude umo¾òovat vytvoøení testù. Buï automatizovanì z dokumentù WSDL nebo je bude mo¾no importovat ji¾ pøipravené. Testy bude mo¾no upravovat. Testy vygenerované pomocí WSDL dokumentu budou dále v textu nazvány jako kostra testu, proto¾e budou vytvoøeny testy pouze v základní podobì a èasto je bude tøeba upravit.
+
+Dal¹í základní funkcí je spu¹tìní testù. Testy bude mo¾né spou¹tìt z pøíkazové øádky. Nástroj bude obsahovat grafické u¾ivatelské rozhraní, kde mohou být obsa¾eny dal¹í roz¹íøení. 
+
+Výsledky jednotlivých testù budou ulo¾eny a budou dostupné i po ukonèení bìhu nástroje.
 
 
-%\chapter{Návrh implementace}
+\subsection*{Jednotka pro spou¹tìní testù}
+Nástroj bude obsahovat nezávislý program pro spou¹tìní testù. Tato jednotka bude umo¾òovat spu¹tìní pøipravených testù. Jednotku bude mo¾no spou¹tìt jak z pøíkazové øádky, tak z grafického prostøedí. Tato jednotka bude základem pro roz¹iøující vlastnosti popsané dále ve specifikaci, proto je vhodné ji navrhnout jako nezávislý celek.
 
-%\section{Základní koncept}
+\subsection*{Testování SOAP webových slu¾eb}
+Nástroj bude umo¾òovat testování SOAP webových slu¾eb. To znamená, ¾e jednotka bude podporovat manipulaci se SOAP zprávami. Manipulaci se rozumí odeslání SOAP zprávy a pøijetí její odpovìdi, pokud to charakter testováni bude vy¾adovat.
+
+\subsection*{Testování REST webových slu¾eb}
+Nástroj bude umo¾òovat testování REST webových slu¾eb. To znamená, ¾e jednotka bude podporovat HTTP pøíkazy, které jsou popsány v sekci REST webové slu¾by. Bude také ukládat odpovìdi od slu¾by, pokud to charakter testování bude vy¾adovat.
+
+\subsection*{U¾ivatelské rozhraní pro pøíkazovou øádku}
+Nástroj bude mo¾no ovládat pomocí pøíkazové øádky. Z pøíkazové øádky bude mo¾né ovládat základní funkce nástroje tzn. generováni základních testù, konfigurace testù, spu¹tìní testù, ulo¾ení výsledkù testù. 
+
+\subsection*{Grafické u¾ivatelské rozhraní}
+Grafické u¾ivatelské rozhraní bude umo¾òovat pøehledné vytváøení testù dle po¾adavku na strukturu. Testy bude mo¾no vytváøet upravovat i ru¹it. Testy bude mo¾no aplikovat spu¹tìním jednotky pro spou¹tìní testù. Rozhraní bude umo¾òovat pøehledné zobrazení vybraných výsledkù testù. V grafickém u¾ivatelském rozhraní dále bude mo¾né ovládat vzdálené procesy, které budou umo¾òovat pøedání vytvoøených testù a spu¹tìní spou¹tìcí jednotky.
+
+\subsection*{Struktura testovacích dat}
+Jednotlivé testy budou moci být vytváøeny ve vìt¹ích celcích, které spolu souvisejí. Napøíklad v¹echny testy pro jednu slu¾bu budou ulo¾eny ve spoleèné slo¾ce na disku.
+
+\subsection*{Automatizace generování vzorù pro testování}
+Pokud je slu¾ba popsána standardizovaným zpùsobem(WSDL, WADL apod) bude mo¾no pro tuto slu¾bu vygenerovat základní sadu testù na základì tìchto dokumentù. 
+
+\section{Distribuované testování}
+Tato sekce specifikace bude zamìøena  na popis po¾adavkù pro distribuované provádìní testù. Toto roz¹íøení není souèástí zadání, ale je velmi vhodné vyu¾ití distribuované architektury pro zátì¾ové testování.
+
+\subsection*{Správa procesù na vzdálených strojích}
+Proces jednotky musí bì¾et na vzdáleném stroji, pak bude mo¾né otestovat konektivitu s touto vzdálenou jednotkou. Vzdálené jednotky bude mo¾né testovat(konektivitu) a ukonèovat z grafického u¾ivatelského rozhraní i z rozhraní pøíkazové øádky. 
+
+\subsection*{Spu¹tìní testù na vzdálených strojích }
+Z obou u¾ivatelských prostøedí bude taky mo¾né zaslat po¾adované testy urèité jednotce èi více jednotkám a následnì jim odeslat pøíkaz ke spu¹tìní testování pøípadnì pøíkaz ke zastavení testování.
+
+\subsection*{Odesílání výsledkù testù hlavnímu procesu}
+Výsledky testù se budou zaznamenávat a bude na výbìr, zda-li je posílat automaticky centrálnímu ovládání nebo na pouze na vy¾ádání pøíkazem.	
+
+
+\section{Navázání na pøedchozí práci}
+\subsection*{Spu¹tìní HTTP proxy procesu pro vkládání chyb do komunikace}
+\subsection*{Efektivní fungování HTTP proxy procesu}
+
+
+
+\section{Integrace s nástroji pro testování spolehlivosti}
+\subsection*{Automatizace provádìní testù}
+
+\chapter{Návrh implementace}
+
+\section{Základní koncept}
 	
-%\section{Distribuovaný model}
+\section{Distribuovaný model}
 
-%\section{Pou¾ití injekce chyb}
+\section{Pou¾ití injekce chyb}
 
-%\section{Provázání s nástroji pro testování spolehlivosti}
+\section{Provázání s nástroji pro testování spolehlivosti}
 
 
 %\chapter{Popis implementace}
