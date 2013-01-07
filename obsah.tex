@@ -222,7 +222,7 @@ Zde je klientem u¾ivatelské rozhraní a server je úlo¾i¹tì dat. Díky oddìlení u¾i
 \item {\bf Bezstavovost}\\
 Kontext nesmí být ulo¾en na stranì serveru a odeslaná odpovìï musí být sebe-popisující. Ve¹keré informace o aktuálním sezení jsou ulo¾eny na stranì klienta. Toto omezení má umo¾òovat lep¹í viditelnost, spolehlivost a ¹kálovatelnost. Lep¹í viditelnosti je dosa¾eno, proto¾e monitorovací systémy mohou monitorovat pouze odesílané po¾adavky a pøijímané odpovìdi, kde jsou kompletní informace. Lep¹í spolehlivosti je dosa¾eno díky snadnìj¹í obnovì po chybách, proto¾e na serveru nejsou ulo¾eny kontextové informace. Díky neukládání kontextových informací na serveru je dosa¾eno i lep¹í ¹kálovatelnosti.
 \item {\bf Mezi-pamì»}\\
-Pro lep¹í výkonost dotazù by mìla být pou¾ita na stranì klienta mezi-pamì»(cache), která ukládá výsledky ji¾ provedených dotazù. Toto zlep¹ení výkonosti je vykoupeno men¹í spolehlivostí dat, které nemusí být v danou chvíli aktuální.
+Pro lep¹í výkonnost dotazù by mìla být pou¾ita na stranì klienta mezi-pamì»(cache), která ukládá výsledky ji¾ provedených dotazù. Toto zlep¹ení výkonnosti je vykoupeno men¹í spolehlivostí dat, které nemusí být v danou chvíli aktuální.
 \item {\bf Vrstvy}\\
 Systém podle REST by mìl být sestaven z více vrstev a ka¾dá vrstva komunikuje pouze se sousedními vrstvami. Napøíklad webový prohlí¾eè si vy¾ádá data od web serveru, ale ji¾ neví o databázi, kterou server vyu¾ívá k získání po¾adovaných dat.
 \item {\bf Jednotné komunikaèní rozhraní}\\
@@ -298,12 +298,12 @@ Regresní testování  se obvykle provádí po implementaci nové funkcionality. Má za
 
 
 \subsubsection*{Výkonnostní testování}
-Výkonnostní testování se vìnuje výkonu programu. Testovat výkon aplikace lze více zpùsoby. Program mù¾eme podrobit stresovému testování, kdy jsou softwaru ztí¾eny podmínky pro fungování (odebrání pamìti, èas procesoru apod.) nebo je vystaven krátkodobému pøetí¾ení mno¾stvím vstupních dat. 
+Výkonnostní testování se vìnuje výkonu programu. Testovat výkon aplikace lze více zpùsoby. Program mù¾eme podrobit zátì¾ovému testování (stress testing), kdy jsou softwaru ztí¾eny podmínky pro fungování (odebrání pamìti, èas procesoru apod.) nebo je vystaven krátkodobému pøetí¾ení mno¾stvím vstupních dat. 
 
 Pak je mo¾né testovat dlouhodobou zátì¾, kdy je program pøetí¾en mno¾stvím vstupních dat po del¹í dobu. Je¹tì je mo¾né opakovat jednu a tu samou operaci neustále do kola, co¾ má za cíl testovat zacházení s pamìtí.
 
 \subsubsection*{Bezpeènostní testování}
-Dùle¾itou souèástí testování je i test bezpeènostních opatøení. Pøi bezpeènostních testech se testuje zaji¹tìní základních po¾adavkù na bezpeènost, co¾ jsou Dostupnost, Dùvìryhodnost, Integrita.  Pro bezpeènou aplikaci je nutné zabezpeèit v¹echny tyto tøi vlastnosti souèasnì, jinak nelze pova¾ovat aplikaci za bezpeènou. 
+Dùle¾itou souèástí testování je i test bezpeènostních opatøení. Pøi bezpeènostních testech se testuje zaji¹tìní základních po¾adavkù na bezpeènost, co¾ jsou {\it dostupnost}, {\it dùvìryhodnost}, {\it integrita}.  Pro bezpeènou aplikaci je nutné zabezpeèit v¹echny tyto tøi vlastnosti souèasnì, jinak nelze pova¾ovat aplikaci za bezpeènou. 
 
 Proto¾e bez dostupnosti u¾ivatel nebude mít pøístup k datùm, aèkoliv jsou dùvìryhodná a bez po¹kození. Bez integrity jsou data dostupná a nebyly zobrazeny jiným u¾ivatelùm, ne¾ pro které byly urèeny, ale mohou být po¹kozená. Nakonec pokud data budou nezmìnìná i dostupná, mohou být vystavena nepatøièným u¾ivatelùm. 
 
@@ -459,25 +459,25 @@ FIWS reprezentuje nástroj pro injekci poruch. Je specializován na vkládání poruc
 
 
 \chapter{Specifikace po¾adavkù}
-V této èásti bude roz¹íøeno a upøesnìno oficiální zadání.  specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje dále pak bude následovat roz¹íøení v podobì distribuované architektury. Dal¹í dva body detailnìji specifikují po¾adavky ze zadání. Jedná se o specifikaci  
+V této èásti bude roz¹íøeno a upøesnìno oficiální zadání.  Specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje po té dal¹í dva body detailnìji specifikují po¾adavky ze zadání. Dále pak bude následovat roz¹íøení v podobì distribuované architektury. 
 
 
 \section{Základní koncept}
 Základní koncept obsahuje základní po¾adavky, bez kterých by nástroj byl nefunkèní. Jedná se tedy o jádro nástroje. 
 
 \subsection*{Základní funkce nástroje}
-Nástroj bude umo¾òovat vytvoøení testù. Buï automatizovanì z dokumentù WSDL nebo je bude mo¾no importovat ji¾ pøipravené. Testy bude mo¾no upravovat. Testy vygenerované pomocí WSDL dokumentu budou dále v textu nazvány jako kostra testu, proto¾e budou vytvoøeny testy pouze v základní podobì a èasto je bude tøeba upravit.
+Nástroj bude umo¾òovat vytvoøení testovacích dat. Testovací data se budou vytváøet automatizovanì z dokumentù WSDL, pomocí grafického u¾ivatelské rozhraní nebo je bude mo¾no importovat ji¾ pøipravené. Testy bude mo¾no upravovat. Testy vygenerované pomocí WSDL dokumentu budou dále v textu nazvány jako kostra testu, proto¾e budou vytvoøeny testy pouze v základní podobì a èasto je bude tøeba upravit.
 
 Dal¹í základní funkcí je spu¹tìní testù. Testy bude mo¾né spou¹tìt z pøíkazové øádky. Nástroj bude obsahovat grafické u¾ivatelské rozhraní, kde mohou být obsa¾eny dal¹í roz¹íøení. 
 
 Výsledky jednotlivých testù budou ulo¾eny a budou dostupné i po ukonèení bìhu nástroje.
 
 
-\subsection*{Jednotka pro spou¹tìní testù}
-Nástroj bude obsahovat nezávislý program pro spou¹tìní testù. Tato jednotka bude umo¾òovat spu¹tìní pøipravených testù. Jednotku bude mo¾no spou¹tìt jak z pøíkazové øádky, tak z grafického prostøedí. Tato jednotka bude základem pro roz¹iøující vlastnosti popsané dále ve specifikaci, proto je vhodné ji navrhnout jako nezávislý celek.
+\subsection*{Testovací jednotka}
+Nástroj bude obsahovat jádro pro spou¹tìní testù. Tato jednotka bude umo¾òovat spu¹tìní pøipravených testù. Jednotku bude mo¾no spou¹tìt jak z pøíkazové øádky, tak z grafického prostøedí. Tato jednotka bude základem pro roz¹iøující vlastnosti popsané dále ve specifikaci.
 
 \subsection*{Testování SOAP webových slu¾eb}
-Nástroj bude umo¾òovat testování SOAP webových slu¾eb. To znamená, ¾e jednotka bude podporovat manipulaci se SOAP zprávami. Manipulaci se rozumí odeslání SOAP zprávy a pøijetí její odpovìdi, pokud to charakter testováni bude vy¾adovat.
+Nástroj bude umo¾òovat testování SOAP webových slu¾eb. To znamená, ¾e jednotka bude podporovat manipulaci se SOAP zprávami a vytváøení HTTP po¾adavkù. Manipulaci se rozumí odeslání SOAP zprávy a pøijetí její odpovìdi, pokud to charakter testováni bude vy¾adovat.
 
 \subsection*{Testování REST webových slu¾eb}
 Nástroj bude umo¾òovat testování REST webových slu¾eb. To znamená, ¾e jednotka bude podporovat HTTP pøíkazy, které jsou popsány v sekci REST webové slu¾by. Bude také ukládat odpovìdi od slu¾by, pokud to charakter testování bude vy¾adovat.
@@ -486,19 +486,46 @@ Nástroj bude umo¾òovat testování REST webových slu¾eb. To znamená, ¾e jednotka b
 Nástroj bude mo¾no ovládat pomocí pøíkazové øádky. Z pøíkazové øádky bude mo¾né ovládat základní funkce nástroje tzn. generováni základních testù, konfigurace testù, spu¹tìní testù, ulo¾ení výsledkù testù. 
 
 \subsection*{Grafické u¾ivatelské rozhraní}
-Grafické u¾ivatelské rozhraní bude umo¾òovat pøehledné vytváøení testù dle po¾adavku na strukturu. Testy bude mo¾no vytváøet upravovat i ru¹it. Testy bude mo¾no aplikovat spu¹tìním jednotky pro spou¹tìní testù. Rozhraní bude umo¾òovat pøehledné zobrazení vybraných výsledkù testù. V grafickém u¾ivatelském rozhraní dále bude mo¾né ovládat vzdálené procesy, které budou umo¾òovat pøedání vytvoøených testù a spu¹tìní spou¹tìcí jednotky.
+Grafické u¾ivatelské rozhraní bude umo¾òovat pøehledné vytváøení testù dle po¾adavku na strukturu. Testy bude mo¾no vytváøet upravovat i ru¹it. Testy bude mo¾no aplikovat spu¹tìním jednotky pro spou¹tìní testù. Rozhraní bude umo¾òovat pøehledné zobrazení vybraných výsledkù testù. V grafickém u¾ivatelském rozhraní dále bude mo¾né ovládat vzdálené procesy, které budou umo¾òovat pøedání vytvoøených testù a spu¹tìní testovací jednotky.
 
 \subsection*{Struktura testovacích dat}
 Jednotlivé testy budou moci být vytváøeny ve vìt¹ích celcích, které spolu souvisejí. Napøíklad v¹echny testy pro jednu slu¾bu budou ulo¾eny ve spoleèné slo¾ce na disku.
 
 \subsection*{Automatizace generování vzorù pro testování}
-Pokud je slu¾ba popsána standardizovaným zpùsobem(WSDL, WADL apod) bude mo¾no pro tuto slu¾bu vygenerovat základní sadu testù na základì tìchto dokumentù. 
+Pokud je slu¾ba popsána standardizovaným zpùsobem(WSDL, WADL apod.) bude mo¾no pro tuto slu¾bu vygenerovat základní sadu testù na základì tìchto dokumentù. 
+
+
+
+
+
+\section{Navázání na pøedchozí práci}
+Proto¾e tato práce navazuje na diplomovou práci vztahující se k injekci chyb v komunikaci webových slu¾eb, je tøeba pøedchozí výsledky roz¹íøit a zapracovat nové mo¾nosti. Dále pak jednotlivé souèásti budou spolupracovat tak, aby pomocí jednoho nástroje bylo mo¾né provádìt zátì¾ové testování i testování s injekcí chyb.
+
+\subsection*{Umo¾nìní vytváøení testovacích pøípadù pro injekci chyb}
+Nástroj bude umo¾òovat vytvoøení testovacích dat pro injekci chyb, které budou pou¾ity HTTP proxy jednotky, která je souèástí pøedchozí práce.
+
+\subsection*{Spu¹tìní HTTP proxy procesu pro vkládání chyb do komunikace}
+Spoleènì s mo¾ností spu¹tìní testovací jednotky musí být vytvoøena mo¾nost spu¹tìní HTTP proxy jednotky.
+
+\subsection*{Podpora dal¹ích formátù dat pro injekci chyb }
+HTTP proxy jednotka bude podporovat dal¹í formáty dat, do kterých bude mo¾no vkládat chyby. Dal¹ími formáty jsou my¹leny nìkteré reprezentace dat jako napøíklad JSON, YAML, HDF.
+
+\subsection*{Podpora komprimovaných odpovìdí od webových slu¾eb}
+HTTP proxy jednotka bude roz¹íøena o podporu analýzy komprimovaných odpovìdí od webových slu¾eb. Je tedy nutné implementovat podporu pro ètení dat komprimovaných typem GZIP 
+
+\section{Integrace s nástroji pro testování spolehlivosti}
+Tento nástroj bude nabízet pouze nìkteré mo¾nosti testování webových slu¾eb, proto je velmi vhodné umo¾nit u¾ivateli pou¾ití tohoto nástroje spoleènì s dal¹ími nástroji podobného charakteru a docílit tak komplexních mo¾ností testování.
+
+\subsection*{Automatizace provádìní testù}
+Spou¹tìní testovací jednotky bude mo¾né provádìt pomocí automatizaèních nástrojù jako napø Apache Ant, aby bylo mo¾né vytváøet skripty, které by umo¾òovaly integraci více nástrojù do jediného skriptu.
+
+
 
 \section{Distribuované testování}
 Tato sekce specifikace bude zamìøena  na popis po¾adavkù pro distribuované provádìní testù. Toto roz¹íøení není souèástí zadání, ale je velmi vhodné vyu¾ití distribuované architektury pro zátì¾ové testování.
 
 \subsection*{Správa procesù na vzdálených strojích}
-Proces jednotky musí bì¾et na vzdáleném stroji, pak bude mo¾né otestovat konektivitu s touto vzdálenou jednotkou. Vzdálené jednotky bude mo¾né testovat(konektivitu) a ukonèovat z grafického u¾ivatelského rozhraní i z rozhraní pøíkazové øádky. 
+Proces testovací jednotky musí nejdøíve bì¾et na vzdáleném stroji, pak bude mo¾né otestovat konektivitu s touto vzdálenou jednotkou. Vzdálené jednotky bude mo¾né testovat(konektivitu) a ukonèovat z grafického u¾ivatelského rozhraní i z rozhraní pøíkazové øádky. 
 
 \subsection*{Spu¹tìní testù na vzdálených strojích }
 Z obou u¾ivatelských prostøedí bude taky mo¾né zaslat po¾adované testy urèité jednotce èi více jednotkám a následnì jim odeslat pøíkaz ke spu¹tìní testování pøípadnì pøíkaz ke zastavení testování.
@@ -507,27 +534,101 @@ Z obou u¾ivatelských prostøedí bude taky mo¾né zaslat po¾adované testy urèité je
 Výsledky testù se budou zaznamenávat a bude na výbìr, zda-li je posílat automaticky centrálnímu ovládání nebo na pouze na vy¾ádání pøíkazem.	
 
 
-\section{Navázání na pøedchozí práci}
-\subsection*{Spu¹tìní HTTP proxy procesu pro vkládání chyb do komunikace}
-\subsection*{Efektivní fungování HTTP proxy procesu}
-
-
-
-\section{Integrace s nástroji pro testování spolehlivosti}
-\subsection*{Automatizace provádìní testù}
 
 \chapter{Návrh implementace}
+Tato sekce popisuje dal¹í èást procesu vývoje softwaru. Návrh je velmi dùle¾itou souèástí vývoje, proto¾e kvalitní návrh ¹etøí prostøedky v dal¹ích fázích vývoje. V návrhu je uveden základní koncept nástroje, který se skládá z nìkolika souèástí. Nìkteré souèásti budou pøevzaty z pøedchozí diplomové práce a upraveny tak, aby splòovaly po¾adavky ze zadání.
+
+Návrh vychází z volnì dostupných nástrojù soapUI a Grinder. Návrh také respektuje pøedchozí diplomovou práci a do nástroje bude zakomponována podpora pro injekci chyb. Vzhledem k tomu, ¾e jde o navazující práci, bude vytvoøenému nástroji ponechán jeho název FIWS (Fault Injektor for Web Services) a implementovaná roz¹íøení budou obsa¾eny ve verzi 2.0. 
+
+K implementaci jsou vhodné platformy Java a .NET. Platforma Java nabízí multiplatformní øe¹ení a navíc je v ní vytvoøena pøedchozí práce. Je v¹ak vhodné vzít v úvahu i druhou mo¾nost, proto¾e vzhledem k webovým slu¾bám nabízejí obì platformy velmi podobné mo¾nosti implementace. 
+
+
 
 \section{Základní koncept}
+Základní koncept je znázornìn na obrázku \ref{fig:zaklad}. Základem FIWS 2.0  je testovací jednotka, která bude hrát roli univerzální klientské aplikace pro webové slu¾by, která je schopna odesílat a pøijímat HTTP po¾adavky webovým slu¾bám v po¾adovaném objemu a rychlosti s ohledem na mo¾nosti systému, na kterém je spu¹tìna. Data, která bude testovací jednotka odesílat budou pøedem pøipravena a budou testovací jednotce explicitnì pøedána. Bude tedy mo¾né pøedávat data pro odesílaní podle specifikovaného umístìní. Data pou¾itá pro odesílání musí  mít v¾dy stejný formát. To platí zejména pro data, která nebudou vytvoøena v nativním u¾ivatelském rozhraní.
+
+U¾ivatelské rozhraní bude vytvoøeno v grafické podobì i v podobì ovládání z pøíkazové øádky. Testovací jednotka se bude moci ovládat pomocí dvou rozhraní, ale pouze jedním v daný okam¾ik, proto¾e je nevhodné ovlivòovat chod jedné instance testovací jednotky ze dvou rozhraní. Bude v¹ak mo¾no spustit více vláken testovacích jednotek souèasnì. Tento koncept umo¾ní spustit více instancí testovací jednotky na lokálním stroji a vyu¾ít tak efektivnì prostøedky systému.
+
+Injekce chyb bude realizována oddìleným procesem, který bude hrát roli proxy serveru. Na obrázku znázornìna jako HTTP proxy jednotka. Bude monitorovat ve¹kerou komunikaci mezi testovací jednotkou a webovou slu¾bou. Spu¹tìná proxy jednotka obsahuje analyzátor a injektor chyb.  Více o injekci chyb je mo¾no se doèíst v pøedchozí práci.
+
+Tento koncept lze také pou¾ít pro vytvoøení distribuované architektury, proto¾e dovolí oddìlit testovací jednotku od u¾ivatelských rozhraní. Oddìlení bude spoèívat v lehce rozdílném komunikaèním rozhraní. Testovací jednotka spoleènì s proxy jednotkou budou pod správou monitorovacího procesu, který bude mít Java RMI rozhraní a bude muset být spu¹tìn døíve ne¾ se s ním bude  vzdálenì manipulovat.
+
+
+
+
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.8]{pic/zaklad2.png}
+\caption{Základní koncept. }
+\label{fig:zaklad}
+\end{center}
+\end{figure}
+
+\subsection*{Základní pou¾ití FIWS 2.0 u¾ivatelem}
+Základní pou¾ití FIWS 2.0 znázoròují oèíslované ¹ipky, jejich¾ význam bude nyní popsán. Nejdøíve si u¾ivatel v grafickém u¾ivatelské rozhraní vytvoøí testovací data(1). Následnì spustí testovací jednotku(2), která si vyzvedne data ze specifikovaného úlo¾i¹tì(3). Testovací jednotka se pak spojí pøes proxy HTTP jednotku(4) s webovou slu¾bou(6). Mezi tím proxy jednotka za urèitých okolností vlo¾í chybu do komunikace(5). Testovací jednotka poté pøijme odpovìï, která také putuje pøes proxy jednotku a v¹echny výsledky ulo¾í do specifikovaného úlo¾i¹tì(7). U¾ivatel pak bude moci z grafického u¾ivatelského rozhraní vyhodnotit výsledky(8).   
+
+\subsection*{Grafické u¾ivatelské rozhraní}
+Grafické u¾ivatelské rozhraní bude slou¾it hlavnì k efektivní pøípravì testovacích dat. Musí obsáhnout mo¾nosti vytvoøit HTTP po¾adavek i s rùznými datovými reprezentacemi uvnitø datové èásti po¾adavku. REST webové slu¾by vy¾adují rùzné typy HTTP po¾adavkù vèetnì konfigurace datové èásti HTTP po¾adavku. SOAP zprávy vy¾adují konfiguraci zejména datové èásti, tedy vytvoøení XML dokumentu.
+
+Testovací data se budou vytváøet v projektech. Ne¾ u¾ivatel bude moci zahájit jakoukoliv práci, musí vytvoøit nový projekt nebo otevøít ji¾ døíve vytvoøený. Struktura projektu bude obsahovat sada testù a jednotlivé testy, které mohou být vytvoøeny uvnitø sady testù nebo i zvlá¹». Struktura a nastavení projektu bude popsána v XML dokumentu. 
+
+\subsection*{U¾ivatelské rozhraní z pøíkazové øádky}
+Testovací jednotka i HTTP proxy jednotka budou  vybaveny rozhraním pro pou¾ití tìchto jednotek z pøíkazové øádky. Budou pøebírat potøebné parametry pro lokalizaci testovacích dat. Z pøíkazové øádky bude mo¾né konfigurovat obì jednotky pomocí pøepínaèù nebo pomocí konfiguraèního souboru, kde budou po¾adované parametry a jejich hodnoty uvedeny formátem klíè='hodnota'.
+
+\subsection*{Testovací data a vyhodnocení testù}
+Testovací data se budou skládat z pøedem pøipravených HTTP po¾adavkù nebo z dat pro injekci chyb. Data pro injekci chyb se skládají z ulo¾ených podmínek a následné injekce vybrané chyby. Ka¾dý druh testovacích dat bude umístìn v adresáøi, který bude oznaèovat jejich druh. Takto budou moci jednotky vybírat pro nì urèená data. Toto je dùle¾ité pøi pøiøazení sady testù nìkteré z jednotek, proto¾e nebude nutné explicitnì uvádìt, která data pøíslu¹í které jednotce.  
+
+\subsection*{Testovací jednotka}
+Testovací jednotka je jádrem celé práce. Bude zodpovìdná za spojení se s webovou slu¾bou a odeslání a pøijetí HTTP po¾adavku. Testovací jednotka pøevezme nastavení(data, poèet spu¹tìných procesù, objem po¾adavkù apod.) od u¾ivatele a následnì provede po¾adované akce. Mezi základní operace testovací jednotky patøí navázání HTTP spojení s po¾adovanou webovou slu¾bou a odeslání patøièných dat. Spojení s webovou slu¾bou si vy¾ádá dal¹í funkcionality. Hlavní funkcí pøi spojení bude definování proxy serveru, aby mohla být pou¾ita HTTP proxy jednotka. Mezi dal¹í pak bude patøit mo¾nost autentizace a v neposlední øadì je velmi vhodná implementace bezpeènostních protokolù napø. mo¾nost pou¾ití HTTPS.
+
+
+\section{Pou¾ití injekce chyb}	
+HTTP proxy jednotka bude vytvoøena ze zdrojových kódù pøedchozí práce a bude pøizpùsobena ke samostatnému spu¹tìní. Funkce proxy jednotky tedy bude spoèívat v zachycení komunikace mezi testovací jednotkou a webovou slu¾bou. Tento princip lze vyu¾ít k zátì¾ovému testováni spojeném s injekcí chyb. 
+
+Pøedchozí verze FIWS neumo¾òovala analýzu komprimovaných odpovìdí od webových slu¾eb. Pro implementaci této funkcionality je mo¾né pou¾ít knihovnu jazyka Java, která umo¾òuje manipulaci s komprimovanými daty. 
+
+\section{Integrace s nástroji pro testování spolehlivosti}	
+Integrace s ostatními nástroji bude mo¾né díky rozhraní pro pøíkazovou øádku. S pomocí ovládání z pøíkazové øádky bude mo¾né pou¾ít FIWS 2.0 spoleènì s automatizaèními nástroji jako je napøíklad Apache Ant, který umo¾òuje integrovat více nástrojù pro testování do jediného skriptu. 
+
+
+
 	
 \section{Distribuovaný model}
+Distribuovaný model odesílání po¾adavkù je znázornìn na obrázku \ref{fig:dist}. Tento zpùsob odesílání umo¾ní reálnìj¹í simulaci vysokého poètu u¾ivatelù, proto¾e po¾adavky budou odesílány z rùzných fyzických strojù.
 
-\section{Pou¾ití injekce chyb}
+Pro implementaci správy jednotlivých procesù na vzdálených strojích je mo¾no pou¾ít technologii RMI, kterou nabízí platforma Java. V tomto pøípadì musí být obì strany vybaveny rozhraním RMI pro vzdálenou komunikaci. Na vzdáleném stroji musí bì¾et monitorovací jednotka, která bude zprostøedkovávat vzdálené pøíkazy pro testovací a proxy jednotky.
 
-\section{Provázání s nástroji pro testování spolehlivosti}
+V grafickém u¾ivatelském prostøedí bude mo¾nost spojit se s ji¾ bì¾ícími instancemi monitorovacích jednotek a centralizovanì spravovat vzdálené stroje. V grafickém u¾ivatelském prostøedí se pro ka¾dé vzdálené spojení musí vytvoøit zvlá¹tní vlákno, proto¾e jiným zpùsobem nelze komunikovat s více vzdálenými stroji souèasnì.
+
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.8]{pic/DIST_MODEL2.png}
+\caption{Model distribuované architektury. }
+\label{fig:dist}
+\end{center}
+\end{figure}
+
+\subsection*{Centralizovaná správa a výmìna dat}
+V¹echny vzdálené jednotky budou spravovány z jednoho centrálního bodu, kde bylo spu¹tìno grafické u¾ivatelské  rozhraní. Ovládání z pøíkazové øádky bude také mo¾né. Pøi ovládání vzdálených jednotek bude mo¾né provést test konektivity, distribuce dat a spu¹tìní vybraných jednotek. Pomocí skriptù(Bash, Perl, apod.) bude mo¾né distribuovat vybraná data vybraným jednotkám.  
+
+Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distribuci testovacích dat. V centrálním bodì se vytvoøí testovací data a roze¹lou se na vzdálené uzly, kde budou moci být vyu¾ity. 
+
+Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
+
+
 
 
 %\chapter{Popis implementace}
+
+
+%\section{Vytvoøení testovacích dat}
+
+%\section{Spu¹tìní testu}
+
+%\section{Spu¹tìní testu na více stanicích}
+
 
 %\chapter{Prùbìh testování webových slu¾eb}
 %=========================================================================
