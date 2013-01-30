@@ -397,6 +397,10 @@ Pokud je slu¾ba dostupná pouze z vnitøní sítì je mo¾né pøibli¾nì odhadnou kolik 
 \subsection*{Internet}
 U veøejnì dostupných webových slu¾eb je obtí¾nìj¹í odhadnout kolik u¾ivatelù bude tuto slu¾bu vyu¾ívat. Na druhou stranu, zde nemusejí být tak vysoké nároky na zabezpeèení jako na webové slu¾by dostupné z intranetu.
 
+\section{Izolace webových slu¾eb}
+Pøi testování webových slu¾eb je v nìkterých pøípadech potøeba cílovou webovou slu¾bu izolovat. Izolace webové slu¾by se vyu¾ívá v pøípadech, kdy je potøeba simulovat propojení s dal¹ími slu¾bami nebo systémy. Tyto slu¾by jsou simulovány tzv. {\it Mock} slu¾bami. Mock slu¾ba disponuje shodným rozhraním jako její vzorová slu¾ba, av¹ak její funkcionalita není implementována a je omezena na konstantní odpovìï. Toto øe¹ení je výhodné v testovacích prostøedích z více dùvodù. Vzorové slu¾by mohou být placené, jejich implementace nemusí být veøejná, mají del¹í èas odezvy ne¾ Mock slu¾by, Mock slu¾by dovolují testovat jednotlivé celky systému oddìlenì apod.
+
+Mock slu¾eb se vyu¾ívá také pøi zátì¾ovém testování. Mock slu¾by zatì¾ují cílový systém minimálnì, a tak je mo¾né izolovat cílovou slu¾bu a zamìøit se pouze na testování této slu¾by.
 
 
 \section{Po¾adavky na webové slu¾by}
@@ -459,7 +463,7 @@ FIWS reprezentuje nástroj pro injekci poruch. Je specializován na vkládání poruc
 
 
 \chapter{Specifikace po¾adavkù}
-V této èásti bude roz¹íøeno a upøesnìno oficiální zadání.  Specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje po té dal¹í dva body detailnìji specifikují po¾adavky ze zadání. Dále pak bude následovat roz¹íøení v podobì distribuované architektury. 
+V této èásti bude roz¹íøeno a upøesnìno oficiální zznázornìnadání.  Specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje po té dal¹í dva body detailnìji specifikují po¾adavky ze zadání. Dále pak bude následovat roz¹íøení v podobì distribuované architektury. 
 
 
 \section{Základní koncept}
@@ -572,6 +576,24 @@ Základní pou¾ití FIWS 2.0 znázoròují oèíslované ¹ipky, jejich¾ význam bude nyní 
 Grafické u¾ivatelské rozhraní bude slou¾it hlavnì k efektivní pøípravì testovacích dat. Musí obsáhnout mo¾nosti vytvoøit HTTP po¾adavek i s rùznými datovými reprezentacemi uvnitø datové èásti po¾adavku. REST webové slu¾by vy¾adují rùzné typy HTTP po¾adavkù vèetnì konfigurace datové èásti HTTP po¾adavku. SOAP zprávy vy¾adují konfiguraci zejména datové èásti, tedy vytvoøení XML dokumentu.
 
 Testovací data se budou vytváøet v projektech. Ne¾ u¾ivatel bude moci zahájit jakoukoliv práci, musí vytvoøit nový projekt nebo otevøít ji¾ døíve vytvoøený. Struktura projektu bude obsahovat sada testù a jednotlivé testy, které mohou být vytvoøeny uvnitø sady testù nebo i zvlá¹». Struktura a nastavení projektu bude popsána v XML dokumentu. 
+
+Na obrázku \ref{fig:editor} je návrh hlavního okna nástroje, kde je znázornìno rozlo¾ení ovládacích komponent. Na obrázku \ref{fig:modal} je znázornìno ¹ablona dialogového okna, která se bude pou¾ívat pro zadávání rùzných druhù vstupù a nastavení nástroje.
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.5]{pic/editorWindow.png}
+\caption{Návrh hlavní obrazovky nástroje. }
+\label{fig:editor}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.5]{pic/modalWindow.png}
+\caption{©ablona pro modální okna nástroje. }
+\label{fig:modal}
+\end{center}
+\end{figure}
 
 \subsection*{U¾ivatelské rozhraní z pøíkazové øádky}
 Testovací jednotka i HTTP proxy jednotka budou  vybaveny rozhraním pro pou¾ití tìchto jednotek z pøíkazové øádky. Budou pøebírat potøebné parametry pro lokalizaci testovacích dat. Z pøíkazové øádky bude mo¾né konfigurovat obì jednotky pomocí pøepínaèù nebo pomocí konfiguraèního souboru, kde budou po¾adované parametry a jejich hodnoty uvedeny formátem klíè='hodnota'.
