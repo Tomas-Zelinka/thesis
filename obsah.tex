@@ -561,13 +561,13 @@ Tento koncept lze také pou¾ít pro vytvoøení distribuované architektury, proto¾e 
 
 
 
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.8]{pic/zaklad2.png}
-\caption{Základní koncept. }
-\label{fig:zaklad}
-\end{center}
-\end{figure}
+%\begin{figure}[h]
+%\begin{center}
+% \includegraphics[scale=0.8]{pic/zaklad2.png}
+%\caption{Základní koncept. }
+%\label{fig:zaklad}
+%\end{center}
+%\end{figure}
 
 \subsection*{Základní pou¾ití FIWS 2.0 u¾ivatelem}
 Základní pou¾ití FIWS 2.0 znázoròují oèíslované ¹ipky, jejich¾ význam bude nyní popsán. Nejdøíve si u¾ivatel v grafickém u¾ivatelské rozhraní vytvoøí testovací data(1). Následnì spustí testovací jednotku(2), která si vyzvedne data ze specifikovaného úlo¾i¹tì(3). Testovací jednotka se pak spojí pøes proxy HTTP jednotku(4) s webovou slu¾bou(6). Mezi tím proxy jednotka za urèitých okolností vlo¾í chybu do komunikace(5). Testovací jednotka poté pøijme odpovìï, která také putuje pøes proxy jednotku a v¹echny výsledky ulo¾í do specifikovaného úlo¾i¹tì(7). U¾ivatel pak bude moci z grafického u¾ivatelského rozhraní vyhodnotit výsledky(8).   
@@ -581,7 +581,7 @@ Na obrázku \ref{fig:editor} je návrh hlavního okna nástroje, kde je znázornìno r
 
 \begin{figure}[h]
 \begin{center}
- \includegraphics[scale=0.5]{pic/editorWindow.png}
+	\includegraphics[scale=0.5]{pic/editorWindow.png}
 \caption{Návrh hlavní obrazovky nástroje. }
 \label{fig:editor}
 \end{center}
@@ -594,7 +594,7 @@ Na obrázku \ref{fig:editor} je návrh hlavního okna nástroje, kde je znázornìno r
 \label{fig:modal}
 \end{center}
 \end{figure}
-
+  
 \subsection*{U¾ivatelské rozhraní z pøíkazové øádky}
 Testovací jednotka i HTTP proxy jednotka budou  vybaveny rozhraním pro pou¾ití tìchto jednotek z pøíkazové øádky. Budou pøebírat potøebné parametry pro lokalizaci testovacích dat. Z pøíkazové øádky bude mo¾né konfigurovat obì jednotky pomocí pøepínaèù nebo pomocí konfiguraèního souboru, kde budou po¾adované parametry a jejich hodnoty uvedeny formátem klíè='hodnota'.
 
@@ -624,13 +624,13 @@ Pro implementaci správy jednotlivých procesù na vzdálených strojích je mo¾no pou
 V grafickém u¾ivatelském prostøedí bude mo¾nost spojit se s ji¾ bì¾ícími instancemi monitorovacích jednotek a centralizovanì spravovat vzdálené stroje. V grafickém u¾ivatelském prostøedí se pro ka¾dé vzdálené spojení musí vytvoøit zvlá¹tní vlákno, proto¾e jiným zpùsobem nelze komunikovat s více vzdálenými stroji souèasnì.
 
 
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.8]{pic/DIST_MODEL2.png}
-\caption{Model distribuované architektury. }
-\label{fig:dist}
-\end{center}
-\end{figure}
+%\begin{figure}[h]
+%\begin{center}
+% \includegraphics[scale=0.8]{pic/DIST_MODEL2.png}
+%\caption{Model distribuované architektury. }
+%\label{fig:dist}
+%\end{center}
+%\end{figure}
 
 \subsection*{Centralizovaná správa a výmìna dat}
 V¹echny vzdálené jednotky budou spravovány z jednoho centrálního bodu, kde bylo spu¹tìno grafické u¾ivatelské  rozhraní. Ovládání z pøíkazové øádky bude také mo¾né. Pøi ovládání vzdálených jednotek bude mo¾né provést test konektivity, distribuce dat a spu¹tìní vybraných jednotek. Pomocí skriptù(Bash, Perl, apod.) bude mo¾né distribuovat vybraná data vybraným jednotkám.  
@@ -639,18 +639,42 @@ Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distr
 
 Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
 
+\newpage
+sdf
+\newpage
+sdf
+\newpage
+sdfs
+\newpage
+
+\chapter{Popis implementace}
 
 
+\section{Vytvoøení testovacích dat}
+asdfasdf
+\newpage
+\section{Integrace s pøedchozím øe¹ením}
+asdfasdf
+\newpage
+\section{Vylep¹ení injekce chyb}
+asdfasdf
+\newpage
+\section{Spu¹tìní testu}
+asdfasdf
+\newpage
+\section{Mo¾nost integrace s testovacími nástroji}
+asdfasdf
+\newpage
+\section{Spu¹tìní testu na více stanicích}
+asdfasdf
+\newpage
 
-%\chapter{Popis implementace}
+\chapter{Prùbìh testování webových slu¾eb}
+\section{Testování webových slu¾eb s  dostupným zdrojovým kódem}
+asdfadf
+\newpage
+\section{Testování veøejnì dostupných slu¾eb}
+asdfadf
+\newpage
 
-
-%\section{Vytvoøení testovacích dat}
-
-%\section{Spu¹tìní testu}
-
-%\section{Spu¹tìní testu na více stanicích}
-
-
-%\chapter{Prùbìh testování webových slu¾eb}
 %=========================================================================
