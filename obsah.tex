@@ -561,13 +561,13 @@ Tento koncept lze také pou¾ít pro vytvoøení distribuované architektury, proto¾e 
 
 
 
-%\begin{figure}[h]
-%\begin{center}
-% \includegraphics[scale=0.8]{pic/zaklad2.png}
-%\caption{Základní koncept. }
-%\label{fig:zaklad}
-%\end{center}
-%\end{figure}
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.8]{pic/zaklad2.png}
+\caption{Základní koncept. }
+\label{fig:zaklad}
+\end{center}
+	\end{figure}
 
 \subsection*{Základní pou¾ití FIWS 2.0 u¾ivatelem}
 Základní pou¾ití FIWS 2.0 znázoròují oèíslované ¹ipky, jejich¾ význam bude nyní popsán. Nejdøíve si u¾ivatel v grafickém u¾ivatelské rozhraní vytvoøí testovací data(1). Následnì spustí testovací jednotku(2), která si vyzvedne data ze specifikovaného úlo¾i¹tì(3). Testovací jednotka se pak spojí pøes proxy HTTP jednotku(4) s webovou slu¾bou(6). Mezi tím proxy jednotka za urèitých okolností vlo¾í chybu do komunikace(5). Testovací jednotka poté pøijme odpovìï, která také putuje pøes proxy jednotku a v¹echny výsledky ulo¾í do specifikovaného úlo¾i¹tì(7). U¾ivatel pak bude moci z grafického u¾ivatelského rozhraní vyhodnotit výsledky(8).   
@@ -624,13 +624,13 @@ Pro implementaci správy jednotlivých procesù na vzdálených strojích je mo¾no pou
 V grafickém u¾ivatelském prostøedí bude mo¾nost spojit se s ji¾ bì¾ícími instancemi monitorovacích jednotek a centralizovanì spravovat vzdálené stroje. V grafickém u¾ivatelském prostøedí se pro ka¾dé vzdálené spojení musí vytvoøit zvlá¹tní vlákno, proto¾e jiným zpùsobem nelze komunikovat s více vzdálenými stroji souèasnì.
 
 
-%\begin{figure}[h]
-%\begin{center}
-% \includegraphics[scale=0.8]{pic/DIST_MODEL2.png}
-%\caption{Model distribuované architektury. }
-%\label{fig:dist}
-%\end{center}
-%\end{figure}
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.8]{pic/DIST_MODEL2.png}
+\caption{Model distribuované architektury. }
+\label{fig:dist}
+\end{center}
+\end{figure}
 
 \subsection*{Centralizovaná správa a výmìna dat}
 V¹echny vzdálené jednotky budou spravovány z jednoho centrálního bodu, kde bylo spu¹tìno grafické u¾ivatelské  rozhraní. Ovládání z pøíkazové øádky bude také mo¾né. Pøi ovládání vzdálených jednotek bude mo¾né provést test konektivity, distribuce dat a spu¹tìní vybraných jednotek. Pomocí skriptù(Bash, Perl, apod.) bude mo¾né distribuovat vybraná data vybraným jednotkám.  
@@ -639,33 +639,90 @@ Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distr
 
 Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
 
-\newpage
-sdf
-\newpage
-sdf
-\newpage
-sdfs
-\newpage
+\section{Návrh vrstev}
+Návrh obsahuje distribuovanou architekturu a je vhodné uvést model vrstev aplikace. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e umo¾òuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek ukazuje rozlo¾ení jednotlivých vrstev.  
+
+\begin{itemize}
+\item {\bf Aplikaèní vrstva }\\
+Aplikaèní vrstva obsahuje u¾ivatelská rozhraní i aplikaèní jednotky (testovací, proxy). Aplikaèní vrstva bude pøijímat data od u¾ivatele a pøes transportní vrstvu  je dopraví k aplikaèním jednotkám a zpìt viz obrázek.  \\
+\item {\bf Transportní vrstva }\\
+Tato vrstva je zodpovìdná za distribuci dat v rámci aplikace. Bude pøijímat data od sousedních vrstev a plnit funkci prostøedníka, pøi pøedávání dat mezi èástmi aplikace a datovou vrstvou.    \\
+\item {\bf Datová vrstva }\\
+Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zápis) s daty je mo¾no realizovat nìkolika zpùsoby. Díky oddìlení od zbytku aplikace je mo¾no implementaci ulo¾ení dat mìnit v dal¹ích verzích programu, ani¾ by do¹lo k významnìj¹ím zásahùm do implementace vy¹¹ích vrstev.  \\
+
+\end{itemize}
+
+
+%\begin{figure}[h]
+%\begin{center}
+% \includegraphics[scale=0.8]{pic/vrstvy.png}
+%\caption{Model distribuované architektury. }
+%\label{fig:dist}
+%\end{center}
+%\end{figure}
+
 
 \chapter{Popis implementace}
+Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno a u ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy, které byly pou¾ity. Kapitola je rozdìlena na sekce tak, jak postupnì implementace aplikace splòuje zadání. Postupnì jsou pøedstavovány èásti od tìch základních jako volba implementaèního prostøedí, zpùsob vytvoøení testovacích dat a spu¹tìní základního testu. Dále pak je popsáno øe¹ení jednotlivých bodù ze zadání, èili integrace s pøedchozím øe¹ením, vylep¹ení injekce chyb a mo¾nost integrace s testovacími nástroji. Implementace distribuované architektury je popsána jako poslední, proto¾e se jedná o vylep¹ení vùèi základním po¾adavkùm na aplikaci.
 
+\section{Výbìr vývojového prostøedí a jazyka}
+V dne¹ní dobì má vìt¹ina jazykù podporu pro vývoj aplikací pou¾ívající webové slu¾by. Mezi nimi v¹ak vyènívají platformy .NET a Java, které mají nej¹ir¹í podporu pro vývoj aplikací pro webové slu¾by.  Vzhledem k návaznosti této práce na práci, která je implementována na platformì Java, je vhodnìj¹í pou¾ití platformy Java. Platforma Java byla také zvolena kvùli zku¹enostem autora.
 
+Hlavní implementace pou¾ívá souèásti Java SE a pro vytvoøení testovacích pøíkladù ji¾ je nutné pou¾ít souèásti Java EE. Jako prostøedí pro vývoj aplikace je mo¾no pou¾ít libovolný nástroj. Pro urychlení vývoje je v¹ak vhodné pou¾ít nìkteré integrované prostøedí (IDE). Velice známá jsou prostøedí NetBeans a Eclipse. Obì jsou multiplatformní a poskytují nástroje pro vývoj aplikací na platformì Java. Zvolené prostøedí pro vytvoøení aplikace je Eclipse. Eclipse prostøedí bylo zvoleno ze subjektivních dùvodù, proto¾e autor má toto prostøedí v oblibì.
+
+ 
 \section{Vytvoøení testovacích dat}
+Jako základ pro testování webových slu¾eb je nejdøíve nutné vytvoøit testovací data, která budou odesílána na vstup webové slu¾by.
+
+
+\subsection*{Schéma testovacích dat}
+asdfasdf
+\subsection*{Nastavení testu}
+asdfasdf
+\subsection*{Vytvoøení Http po¾adavku}
+asdfasdf
+\subsection*{Vytvoøení dat pro injekci poruch}
 asdfasdf
 \newpage
-\section{Integrace s pøedchozím øe¹ením}
-asdfasdf
-\newpage
-\section{Vylep¹ení injekce chyb}
-asdfasdf
-\newpage
+
+
+
 \section{Spu¹tìní testu}
 asdfasdf
+\subsection*{Testovací jednotka}
+asdfasdf
+\subsection*{Pøíjem a zobrazení dat od webové slu¾by}
+asdfasdf
+\subsection*{Vyhodnocení testù}
+asdfasdf
 \newpage
+
+
+\section{Integrace s pøedchozím øe¹ením}
+asdfadf
+\subsection*{Úprava modelu proxy jednotky pro distribuovaný test}
+asdfadf
+\subsection*{Spojení testovací a proxy jednotky}
+asdfasdf
+\newpage
+
+
+\section{Vylep¹ení injekce chyb}
+asdfasdf
+\subsection*{Oprava nefunkèních èástí }
+asdfasdf
+\subsection*{Podpora dal¹ích datových reprezentací }
+asdfasdf
+
+\subsection*{Pøidání dal¹ích typù injekcí chyb a jejich podmínek}
+asdfasdf
+\newpage
+
+
 \section{Mo¾nost integrace s testovacími nástroji}
 asdfasdf
 \newpage
-\section{Spu¹tìní testu na více stanicích}
+\section{Test z více stanic}
 asdfasdf
 \newpage
 
