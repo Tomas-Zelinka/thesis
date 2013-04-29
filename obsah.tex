@@ -638,9 +638,9 @@ V¹echny vzdálené jednotky budou spravovány z jednoho centrálního bodu, kde bylo 
 Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distribuci testovacích dat. V centrálním bodì se vytvoøí testovací data a roze¹lou se na vzdálené uzly, kde budou moci být vyu¾ity. 
 
 Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
-
+\newpage
 \section{Návrh vrstev}
-Návrh obsahuje distribuovanou architekturu a je vhodné uvést model vrstev aplikace. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e umo¾òuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek ukazuje rozlo¾ení jednotlivých vrstev.  
+Návrh obsahuje distribuovanou architekturu a je vhodné uvést model vrstev aplikace. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e umo¾òuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek \ref{fig:vrstvy} ukazuje rozlo¾ení jednotlivých vrstev.  
 
 \begin{itemize}
 \item {\bf Aplikaèní vrstva }\\
@@ -653,30 +653,72 @@ Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zá
 \end{itemize}
 
 
-%\begin{figure}[h]
-%\begin{center}
-% \includegraphics[scale=0.8]{pic/vrstvy.png}
-%\caption{Model distribuované architektury. }
-%\label{fig:dist}
-%\end{center}
-%\end{figure}
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.6]{pic/vrstvy.png}
+\caption{Návrh vrstev aplikace. }
+\label{fig:vrstvy}
+\end{center}
+\end{figure}
+
+\section{Návrh úpravy proxy jednotky pro distribuovaný re¾im}
+
 
 
 \chapter{Popis implementace}
-Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno a u ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy, které byly pou¾ity. Kapitola je rozdìlena na sekce tak, jak postupnì implementace aplikace splòuje zadání. Postupnì jsou pøedstavovány èásti od tìch základních jako volba implementaèního prostøedí, zpùsob vytvoøení testovacích dat a spu¹tìní základního testu. Dále pak je popsáno øe¹ení jednotlivých bodù ze zadání, èili integrace s pøedchozím øe¹ením, vylep¹ení injekce chyb a mo¾nost integrace s testovacími nástroji. Implementace distribuované architektury je popsána jako poslední, proto¾e se jedná o vylep¹ení vùèi základním po¾adavkùm na aplikaci.
+Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno v jednotlivých sekcích. U ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy, které byly pou¾ity. Kapitola je rozdìlena na sekce tak, jak postupnì implementace aplikace splòuje zadání. 
+
+Nejdøíve je popsán výbìr implementaèního prostøedí a jazyka. Pak je pøedstavena implementace základních souèástí aplikace.  V dal¹ích sekcích pak jsou popsány implementace funkcí vytvoøeného nástroje. Pøi popisu jednotlivých funkcí jsou pak pou¾ity vytvoøené souèásti a je vysvìtleno jejich propojení a význam v dané funkcionalitì.
+
+
 
 \section{Výbìr vývojového prostøedí a jazyka}
 V dne¹ní dobì má vìt¹ina jazykù podporu pro vývoj aplikací pou¾ívající webové slu¾by. Mezi nimi v¹ak vyènívají platformy .NET a Java, které mají nej¹ir¹í podporu pro vývoj aplikací pro webové slu¾by.  Vzhledem k návaznosti této práce na práci, která je implementována na platformì Java, je vhodnìj¹í pou¾ití platformy Java. Platforma Java byla také zvolena kvùli zku¹enostem autora.
 
 Hlavní implementace pou¾ívá souèásti Java SE a pro vytvoøení testovacích pøíkladù ji¾ je nutné pou¾ít souèásti Java EE. Jako prostøedí pro vývoj aplikace je mo¾no pou¾ít libovolný nástroj. Pro urychlení vývoje je v¹ak vhodné pou¾ít nìkteré integrované prostøedí (IDE). Velice známá jsou prostøedí NetBeans a Eclipse. Obì jsou multiplatformní a poskytují nástroje pro vývoj aplikací na platformì Java. Zvolené prostøedí pro vytvoøení aplikace je Eclipse. Eclipse prostøedí bylo zvoleno ze subjektivních dùvodù, proto¾e autor má toto prostøedí v oblibì.
 
- 
-\section{Vytvoøení testovacích dat}
-Jako základ pro testování webových slu¾eb je nejdøíve nutné vytvoøit testovací data, která budou odesílána na vstup webové slu¾by.
-
-
-\subsection*{Schéma testovacích dat}
+\newpage
+\section{Základní model aplikace}
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.6]{pic/modelImpl.png}
+\caption{Zobrazení implementace základního modelu. }
+\label{fig:modelImpl}
+\end{center}
+\end{figure}
+\subsection*{Reprezentace dat}
 asdfasdf
+\subsection*{Zprostøedkovatel dat}
+sdfsdf
+\subsection*{Kontrolér}
+asdfsfd
+\subsection*{Grafické u¾ivatelské rozhraní}
+asdfsadf
+\subsection*{Rozhraní pøíkazové øádky}
+sdfsadf
+\subsection*{Testovací jednotka}
+sdfsadf
+\subsection*{Proxy jednotka}
+asdfsdf
+
+
+
+
+
+\section{Vytvoøení testovacích dat}
+sadfsdf
+\subsection*{Schéma testovacích dat}
+\begin{itemize}
+\item {\bf Testovací sada}\\
+asdfsdf\\
+\item {\bf Testovací pøípad}\\
+asdfsdf\\
+\item {\bf Http Po¾adavek}\\
+asdfsdf\\
+\item {\bf Data pro injekci chyb}\\
+asdfsdf\\
+
+\end{itemize}
 \subsection*{Nastavení testu}
 asdfasdf
 \subsection*{Vytvoøení Http po¾adavku}
@@ -722,8 +764,10 @@ asdfasdf
 \section{Mo¾nost integrace s testovacími nástroji}
 asdfasdf
 \newpage
-\section{Test z více stanic}
-asdfasdf
+\section{Distribuovaný test}
+dsafsadf
+\subsection*{Model aplikace pro distribuované testování}
+sadfsadf
 \newpage
 
 \chapter{Prùbìh testování webových slu¾eb}
