@@ -662,8 +662,21 @@ Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zá
 \end{figure}
 
 \section{Návrh úpravy proxy jednotky pro distribuovaný re¾im}
+Na základì prostudování zdrojových kódù a otestování pøede¹lé aplikace bylo zji¹tìno, ¾e budou nutné zmìny v implementaci. Na obrázku \ref{fig:zmena} je znázornìn stávající zpracování zprávy proxy serverem a jeho plánovaná zmìna. Pro bli¾¹í pochopení, jak funguje stávající implementace a jak bude fungovat plánovaná implementace jsou v obrázku èísla jejich¾ význam je popsán ní¾e.
 
+Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci observer podle daného návrhového vzoru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Po zobrazení je zpráva vlo¾ena na výstup a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
 
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.6]{pic/zmenaproxy.png}
+\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
+\label{fig:zmena}
+\end{center}
+\end{figure}
+ 
+\noindent Zmìna spoèívá v pøesunutí úlohy observer na monitorovací jednotku a kontrolér bude pouze delegovat registraci posluchaèù (monitorovacích panelù GUI) v monitorovací jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou pouze odesílat data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. Kontrolér zde plní pouze funkci delegace zpráv.
+
+Stejný princip bude vyu¾it pøi implementaci testovací jednotky.
 
 \chapter{Popis implementace}
 Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno v jednotlivých sekcích. U ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy, které byly pou¾ity. Kapitola je rozdìlena na sekce tak, jak postupnì implementace aplikace splòuje zadání. 
