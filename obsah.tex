@@ -679,6 +679,7 @@ Hlavní implementace pou¾ívá souèásti Java SE a pro vytvoøení testovacích pøíklad
 
 \newpage
 \section{Základní model aplikace}
+V návrhu na obrázku \ref{fig:zaklad} byl pøedstaven základní model aplikace. Dále pak na obrázku \ref{fig:vrstvy} byl popsány jak by tento koncept mìl zapadat do vrstev. V této èásti je znázornìno jak jsou tyto dva pohledy na návrh aplikovány v implementaci. Obrázek \ref{fig:modelImpl} slou¾í jako vizualizace implementace. Jednotlivé èásti budou podrobnì popsány a dále v textu budou uvedeny dal¹í diagramy vysvìtlující tok dat a pøíkazù mezi jednotlivými souèástmi.
 \begin{figure}[h]
 \begin{center}
  \includegraphics[scale=0.6]{pic/modelImpl.png}
@@ -687,11 +688,26 @@ Hlavní implementace pou¾ívá souèásti Java SE a pro vytvoøení testovacích pøíklad
 \end{center}
 \end{figure}
 \subsection*{Reprezentace dat}
-asdfasdf
+Pro organizaci dat bylo zavedeno hierarchické schéma, které je patrné na obrázku. Na nejvy¹¹ím úrovni je koøenový adresáø, který není v grafickém u¾ivatelském rozhraní (dále jen GUI) patrný. Koøenový adresáø se nachází v pracovním adresáøi aplikace a pokud není pøi startu aplikace pøítomen , je vytvoøen.
+
+Dal¹í úroveò pøedstavují testovací sady. Jedna testovací sada je urèena pro jednu slu¾bu. Testovací sada obsahuje testovací pøípady k dané slu¾bì. Testovací sada dále obsahuje seznam testovacích pøípadù, které budou spu¹tìny testovací jednotkou. Tento seznam je reprezentován XML souborem {\it testlist.xml}.
+
+Jednotlivé testovací pøípady pøedstavují dal¹í úroveò schématu. Ka¾dý testovací pøípad obsahuje slo¾ky pro vstupní a výstupní data pro aplikaèní jednotky. Tyto slo¾ky jsou zobrazeny v GUI jako {\it FaultInjection} a {\it Http}. Testovací pøípad dále obsahuje XML soubor {\it settings.xml}, kde jsou uvedeny nezbytná nastavení pro testovací pøípad. Obsah souboru s nastavením a slo¾ek pro aplikaèní jednotky je popsán ní¾e ve strukturovaném seznamu.
+\begin{itemize}
+\item {\bf Soubor s nastavením }\\
+Soubor s nastavením obsahuje informace, které lze vidìt na obrázku .  \\
+\item {\bf Data pro testovací jednotku }\\
+Data pro  testovací jednotku rozdìlena do slo¾ek pro vstupní ({\it input}) a výstupní data ({\it output}). Tyto slo¾ky nejsou v GUI zobrazeny. Ve slo¾ce pro vstupní data je XML soubor {\it input.xml}, kde jsou umístìna data pro testovací po¾adavek.  Do slo¾ky pro výstupní data se pak ukládají výsledky testù. TODO\\
+\item {\bf Data pro injekci chyb }\\
+fdsf
+\\
+\end{itemize}
+
 \subsection*{Zprostøedkovatel dat}
-sdfsdf
+Zprostøedkovatel dat je reprezentován tøídou {\it DataProvider}, která byla ji¾ v pøedchozí implementaci. Tato tøída má na starosti serializaci a deserializaci Java objektù do respektive z XML reprezentace. K tomuto druhu manipulace je pou¾ita knihovna Xstream. V pøedchozí implementaci byly metody z této tøídy volány pouze staticky. Pro úèely byla tato tøída pøepracována a metody jsou volány z instance dané tøídy.
+
 \subsection*{Kontrolér}
-asdfsfd
+Centrální souèást aplikace, která zasahuje do vìt¹
 \subsection*{Grafické u¾ivatelské rozhraní}
 asdfsadf
 \subsection*{Rozhraní pøíkazové øádky}
