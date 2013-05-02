@@ -666,13 +666,13 @@ Na základì prostudování zdrojových kódù a otestování pùvodní implementace bylo z
 
 Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci observer podle daného návrhového vzoru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Zobrazovací panel GUI zde plní roli posluchaèe, který je dynamicky pøiøazen ke kontroléru. Po zobrazení je zpráva vlo¾ena na výstup a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
 
-%\begin{figure}[h]
-%\begin{center}
-% \includegraphics[scale=0.6]{pic/zmenaproxy.png}
-%\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
-%\label{fig:zmena}
-%\end{center}
-%\end{figure}
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.6]{pic/zmenaproxy.png}
+\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
+\label{fig:zmena}
+\end{center}
+\end{figure}
  
 \noindent Zmìna spoèívá v pøesunutí úlohy observer na monitorovací jednotku a kontrolér bude pouze delegovat registraci posluchaèù (monitorovacích panelù GUI) v monitorovací jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou pouze odesílat získaná data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. Kontrolér zde bude plnit funkci delegáta zpráv mezi monitorovacími jednotkami a zobrazovacími panely GUI.
 
@@ -724,8 +724,8 @@ Dal¹í úroveò pøedstavují testovací sady. Jedna testovací sada je urèena pro jedn
 
 Jednotlivé testovací pøípady pøedstavují dal¹í úroveò schématu. Ka¾dý testovací pøípad obsahuje slo¾ky pro vstupní a výstupní data pro aplikaèní jednotky. Tyto slo¾ky jsou zobrazeny v GUI jako {\it FaultInjection} a {\it Http}. Testovací pøípad dále obsahuje XML soubor {\it settings.xml}, kde jsou uvedeny nezbytná nastavení pro testovací pøípad. Obsah souboru s nastavením a slo¾ek pro aplikaèní jednotky je popsán ní¾e ve strukturovaném seznamu.
 \begin{itemize}
-\item {\bf Soubor s nastavením }\\
-Soubor s nastavením obsahuje informace, podle kterých se nastaví aplikaèní jednotky . V souboru {\it settings.xml}  je ulo¾ena instance tøídy {\it TestCaseSettingsData}, která nese informace pro spu¹tìní pro testovací a proxy jednotku. \\
+\item {\bf Data pro nastavení testu }\\
+Data pro nastavení testu obsahují informace, podle kterých se nastaví aplikaèní jednotky . V souboru {\it settings.xml}  je ulo¾ena instance tøídy {\it TestCaseSettingsData}, která nese informace pro spu¹tìní pro testovací a proxy jednotku. \\
 \item {\bf Data pro testovací jednotku }\\
 Data pro  testovací jednotku rozdìlena do slo¾ek pro vstupní ({\it input}) a výstupní data ({\it output}). Tyto slo¾ky nejsou v GUI zobrazeny. Ve slo¾ce pro vstupní data je XML soubor {\it input.xml}, kde jsou umístìna data pro testovací po¾adavek.  Do slo¾ky pro výstupní data se pak ukládají výsledky testù. Data ulo¾ená v souboru {\it input.xml} pøedstavuje serializovanou instanci tøídy {\it HttpMessageData}, která nese potøebné informace o HTTP po¾adavku. \\
 \item {\bf Data pro injekci chyb }\\
@@ -734,25 +734,72 @@ Data pro injekci chyb jsou rozdìlena stejným zpùsobem jako data pro testovací je
 \end{itemize}
 
 \subsection*{Zprostøedkovatel dat}
-Zprostøedkovatel dat je reprezentován tøídou {\it DataProvider}, která byla ji¾ v pøedchozí implementaci. Tato tøída má na starosti serializaci a deserializaci Java objektù do respektive z XML reprezentace. K tomuto druhu manipulace je pou¾ita knihovna Xstream. V pøedchozí implementaci byly metody z této tøídy volány pouze staticky. Pro úèely byla tato tøída pøepracována a metody jsou volány z instance dané tøídy.
+Zprostøedkovatel dat je reprezentován tøídou {\it DataProvider}, která byla ji¾ v pøedchozí implementaci. Tato tøída má na starosti  serializaci a deserializaci Java objektù do respektive z XML formátu. K tomuto druhu manipulace je pou¾ita knihovna Xstream Ve¹kerá data jsou ulo¾ena na disku ve formì textových dat ve formátu XML. Pokud chce nástroj data pou¾ívat data naète jako textový øetìzec a pomocí knihovny Xstream dojde k deserializaci. Pøesnì opaèným postupem se postupuje pøi zápisu instancí tøíd na disk.
+
+ V pøedchozí implementaci byly metody z této tøídy volány pouze staticky. Pro úèely byla tato tøída pøepracována a metody jsou volány z instance dané tøídy.
+
+
 
 \subsection*{Kontrolér}
-Centrální souèást aplikace, která zasahuje do vìt¹
-\subsection*{Grafické u¾ivatelské rozhraní}
-asdfsadf
-\subsection*{Rozhraní pøíkazové øádky}
-sdfsadf
+Centrální souèást aplikace, která má za úkol delegovat pøíkazy z u¾ivatelských rozhraní do aplikaèních jednotek a zprostøedkovat pøenos dat mezi jednotlivými souèástmi. Dal¹í dùle¾itá úloha spu¹tìní vláken pro aplikaèní jednotky. 
+
+V kontroléru existují tøídy ProxyUnitWorker a TestUnitWorker. Tyto tøídy roz¹iøují tøídu {\it SwingWorker}. Tøída {\it SwingWorker} umo¾òuje spustit vlákno na pozadí grafického u¾ivatelského rozhraní vytvoøeného pomocí sady Java Swing. Pøi spu¹tìní nástroje se nejdøíve vytvoøí instance lokálních aplikaèních jednotek. Dal¹í aplikaèní jednotky je mo¾no registrovat dynamicky pomocí grafického u¾ivatelského rozhraní. Jakmile z u¾ivatelského rozhraní pøijde pøíkaz ke spu¹tìní jednotky. Instance tøídy aplikaèní jednotky spustí nové vlákno. V novì vytvoøeném vláknì pak bì¾í testovací jednotka. Pokud jsou pøi testu pou¾ity obì aplikaèní jednotky, pak jsou vytvoøena dvì oddìlená vlákna.
+
+Dále kontrolér má na starosti registraci zobrazovacích panelù do aplikaèních jednotek. Kontrolér má ulo¾eny v¹echny aplikaèní jednotky v abstraktním datovém typu {\it HashMap} s asociativním pøístupem. Ka¾dá jednotka je ulo¾ena pod poøadovým èíslem, se kterým byla vytvoøena. Po vytvoøení a ulo¾ení instance aplikaèní jednotky je vytvoøen v GUI zobrazovací panel se stejným poøadovým èíslem. Pomocí poøadového èísla je pak v kontroléru vyhledána patøièná aplikaèní jednotka a v aplikaèní jednotce je ulo¾en odkaz na zobrazovací panel. Po registraci zobrazovacího panel ji¾ kontrolér ztrácí svou delegaèní úlohu, proto¾e ve¹kerá komunikace probíhá mezi aplikaèní jednotkou a zobrazovacím panelem.
+ 
 \subsection*{Testovací jednotka}
-sdfsadf
+Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾it poèet vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu dopøedu vytvoøí instance vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je  vlákna je návratová hodnota pøedána do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty vlákna.
+
+Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující instance tøíd {\it Future}. Po spu¹tìní následuje dal¹í cyklus, který blokujícím zpùsobem èeká na dokonèení jednotlivých vláken. Pøi ka¾dém pøijetí výsledku od vlákna je tento výsledek testovací jednotkou odeslán do zobrazujícího panelu, kde je výsledek okam¾itì zobrazen. Po skonèení v¹ech vláken jsou v¹echna vlákna ukonèena øádným zpùsobem pomocí instance tøídy  {\it Executors}.
+
 \subsection*{Proxy jednotka}
+V této èásti je uveden struèný popis èinnosti proxy monitorovací jednotky. Pro detailní popis je mo¾no vyu¾ít pøedchozí práci.
+
+Základní funkce proxy  jednotky je poslouchat na zadaném portu, na který pøijde HTTP po¾adavek pro cílovou webovou slu¾bu. Jakmile pøijde po¾adavek od klienta webové slu¾by proxy jednotka vytvoøí dvì vlákna pro obsluhu pøíchozího spojení a pro obsluhu odpovìdi od webové slu¾by. Vytvoøená vlákna jsou instancí stejné tøídy pouze pro zpracování odpovìdi mají vymìnìné deskriptory pro spojení. Spojení je realizováno schránkami (sockets). Vytvoøená vlákna mají za úkol oddìlit obsah od hlavièky a odeslat po¾adovaná data do injektoru poruch. Injektor poruch provede analýzu HTTP zprávy a podle zadaných podmínek provedou patøiènou deformaci dat - injekci chyby.
+
+ 
+
+
+
+\subsection*{Grafické u¾ivatelské rozhraní}
+Grafické u¾ivatelské rozhraní je vytvoøeno v sadì nástrojù Swing. Na obrázku .. je vidìt základní rozlo¾ení GUI. Na pravé stranì je navigaèní panel, který zobrazuje obsah koøenového adresáøe. Ve spodní èásti je mo¾no vidìt konzolu, kam se zapisují vygenerované zprávy nástroje. Zbytek plochy je hlavní panel.
+
+Základní funkce GUI jsou k dispozici v polo¾kách menu {\it File} a {\it View}. Polo¾ka  {\it File} obsahuje pøíkazy pro vytvoøení kompletního schématu dat. Navíc pak obsahuje pøíkazy pro otevøení ( {\it Open}), smazání ({\it Delete}), obnovu navigaèního panelu({ \it Refresh}) a ukonèení nástroje({\it Exit}). Polo¾ka  {\it View} pak nabízí pøíkazy pro pøepínání jednotlivých hlavních panelù GUI.
+
+Navigaèní panel je tvoøen tøídou {\it Navigator}, která umo¾òuje vyvolání kontextového menu pro intuitivnìj¹í pou¾ití. Pomocí kontextového menu je mo¾no otevírat jednotlivé hlavní panely podle toho, na kterou polo¾ku ve struktuøe bylo kliknuto. Pøi vytváøení nových polo¾e je nutno nejdøíve vybrat polo¾ku nadøazeného prvku viz obrázek. Jedinou výjimkou je vytvoøení testovací sady, proto¾e je hierarchicky nejvý¹e a nemá nadøazený prvek. Pokud se u¾ivatel pokusí vytvoøit polo¾ku bez vybrání nadøazeného prvku, bude do konzole vypsána patøièná hlá¹ka. V pøípadì testovacího pøípadu jej nebude mo¾né vytvoøit bez oznaèení testovací sady, do které má být vytvoøen.
+\\\\
+\noindent Hlavní panely jsou ètyøi:
+\begin{itemize}
+\item {\bf Panel editoru}\\
+ffdsf
+\item {\bf Testovací panel}\\
+ffdsf
+\item {\bf Panel proxy monitoru}\\
+ffdsf\\
+\item {\bf Panel pro statistiky}\\
+ffdsf
+\end{itemize}
+\subsection*{Rozhraní pøíkazové øádky}
+Rozhraní pøíkazové øádky je fakticky hlavním rozhraním celého nástroje. Nástroj je mo¾né spustit pouze z pøíkazové øádky. Av¹ak je mo¾né pou¾ít skriptovací nástroje jako je Bash v OS Linux nebo dávku .bat v pøípadì OS Windows. Nástroj disponuje tìmito pøíkazy:
+
+\begin{itemize}
+\item {\bf Spu¹tìní grafického u¾ivatelského rozhraní }\\
+asdfd
+\item {\bf Zobrazení nápovìdy}\\
+dsfsdf
+\item {\bf Spu¹tìní testu}\\
 asdfsdf
+\item {\bf Zastavení proxy jednotky}\\
+asdfsdf
+\\
+\end{itemize}
 
 
 
 
 
 \section{Vytvoøení testovacích dat}
-sadfsdf
+V této èásti bude popsáno jaké funkce obsahuje editor dat a jaké prostøedky vedly jeho vytvoøení. V èásti schéma testovacích dat je popsáno k èemu slou¾í jednotlivé polo¾ky rozlo¾ení dat a jakým zpùsobem je mo¾né je vyu¾ít. V dal¹í èásti jsou popsány jednotlivé souèásti editoru, které je nutné pou¾ít k vytvoøení po¾adovaných dat k testování. 
 \subsection*{Schéma testovacích dat}
 \begin{itemize}
 \item {\bf Testovací sada}\\
@@ -762,7 +809,7 @@ asdfsdf\\
 \item {\bf Http Po¾adavek}\\
 asdfsdf\\
 \item {\bf Data pro injekci chyb}\\
-asdfsdf\\
+\\
 
 \end{itemize}
 \subsection*{Nastavení testu}
@@ -776,29 +823,30 @@ asdfasdf
 
 
 \section{Spu¹tìní testu}
-asdfasdf
-\subsection*{Testovací jednotka}
+V této èásti je popsáno jaké funkce je mo¾no vyu¾ít k ovládání testovací jednotky a jakým zpùsobem se testovací jednotka ovládá.
+
+\subsection*{Ovládání testovací jednotky}
 asdfasdf
 \subsection*{Pøíjem a zobrazení dat od webové slu¾by}
 asdfasdf
-\subsection*{Vyhodnocení testù}
+
+\section{Vyhodnocení testù}
 asdfasdf
 \newpage
 
 
 \section{Integrace s pøedchozím øe¹ením}
-asdfadf
-\subsection*{Úprava modelu proxy jednotky pro distribuovaný test}
-asdfadf
-\subsection*{Spojení testovací a proxy jednotky}
-asdfasdf
+V této èásti je popsáno jaký postup byl zvolen pro navázání na pøedchozí práci. Implementace GUI pøedchozí práce byla tìsnì vázána na testovací data, která byla souèástí GUI a následnì se ulo¾ila na disk. Pøi spu¹tìní proxy jednotky se vyu¾ila data z GUI namísto ulo¾ená na disku, kdy tak docházelo k ne¾ádoucímu svázání dat s bì¾ící proxy jednotkou. Tato implementace byla zmìnìna. Nyní se ve¹kerá vytvoøená data ukládají na disk. Z disku je zprostøedkovatel na pøíkaz kontroléru pøeète a instance objektu je pøedána aplikaèní jednotce. Tento zpùsob byl zvolen hlavnì z dùvodù oddìlení jednotlivých èástí do vrstev a následné implementaci distribuované architektury.
+
+
+Dále pak v pùvodní implementaci mìla proxy jednotka za úkol monitoring pøíchozích spojení a vytvoøení vláken pro obsluhu spojení. Ve¹kerou implementaci pro zobrazování dat mìl v sobì integrovaný kontrolér. Tato funkcionalita byla pøesunuta do proxy jednotky. Mù¾e se zdát, ¾e tato funkcionalita by nemìla být souèástí proxy jednotky. Toto je v¹ak úèelné, proto¾e pøesunutí registrace zobrazovacích panelù do aplikaèních jednotek má cíl oddìlení registrace od lokální èásti aplikace. Takto upravená implementace jednotky mù¾e být spu¹tìná na vzdáleném stroji a zaregistrovat zobrazovací panel pomocí RMI metod.
+
+
 \newpage
 
 
 \section{Vylep¹ení injekce chyb}
-asdfasdf
-\subsection*{Oprava nefunkèních èástí }
-asdfasdf
+V této èásti 
 \subsection*{Podpora dal¹ích datových reprezentací }
 asdfasdf
 
@@ -809,19 +857,22 @@ asdfasdf
 
 \section{Mo¾nost integrace s testovacími nástroji}
 asdfasdf
-\newpage
-\section{Distribuovaný test}
+\section{Implementace distribuované architektury}
 dsafsadf
-\subsection*{Model aplikace pro distribuované testování}
-sadfsadf
+
 \newpage
 
 \chapter{Prùbìh testování webových slu¾eb}
+\section{Sledované parametry}
+sdafsadf
 \section{Testování webových slu¾eb s  dostupným zdrojovým kódem}
 asdfadf
-\newpage
 \section{Testování veøejnì dostupných slu¾eb}
 asdfadf
 \newpage
+\chapter{Závìr}
+dsafasdf
+\section{Mo¾nosti dal¹ího vývoje}
+sdfsdf
 
 %=========================================================================
