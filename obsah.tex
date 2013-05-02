@@ -638,7 +638,7 @@ V¹echny vzdálené jednotky budou spravovány z jednoho centrálního bodu, kde bylo 
 Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distribuci testovacích dat. V centrálním bodì se vytvoøí testovací data a roze¹lou se na vzdálené uzly, kde budou moci být vyu¾ity. 
 
 Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
-\newpage
+%\newpage
 \section{Návrh vrstev}
 Návrh obsahuje distribuovanou architekturu a je vhodné uvést model vrstev aplikace. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e umo¾òuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek \ref{fig:vrstvy} ukazuje rozlo¾ení jednotlivých vrstev.  
 
@@ -662,21 +662,44 @@ Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zá
 \end{figure}
 
 \section{Návrh úpravy proxy jednotky pro distribuovaný re¾im}
-Na základì prostudování zdrojových kódù a otestování pøede¹lé aplikace bylo zji¹tìno, ¾e budou nutné zmìny v implementaci. Na obrázku \ref{fig:zmena} je znázornìn stávající zpracování zprávy proxy serverem a jeho plánovaná zmìna. Pro bli¾¹í pochopení, jak funguje stávající implementace a jak bude fungovat plánovaná implementace jsou v obrázku èísla jejich¾ význam je popsán ní¾e.
+Na základì prostudování zdrojových kódù a otestování pùvodní implementace bylo zji¹tìno, ¾e bude nutné provést zmìny v pùvodním návrhu . Na obrázku \ref{fig:zmena} je znázornìno stávající zpracování zprávy proxy serverem a jeho plánovaná zmìna. Pro bli¾¹í pochopení, jak funguje stávající implementace a jak bude fungovat plánovaná implementace, jsou v obrázku umístìna èísla, jejich¾ význam je popsán ní¾e.
 
-Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci observer podle daného návrhového vzoru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Po zobrazení je zpráva vlo¾ena na výstup a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
+Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci observer podle daného návrhového vzoru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Zobrazovací panel GUI zde plní roli posluchaèe, který je dynamicky pøiøazen ke kontroléru. Po zobrazení je zpráva vlo¾ena na výstup a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
 
+%\begin{figure}[h]
+%\begin{center}
+% \includegraphics[scale=0.6]{pic/zmenaproxy.png}
+%\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
+%\label{fig:zmena}
+%\end{center}
+%\end{figure}
+ 
+\noindent Zmìna spoèívá v pøesunutí úlohy observer na monitorovací jednotku a kontrolér bude pouze delegovat registraci posluchaèù (monitorovacích panelù GUI) v monitorovací jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou pouze odesílat získaná data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. Kontrolér zde bude plnit funkci delegáta zpráv mezi monitorovacími jednotkami a zobrazovacími panely GUI.
+
+Stejného principu se vyu¾ije pøi detailním návrhu architektury.
+
+\section{Detailní návrh architektury}
+V této sekci budou spojeny jednotlivé postupy z pøede¹lých sekcí a bude pøedstaven detailní návrh architektury vytváøeného nástroje. V sekci jsou nastínìny jednotlivé souèásti nástroje a jak spolu mají komunikovat. Aby tato komunikace ¹la snadno implementovat byl pøedstaven návrh vrstev, do kterých budou jednotlivé souèásti rozmístìny, tak aby spolu komunikovaly pouze sousední vrstvy. Tento zpùsob návrh je výhodný kvùli rozdìlení slo¾itìj¹ích problému na podproblémy. Takováto dekompozice také usnadòuje pøípadné testování jednotlivých souèástí aplikace (Unit testing).
+
+Jeliko¾ tato práce navazuje na ji¾ vytvoøenou implementaci, která nevyhovovala striktnímu rozdìlení do vrstev, bylo nutné vytvoøit návrh úprav, který je na obrázku . Po provedení úprav bude mo¾no vyu¾ít stávající implementaci a pøidat k ní dal¹í prvky, které vy¾aduje zadání práce.
+
+Na obrázku \ref{fig:modelImpl} je model rozdìlení jednotlivých souèástí aplikace do navr¾ených vrstev. Do aplikaèní vrstvy jsou jsou umístìna u¾ivatelská rozhraní, testovací a proxy jednotky. Do transportní vrstvy je umístìn kontrolér, proto¾e se stará o transport dat a pøíkazù mezi sousedními vrstvami. Jak je z obrázku patrné u¾ivatelská rozhraní s grafickou nadstavbou jsou zodpovìdné za vytváøení dat, zatímco u¾ivatelské rozhraní z pøíkazové øádky má mo¾nost pouze odesílat pøíkazy a zprostøedkovat výstupy z aplikaèních jednotek. U¾ivatelská rozhraní komunikují pouze s kontrolérem a jsou odstínìna od odstaních operací.
+
+Dále do aplikaèní vrstvy jsou umístìny aplikaèní jednotky, které jsou slou¾í  ke  vzdálené komunikaci s webovými slu¾bami a získávání dat. Aplikaèní jednotky v rámci aplikace komunikují pouze s kontrolérem a jsou tak odstínìny od u¾ivatelských rozhraní, ètení a ukládání dat.
+
+Kontrolér je zodpovìdný za pøijímání dat od aplikaèní vrstvy a dle druhu komunikace deleguje data do aplikaèních jednotek nebo data odesílá datové vrstvì k ulo¾ení. Pokud vy¾aduje ètení dat, kontrolér deleguje zprávu do datové vrstvy a pøijme ji¾ data v po¾adovaném formátu. Hlavní úlohou kontroléru je delegace dat a pøíkazù mezi sousedními vrstvami.
+
+Zprostøedkovatel dat má za  úkol èíst data ulo¾ená na disku ve formátu XML. Ve¹kerá data pøijatá od vy¹¹ích vrstev budou Java objekty, které se budou ukládat na disk v serializované podobì. Serializaci Java objektù do formátu XML a následné ulo¾ení na disk je mo¾no provést nìkterou z volnì dostupných knihoven. 
+
+Poslední vrstva reprezentuje ulo¾ená data na disku. Tyto data budou mít hierarchickou strukturu kvùli efektivnìj¹í orientaci.
 \begin{figure}[h]
 \begin{center}
- \includegraphics[scale=0.6]{pic/zmenaproxy.png}
-\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
-\label{fig:zmena}
+ \includegraphics[scale=0.6]{pic/modelImpl.png}
+\caption{Zobrazení implementace základního modelu. }
+\label{fig:modelImpl}
 \end{center}
 \end{figure}
- 
-\noindent Zmìna spoèívá v pøesunutí úlohy observer na monitorovací jednotku a kontrolér bude pouze delegovat registraci posluchaèù (monitorovacích panelù GUI) v monitorovací jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou pouze odesílat data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. Kontrolér zde plní pouze funkci delegace zpráv.
 
-Stejný princip bude vyu¾it pøi implementaci testovací jednotky.
 
 \chapter{Popis implementace}
 Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno v jednotlivých sekcích. U ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy, které byly pou¾ity. Kapitola je rozdìlena na sekce tak, jak postupnì implementace aplikace splòuje zadání. 
@@ -693,13 +716,7 @@ Hlavní implementace pou¾ívá souèásti Java SE a pro vytvoøení testovacích pøíklad
 \newpage
 \section{Základní model aplikace}
 V návrhu na obrázku \ref{fig:zaklad} byl pøedstaven základní model aplikace. Dále pak na obrázku \ref{fig:vrstvy} byl popsány jak by tento koncept mìl zapadat do vrstev. V této èásti je znázornìno jak jsou tyto dva pohledy na návrh aplikovány v implementaci. Obrázek \ref{fig:modelImpl} slou¾í jako vizualizace implementace. Jednotlivé èásti budou podrobnì popsány a dále v textu budou uvedeny dal¹í diagramy vysvìtlující tok dat a pøíkazù mezi jednotlivými souèástmi.
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.6]{pic/modelImpl.png}
-\caption{Zobrazení implementace základního modelu. }
-\label{fig:modelImpl}
-\end{center}
-\end{figure}
+
 \subsection*{Reprezentace dat}
 Pro organizaci dat bylo zavedeno hierarchické schéma, které je patrné na obrázku. Na nejvy¹¹ím úrovni je koøenový adresáø, který není v grafickém u¾ivatelském rozhraní (dále jen GUI) patrný. Koøenový adresáø se nachází v pracovním adresáøi aplikace a pokud není pøi startu aplikace pøítomen , je vytvoøen.
 
@@ -708,11 +725,11 @@ Dal¹í úroveò pøedstavují testovací sady. Jedna testovací sada je urèena pro jedn
 Jednotlivé testovací pøípady pøedstavují dal¹í úroveò schématu. Ka¾dý testovací pøípad obsahuje slo¾ky pro vstupní a výstupní data pro aplikaèní jednotky. Tyto slo¾ky jsou zobrazeny v GUI jako {\it FaultInjection} a {\it Http}. Testovací pøípad dále obsahuje XML soubor {\it settings.xml}, kde jsou uvedeny nezbytná nastavení pro testovací pøípad. Obsah souboru s nastavením a slo¾ek pro aplikaèní jednotky je popsán ní¾e ve strukturovaném seznamu.
 \begin{itemize}
 \item {\bf Soubor s nastavením }\\
-Soubor s nastavením obsahuje informace, které lze vidìt na obrázku .  \\
+Soubor s nastavením obsahuje informace, podle kterých se nastaví aplikaèní jednotky . V souboru {\it settings.xml}  je ulo¾ena instance tøídy {\it TestCaseSettingsData}, která nese informace pro spu¹tìní pro testovací a proxy jednotku. \\
 \item {\bf Data pro testovací jednotku }\\
-Data pro  testovací jednotku rozdìlena do slo¾ek pro vstupní ({\it input}) a výstupní data ({\it output}). Tyto slo¾ky nejsou v GUI zobrazeny. Ve slo¾ce pro vstupní data je XML soubor {\it input.xml}, kde jsou umístìna data pro testovací po¾adavek.  Do slo¾ky pro výstupní data se pak ukládají výsledky testù. TODO\\
+Data pro  testovací jednotku rozdìlena do slo¾ek pro vstupní ({\it input}) a výstupní data ({\it output}). Tyto slo¾ky nejsou v GUI zobrazeny. Ve slo¾ce pro vstupní data je XML soubor {\it input.xml}, kde jsou umístìna data pro testovací po¾adavek.  Do slo¾ky pro výstupní data se pak ukládají výsledky testù. Data ulo¾ená v souboru {\it input.xml} pøedstavuje serializovanou instanci tøídy {\it HttpMessageData}, která nese potøebné informace o HTTP po¾adavku. \\
 \item {\bf Data pro injekci chyb }\\
-fdsf
+Data pro injekci chyb jsou rozdìlena stejným zpùsobem jako data pro testovací jednotku. Data ulo¾ená v souboru  {\it input.xml} je pøedstavuje serializovanou instanci tøídy {\it FaultInjectionData}, která nese seznam podmínek a naru¹ení pro injektor poruch(viz.....)
 \\
 \end{itemize}
 
