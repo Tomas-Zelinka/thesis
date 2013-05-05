@@ -640,13 +640,13 @@ Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distr
 Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
 %\newpage
 \section{Návrh vrstev}
-Návrh obsahuje distribuovanou architekturu a je vhodné uvést model vrstev aplikace. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e umo¾òuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek \ref{fig:vrstvy} ukazuje rozlo¾ení jednotlivých vrstev.  
+Návrh obsahuje distribuovanou architekturu a je vhodné rozvrhnout jednotlivé èásti do oddìlených vrstev. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e usnadòuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek \ref{fig:vrstvy} ukazuje rozlo¾ení jednotlivých vrstev. 
 
 \begin{itemize}
-\item {\bf Aplikaèní vrstva }\\
-Aplikaèní vrstva obsahuje u¾ivatelská rozhraní i aplikaèní jednotky (testovací, proxy). Aplikaèní vrstva bude pøijímat data od u¾ivatele a pøes transportní vrstvu  je dopraví k aplikaèním jednotkám a zpìt viz obrázek.  \\
+\item {\bf Prezentaèní vrstva }\\
+Prezentaèní vrstva obsahuje u¾ivatelská rozhraní (grafické, pøíkazovou øádku). Prezentaèní vrstva slou¾í k pøijmutí pøíkazù a dat od u¾ivatele. Dále slou¾í k zobrazení po¾adovaných výsledkù.  \\
 \item {\bf Transportní vrstva }\\
-Tato vrstva je zodpovìdná za distribuci dat v rámci aplikace. Bude pøijímat data od sousedních vrstev a plnit funkci prostøedníka, pøi pøedávání dat mezi èástmi aplikace a datovou vrstvou.    \\
+Tato vrstva je zodpovìdná za distribuci dat v rámci aplikace. Bude pøijímat data od sousedních vrstev a plnit funkci prostøedníka, pøi pøedávání dat mezi prezentaèní  a datovou vrstvou.    \\
 \item {\bf Datová vrstva }\\
 Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zápis) s daty je mo¾no realizovat nìkolika zpùsoby. Díky oddìlení od zbytku aplikace je mo¾no implementaci ulo¾ení dat mìnit v dal¹ích verzích programu, ani¾ by do¹lo k významnìj¹ím zásahùm do implementace vy¹¹ích vrstev.  \\
 
@@ -664,7 +664,7 @@ Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zá
 \section{Návrh úpravy proxy jednotky pro distribuovaný re¾im}
 Na základì prostudování zdrojových kódù a otestování pùvodní implementace bylo zji¹tìno, ¾e bude nutné provést zmìny v pùvodním návrhu . Na obrázku \ref{fig:zmena} je znázornìno stávající zpracování zprávy proxy serverem a jeho plánovaná zmìna. Pro bli¾¹í pochopení, jak funguje stávající implementace a jak bude fungovat plánovaná implementace, jsou v obrázku umístìna èísla, jejich¾ význam je popsán ní¾e.
 
-Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci observer podle daného návrhového vzoru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Zobrazovací panel GUI zde plní roli posluchaèe, který je dynamicky pøiøazen ke kontroléru. Po zobrazení je zpráva vlo¾ena na výstup a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
+Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci delegáta. Zobrazovací panel GUI je pøiøazen ke kontroléru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Po zobrazení je zpráva vlo¾ena na výstup sí»ového rozhraní a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
 
 \begin{figure}[h]
 \begin{center}
@@ -674,7 +674,7 @@ Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoø
 \end{center}
 \end{figure}
  
-\noindent Zmìna spoèívá v pøesunutí úlohy observer na monitorovací jednotku a kontrolér bude pouze delegovat registraci posluchaèù (monitorovacích panelù GUI) v monitorovací jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou pouze odesílat získaná data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. Kontrolér zde bude plnit funkci delegáta zpráv mezi monitorovacími jednotkami a zobrazovacími panely GUI.
+\noindent Zmìna spoèívá v pøesunutí úlohy delegáta na monitorovací jednotku a kontrolér bude pouze provádìt pøiøazení monitorovacích panelù GUI v monitorovacích jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou odesílat získaná data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. 
 
 Stejného principu se vyu¾ije pøi detailním návrhu architektury.
 
@@ -683,15 +683,6 @@ V této sekci budou spojeny jednotlivé postupy z pøede¹lých sekcí a bude pøedstav
 
 Jeliko¾ tato práce navazuje na ji¾ vytvoøenou implementaci, která nevyhovovala striktnímu rozdìlení do vrstev, bylo nutné vytvoøit návrh úprav, který je na obrázku . Po provedení úprav bude mo¾no vyu¾ít stávající implementaci a pøidat k ní dal¹í prvky, které vy¾aduje zadání práce.
 
-Na obrázku \ref{fig:modelImpl} je model rozdìlení jednotlivých souèástí aplikace do navr¾ených vrstev. Do aplikaèní vrstvy jsou jsou umístìna u¾ivatelská rozhraní, testovací a proxy jednotky. Do transportní vrstvy je umístìn kontrolér, proto¾e se stará o transport dat a pøíkazù mezi sousedními vrstvami. Jak je z obrázku patrné u¾ivatelská rozhraní s grafickou nadstavbou jsou zodpovìdné za vytváøení dat, zatímco u¾ivatelské rozhraní z pøíkazové øádky má mo¾nost pouze odesílat pøíkazy a zprostøedkovat výstupy z aplikaèních jednotek. U¾ivatelská rozhraní komunikují pouze s kontrolérem a jsou odstínìna od odstaních operací.
-
-Dále do aplikaèní vrstvy jsou umístìny aplikaèní jednotky, které jsou slou¾í  ke  vzdálené komunikaci s webovými slu¾bami a získávání dat. Aplikaèní jednotky v rámci aplikace komunikují pouze s kontrolérem a jsou tak odstínìny od u¾ivatelských rozhraní, ètení a ukládání dat.
-
-Kontrolér je zodpovìdný za pøijímání dat od aplikaèní vrstvy a dle druhu komunikace deleguje data do aplikaèních jednotek nebo data odesílá datové vrstvì k ulo¾ení. Pokud vy¾aduje ètení dat, kontrolér deleguje zprávu do datové vrstvy a pøijme ji¾ data v po¾adovaném formátu. Hlavní úlohou kontroléru je delegace dat a pøíkazù mezi sousedními vrstvami.
-
-Zprostøedkovatel dat má za  úkol èíst data ulo¾ená na disku ve formátu XML. Ve¹kerá data pøijatá od vy¹¹ích vrstev budou Java objekty, které se budou ukládat na disk v serializované podobì. Serializaci Java objektù do formátu XML a následné ulo¾ení na disk je mo¾no provést nìkterou z volnì dostupných knihoven. 
-
-Poslední vrstva reprezentuje ulo¾ená data na disku. Tyto data budou mít hierarchickou strukturu kvùli efektivnìj¹í orientaci.
 \begin{figure}[h]
 \begin{center}
  \includegraphics[scale=0.6]{pic/modelImpl.png}
@@ -700,9 +691,20 @@ Poslední vrstva reprezentuje ulo¾ená data na disku. Tyto data budou mít hierarch
 \end{center}
 \end{figure}
 
+\noindent Na obrázku \ref{fig:modelImpl} je model rozdìlení jednotlivých souèástí aplikace do navr¾ených vrstev. Do prezentaèní vrstvy jsou jsou umístìna u¾ivatelská rozhraní. Do transportní vrstvy je umístìn kontrolér, proto¾e se stará o transport dat a pøíkazù mezi sousedními vrstvami. Jak je z obrázku patrné, u¾ivatelská rozhraní  jsou zodpovìdné za vytváøení dat, odesílání pøíkazù a zprostøedkování výstupù z aplikaèních jednotek. U¾ivatelská rozhraní komunikují pouze s kontrolérem a jsou odstínìna od odstaních operací.
+
+Do transportní vrstvy jsou zahrnuty aplikaèní jednotky  a kontrolér. Aplikaèní jednotky slou¾í  ke vzdálené komunikaci s webovými slu¾bami a získávání dat. Aplikaèní jednotky v rámci aplikace komunikují pouze s kontrolérem a jsou tak odstínìny od u¾ivatelských rozhraní, ètení a ukládání dat.
+
+Kontrolér je zodpovìdný za pøijímání dat od prezentaèní vrstvy a dle druhu komunikace deleguje data do aplikaèních jednotek nebo data odesílá datové vrstvì k ulo¾ení. Pokud vy¾aduje ètení dat, kontrolér deleguje zprávu do datové vrstvy a pøijme ji¾ data v po¾adovaném formátu. Hlavní úlohou kontroléru je delegace dat a pøíkazù mezi sousedními vrstvami.
+
+Zprostøedkovatel dat má za  úkol èíst data ulo¾ená na disku ve formátu XML. Ve¹kerá data pøijatá od vy¹¹ích vrstev budou Java objekty, které se budou ukládat na disk v serializované podobì. Serializaci Java objektù do formátu XML a následné ulo¾ení na disk je mo¾no provést nìkterou z volnì dostupných knihoven. 
+
+Souèástí této vrstvou jsou ulo¾ená data na disku. Tyto data budou mít hierarchickou strukturu kvùli efektivnìj¹í orientaci.
+
+
 
 \chapter{Popis implementace}
-Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno v jednotlivých sekcích. U ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy, které byly pou¾ity. Kapitola je rozdìlena na sekce tak, jak postupnì implementace aplikace splòuje zadání. 
+Tato kapitola se vìnuje popisu implementace návrhu, který byl pøedstaven v pøede¹lé kapitole.  Vytvoøení jednotlivých èástí programu je postupnì popsáno v jednotlivých sekcích. U ka¾dé èásti jsou uvedeny pou¾ité technologie a postupy. Kapitola je rozdìlena na sekce tak, aby bylo zøejmé, ¾e implementace aplikace splòuje zadání. 
 
 Nejdøíve je popsán výbìr implementaèního prostøedí a jazyka. Pak je pøedstavena implementace základních souèástí aplikace.  V dal¹ích sekcích pak jsou popsány implementace funkcí vytvoøeného nástroje. Pøi popisu jednotlivých funkcí jsou pak pou¾ity vytvoøené souèásti a je vysvìtleno jejich propojení a význam v dané funkcionalitì.
 
@@ -711,14 +713,14 @@ Nejdøíve je popsán výbìr implementaèního prostøedí a jazyka. Pak je pøedstavena 
 \section{Výbìr vývojového prostøedí a jazyka}
 V dne¹ní dobì má vìt¹ina jazykù podporu pro vývoj aplikací pou¾ívající webové slu¾by. Mezi nimi v¹ak vyènívají platformy .NET a Java, které mají nej¹ir¹í podporu pro vývoj aplikací pro webové slu¾by.  Vzhledem k návaznosti této práce na práci, která je implementována na platformì Java, je vhodnìj¹í pou¾ití platformy Java. Platforma Java byla také zvolena kvùli zku¹enostem autora.
 
-Hlavní implementace pou¾ívá souèásti Java SE a pro vytvoøení testovacích pøíkladù ji¾ je nutné pou¾ít souèásti Java EE. Jako prostøedí pro vývoj aplikace je mo¾no pou¾ít libovolný nástroj. Pro urychlení vývoje je v¹ak vhodné pou¾ít nìkteré integrované prostøedí (IDE). Velice známá jsou prostøedí NetBeans a Eclipse. Obì jsou multiplatformní a poskytují nástroje pro vývoj aplikací na platformì Java. Zvolené prostøedí pro vytvoøení aplikace je Eclipse. Eclipse prostøedí bylo zvoleno ze subjektivních dùvodù, proto¾e autor má toto prostøedí v oblibì.
+Pøi implementaci jsou pou¾ity souèásti Java SE a pro vytvoøení testovacích pøíkladù je pou¾ito souèástí Java EE. Jako prostøedí pro vývoj aplikace je mo¾no pou¾ít libovolný nástroj. Pro urychlení vývoje je v¹ak vhodné pou¾ít nìkteré integrované prostøedí (IDE). Velice známá jsou prostøedí NetBeans a Eclipse. Obì jsou multiplatformní a poskytují nástroje pro vývoj aplikací na platformì Java. Bylo zvoleno integrované prostøedí Eclipse. Eclipse prostøedí bylo zvoleno ze subjektivních dùvodù, proto¾e autor má toto prostøedí v oblibì.
 
 \newpage
 \section{Základní model aplikace}
 V návrhu na obrázku \ref{fig:zaklad} byl pøedstaven základní model aplikace. Dále pak na obrázku \ref{fig:vrstvy} byl popsány jak by tento koncept mìl zapadat do vrstev. V této èásti je znázornìno jak jsou tyto dva pohledy na návrh aplikovány v implementaci. Obrázek \ref{fig:modelImpl} slou¾í jako vizualizace implementace. Jednotlivé èásti budou podrobnì popsány a dále v textu budou uvedeny dal¹í diagramy vysvìtlující tok dat a pøíkazù mezi jednotlivými souèástmi.
 
 \subsection*{Reprezentace dat}
-Pro organizaci dat bylo zavedeno hierarchické schéma, které je patrné na obrázku. Na nejvy¹¹ím úrovni je koøenový adresáø, který není v grafickém u¾ivatelském rozhraní (dále jen GUI) patrný. Koøenový adresáø se nachází v pracovním adresáøi aplikace a pokud není pøi startu aplikace pøítomen , je vytvoøen.
+Pro organizaci dat bylo zavedeno hierarchické schéma, které je patrné na obrázku. Na nejvy¹¹ím úrovni je koøenový adresáø, který není v grafickém u¾ivatelském rozhraní (dále jen GUI) patrný. Koøenový adresáø se nachází v pracovním adresáøi aplikace a pokud není pøi startu aplikace pøítomen, je adresáø vytvoøen.
 
 Dal¹í úroveò pøedstavují testovací sady. Jedna testovací sada je urèena pro jednu slu¾bu. Testovací sada obsahuje testovací pøípady k dané slu¾bì. Testovací sada dále obsahuje seznam testovacích pøípadù, které budou spu¹tìny testovací jednotkou. Tento seznam je reprezentován XML souborem {\it testlist.xml}.
 
@@ -734,23 +736,23 @@ Data pro injekci chyb jsou rozdìlena stejným zpùsobem jako data pro testovací je
 \end{itemize}
 
 \subsection*{Zprostøedkovatel dat}
-Zprostøedkovatel dat je reprezentován tøídou {\it DataProvider}, která byla ji¾ v pøedchozí implementaci. Tato tøída má na starosti  serializaci a deserializaci Java objektù do respektive z XML formátu. K tomuto druhu manipulace je pou¾ita knihovna Xstream Ve¹kerá data jsou ulo¾ena na disku ve formì textových dat ve formátu XML. Pokud chce nástroj data pou¾ívat data naète jako textový øetìzec a pomocí knihovny Xstream dojde k deserializaci. Pøesnì opaèným postupem se postupuje pøi zápisu instancí tøíd na disk.
+Zprostøedkovatel dat je reprezentován tøídou {\it DataProvider}, která byla ji¾ v pøedchozí implementaci. Tato tøída má na starosti  serializaci a deserializaci Java objektù do respektive z XML formátu. K tomuto druhu manipulace je pou¾ita knihovna Xstream. Ve¹kerá data jsou ulo¾ena na disku ve formì textových dat ve formátu XML. Pokud chce nástroj data pou¾ívat, data naète jako textový øetìzec a pomocí knihovny Xstream dojde k deserializaci. Pøesnì opaèným postupem se postupuje pøi zápisu instancí tøíd na disk.
 
  V pøedchozí implementaci byly metody z této tøídy volány pouze staticky. Pro úèely byla tato tøída pøepracována a metody jsou volány z instance dané tøídy.
 
 
 
 \subsection*{Kontrolér}
-Centrální souèást aplikace, která má za úkol delegovat pøíkazy z u¾ivatelských rozhraní do aplikaèních jednotek a zprostøedkovat pøenos dat mezi jednotlivými souèástmi. Dal¹í dùle¾itá úloha spu¹tìní vláken pro aplikaèní jednotky. 
+Centrální souèást aplikace, která má za úkol delegovat pøíkazy z u¾ivatelských rozhraní do aplikaèních jednotek a zprostøedkovat pøenos dat mezi jednotlivými souèástmi. Dal¹í dùle¾itá úloha kontroléru je spu¹tìní vláken pro aplikaèní jednotky. 
 
 V kontroléru existují tøídy ProxyUnitWorker a TestUnitWorker. Tyto tøídy roz¹iøují tøídu {\it SwingWorker}. Tøída {\it SwingWorker} umo¾òuje spustit vlákno na pozadí grafického u¾ivatelského rozhraní vytvoøeného pomocí sady Java Swing. Pøi spu¹tìní nástroje se nejdøíve vytvoøí instance lokálních aplikaèních jednotek. Dal¹í aplikaèní jednotky je mo¾no registrovat dynamicky pomocí grafického u¾ivatelského rozhraní. Jakmile z u¾ivatelského rozhraní pøijde pøíkaz ke spu¹tìní jednotky. Instance tøídy aplikaèní jednotky spustí nové vlákno. V novì vytvoøeném vláknì pak bì¾í testovací jednotka. Pokud jsou pøi testu pou¾ity obì aplikaèní jednotky, pak jsou vytvoøena dvì oddìlená vlákna.
 
 Dále kontrolér má na starosti registraci zobrazovacích panelù do aplikaèních jednotek. Kontrolér má ulo¾eny v¹echny aplikaèní jednotky v abstraktním datovém typu {\it HashMap} s asociativním pøístupem. Ka¾dá jednotka je ulo¾ena pod poøadovým èíslem, se kterým byla vytvoøena. Po vytvoøení a ulo¾ení instance aplikaèní jednotky je vytvoøen v GUI zobrazovací panel se stejným poøadovým èíslem. Pomocí poøadového èísla je pak v kontroléru vyhledána patøièná aplikaèní jednotka a v aplikaèní jednotce je ulo¾en odkaz na zobrazovací panel. Po registraci zobrazovacího panel ji¾ kontrolér ztrácí svou delegaèní úlohu, proto¾e ve¹kerá komunikace probíhá mezi aplikaèní jednotkou a zobrazovacím panelem.
  
 \subsection*{Testovací jednotka}
-Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾it poèet vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu dopøedu vytvoøí instance vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je  vlákna je návratová hodnota pøedána do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty vlákna.
+Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾ita informace o poètu vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu vláken dopøedu vytvoøí instance po¾adovaných vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je vlákna je odkaz na toto vlákno pøedán do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty vlákna.
 
-Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující instance tøíd {\it Future}. Po spu¹tìní následuje dal¹í cyklus, který blokujícím zpùsobem èeká na dokonèení jednotlivých vláken. Pøi ka¾dém pøijetí výsledku od vlákna je tento výsledek testovací jednotkou odeslán do zobrazujícího panelu, kde je výsledek okam¾itì zobrazen. Po skonèení v¹ech vláken jsou v¹echna vlákna ukonèena øádným zpùsobem pomocí instance tøídy  {\it Executors}.
+Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující instance tøíd {\it Future}. Po spu¹tìní následuje dal¹í cyklus, který blokujícím zpùsobem èeká na dokonèení jednotlivých vláken. Pøi ka¾dém pøijetí výsledku od vlákna je tento výsledek testovací jednotkou odeslán do zobrazujícího panelu, kde je výsledek okam¾itì zobrazen. Po skonèení blokujícího cyklu jsou v¹echna vlákna ukonèena øádným zpùsobem pomocí instance tøídy  {\it Executors}.
 
 \subsection*{Proxy jednotka}
 V této èásti je uveden struèný popis èinnosti proxy monitorovací jednotky. Pro detailní popis je mo¾no vyu¾ít pøedchozí práci.
