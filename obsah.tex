@@ -796,6 +796,32 @@ asdfsdf
 \\
 \end{itemize}
 
+\section{Integrace s pøedchozím øe¹ením}
+V této èásti je popsáno jaký postup byl zvolen pro navázání na pøedchozí práci. Implementace GUI pøedchozí práce byla tìsnì vázána na testovací data, která byla souèástí GUI a následnì se ulo¾ila na disk. Pøi spu¹tìní proxy jednotky se vyu¾ila data z GUI namísto ulo¾ená na disku, kdy tak docházelo k ne¾ádoucímu svázání dat s bì¾ící proxy jednotkou. Tato implementace byla zmìnìna. Nyní se ve¹kerá vytvoøená data ukládají na disk. Z disku je zprostøedkovatel na pøíkaz kontroléru pøeète a instance objektu je pøedána aplikaèní jednotce. Tento zpùsob byl zvolen hlavnì z dùvodù oddìlení jednotlivých èástí do vrstev a následné implementaci distribuované architektury.
+
+
+Dále pak v pùvodní implementaci mìla proxy jednotka za úkol monitoring pøíchozích spojení a vytvoøení vláken pro obsluhu spojení. Ve¹kerou implementaci pro zobrazování dat mìl v sobì integrovaný kontrolér. Tato funkcionalita byla pøesunuta do proxy jednotky. Mù¾e se zdát, ¾e tato funkcionalita by nemìla být souèástí proxy jednotky. Toto je v¹ak úèelné, proto¾e pøesunutí registrace zobrazovacích panelù do aplikaèních jednotek má cíl oddìlení registrace od lokální èásti aplikace. Takto upravená implementace jednotky mù¾e být spu¹tìná na vzdáleném stroji a zaregistrovat zobrazovací panel pomocí RMI metod.
+
+
+\newpage
+
+
+\section{Vylep¹ení injekce chyb}
+V této èásti 
+\subsection*{Podpora dal¹ích datových reprezentací }
+asdfasdf
+
+\subsection*{Pøidání dal¹ích typù injekcí chyb a jejich podmínek}
+asdfasdf
+\newpage
+
+
+\section{Mo¾nost integrace s testovacími nástroji}
+asdfasdf
+\section{Implementace distribuované architektury}
+dsafsadf
+
+\newpage
 
 
 
@@ -832,37 +858,14 @@ asdfasdf
 \subsection*{Pøíjem a zobrazení dat od webové slu¾by}
 asdfasdf
 
-\section{Vyhodnocení testù}
+\section{Vyhodnocení testu}
 asdfasdf
 \newpage
 
 
-\section{Integrace s pøedchozím øe¹ením}
-V této èásti je popsáno jaký postup byl zvolen pro navázání na pøedchozí práci. Implementace GUI pøedchozí práce byla tìsnì vázána na testovací data, která byla souèástí GUI a následnì se ulo¾ila na disk. Pøi spu¹tìní proxy jednotky se vyu¾ila data z GUI namísto ulo¾ená na disku, kdy tak docházelo k ne¾ádoucímu svázání dat s bì¾ící proxy jednotkou. Tato implementace byla zmìnìna. Nyní se ve¹kerá vytvoøená data ukládají na disk. Z disku je zprostøedkovatel na pøíkaz kontroléru pøeète a instance objektu je pøedána aplikaèní jednotce. Tento zpùsob byl zvolen hlavnì z dùvodù oddìlení jednotlivých èástí do vrstev a následné implementaci distribuované architektury.
 
 
-Dále pak v pùvodní implementaci mìla proxy jednotka za úkol monitoring pøíchozích spojení a vytvoøení vláken pro obsluhu spojení. Ve¹kerou implementaci pro zobrazování dat mìl v sobì integrovaný kontrolér. Tato funkcionalita byla pøesunuta do proxy jednotky. Mù¾e se zdát, ¾e tato funkcionalita by nemìla být souèástí proxy jednotky. Toto je v¹ak úèelné, proto¾e pøesunutí registrace zobrazovacích panelù do aplikaèních jednotek má cíl oddìlení registrace od lokální èásti aplikace. Takto upravená implementace jednotky mù¾e být spu¹tìná na vzdáleném stroji a zaregistrovat zobrazovací panel pomocí RMI metod.
 
-
-\newpage
-
-
-\section{Vylep¹ení injekce chyb}
-V této èásti 
-\subsection*{Podpora dal¹ích datových reprezentací }
-asdfasdf
-
-\subsection*{Pøidání dal¹ích typù injekcí chyb a jejich podmínek}
-asdfasdf
-\newpage
-
-
-\section{Mo¾nost integrace s testovacími nástroji}
-asdfasdf
-\section{Implementace distribuované architektury}
-dsafsadf
-
-\newpage
 
 \chapter{Prùbìh testování webových slu¾eb}
 \section{Sledované parametry}
