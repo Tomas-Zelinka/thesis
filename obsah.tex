@@ -787,9 +787,11 @@ V kontroléru existují tøídy ProxyUnitWorker a TestUnitWorker. Tyto tøídy roz¹iøu
 Dále kontrolér má na starosti registraci zobrazovacích panelù do aplikaèních jednotek. Kontrolér má ulo¾eny v¹echny aplikaèní jednotky v abstraktním datovém typu {\it HashMap} s asociativním pøístupem. Ka¾dá jednotka je ulo¾ena pod poøadovým èíslem, se kterým byla vytvoøena. Po vytvoøení a ulo¾ení instance aplikaèní jednotky je vytvoøen v GUI zobrazovací panel se stejným poøadovým èíslem. Pomocí poøadového èísla je pak v kontroléru vyhledána patøièná aplikaèní jednotka a v aplikaèní jednotce je ulo¾en odkaz na zobrazovací panel. Po registraci zobrazovacího panel ji¾ kontrolér ztrácí svou delegaèní úlohu, proto¾e ve¹kerá komunikace probíhá mezi aplikaèní jednotkou a zobrazovacím panelem.
  
 \subsection*{Testovací jednotka}
-Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾ita informace o poètu vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu vláken dopøedu vytvoøí instance po¾adovaných vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je vlákna je odkaz na toto vlákno pøedán do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty vlákna.
+Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾ita informace o poètu vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu vláken dopøedu vytvoøí instance po¾adovaných vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je vlákna je odkaz na toto vlákno pøedán do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty 
+vlákna.
 
 Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující instance tøíd {\it Future}. Po spu¹tìní následuje dal¹í cyklus, který blokujícím zpùsobem èeká na dokonèení jednotlivých vláken. Pøi ka¾dém pøijetí výsledku od vlákna je tento výsledek testovací jednotkou odeslán do zobrazujícího panelu, kde je výsledek okam¾itì zobrazen. Po skonèení blokujícího cyklu jsou v¹echna vlákna ukonèena øádným zpùsobem pomocí instance tøídy  {\it Executors}.
+
 
 \begin{figure}[h]
 \begin{center}
@@ -818,6 +820,7 @@ Pøi zobrazování výsledkù testù jsou zobrazovací panel spojen s pøíslu¹nou aplika
 Základní funkce GUI jsou k dispozici v polo¾kách menu {\it File} a {\it View}. Polo¾ka  {\it File} obsahuje pøíkazy pro vytvoøení kompletního schématu dat. Navíc pak obsahuje pøíkazy pro otevøení  {\it Open}), smazání ({\it Delete}), obnovu navigaèního panelu ({\it Refresh}) a ukonèení nástroje ({\it Exit}). Polo¾ka  {\it View} pak nabízí pøíkazy pro pøepínání jednotlivých hlavních panelù GUI.
 
 Navigaèní panel je tvoøen tøídou {\it Navigator}, která umo¾òuje vyvolání kontextového menu pro intuitivnìj¹í pou¾ití. Pomocí kontextového menu je mo¾no otevírat jednotlivé hlavní panely podle toho, na kterou polo¾ku ve struktuøe bylo kliknuto. Pøi vytváøení nových polo¾e je nutno nejdøíve vybrat polo¾ku nadøazeného prvku viz obrázek. Jedinou výjimkou je vytvoøení testovací sady, proto¾e je hierarchicky nejvý¹e a nemá nadøazený prvek. Pokud se u¾ivatel pokusí vytvoøit polo¾ku bez vybrání nadøazeného prvku, bude do konzole vypsána patøièná hlá¹ka. V pøípadì testovacího pøípadu jej nebude mo¾né vytvoøit bez oznaèení testovací sady, do které má být vytvoøen.
+
 %\newpage
 \begin{figure}[h]
 \begin{center}
@@ -866,15 +869,20 @@ Rozhraní pøíkazové øádky je fakticky hlavním rozhraním celého nástroje. Nástroj 
 
 -testlist  \textless  soubor\textgreater ~[-config  \textless soubor\textgreater] & Spu¹tìní  testu, \\ &  spu¹tìní distribuovaného testu \\ \hline
 
+-r & Spu¹tìní RMI serveru \\ \hline
+
 
 -proxy \textless soubor\textgreater ~[-config  \textless soubor\textgreater]  & Spu¹tìní proxy jednotky, \\ & spu¹tìní více proxy jednotek \\  \hline
 
 -stopproxy ~[-config  \textless soubor\textgreater] & Zastavení proxy jednotky, \\ & zastavení v¹ech proxy jednotek \\ 
 
+-proxy \textless soubor\textgreater ~[-config  \textless soubor\textgreater]  & Spu¹tìní proxy jednotky, \\ & spu¹tìní více proxy jednotek \\  \hline
+
 
 \hline
 \end{tabular}
 \end{center}
+
 
 \noindent  Ovládání z pøíkazové øádky bylo vytvoøeno stejným principem jako GUI. Tedy pøi zadání pøíkazu jsou data naètena a pøedána kontroléru. Tento pøístup je mo¾ný díky architektuøe vrstev, kdy u¾ivatelská rozhraní pouze pou¾ívají mo¾nosti kontroléru a v¹echny úkony se provádìjí pøes jednotné rozhraní. Ovládání z pøíkazové øádky nemá zobrazovací panel, ale má instanci tøídy {\it TextMonitor}, která pøijímá data od aplikaèních jednotek a odesílá je do ni¾¹ích vrstev k ulo¾ení do souboru na disku. 
 
@@ -887,6 +895,7 @@ V této èásti je popsáno jaký postup byl zvolen pro navázání na pøedchozí práci. 
 
 
 Dále pak v pùvodní implementaci mìla proxy jednotka za úkol monitoring pøíchozích spojení a vytvoøení vláken pro obsluhu spojení. Ve¹kerou implementaci pro zobrazování dat mìl v sobì integrovaný kontrolér. Tato funkcionalita byla pøesunuta do proxy jednotky. Mù¾e se zdát, ¾e tato funkcionalita by nemìla být souèástí proxy jednotky. Toto je v¹ak úèelné, proto¾e pøesunutí registrace zobrazovacích panelù do aplikaèních jednotek má cíl oddìlení registrace od lokální èásti aplikace. Takto upravená implementace jednotky mù¾e být spu¹tìná na vzdáleném stroji a zaregistrovat zobrazovací panel pomocí RMI metod.
+
 
 
 \section{Vylep¹ení injekce chyb}
@@ -905,16 +914,17 @@ Mo¾nost integrování s testovacími nástroji vychází z pou¾ití rozhraní pøíkazové 
 
 
 
+
 \section{Implementace distribuované architektury}
 Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoøeného nástroje. Pro implementaci spojení mezi jednotlivými vzdálenými stroji byl vybrána technologie Java RMI. Nynìj¹í implementace Java RMI splòuje standard CORBA. Pøi dodr¾ení rozhraní lze komunikovat se vzdálenou stranou, která je implementována jinou technologii(C++, Python apod.). Java RMI je technologie umo¾òující volání metod objektù, které jsou umístìny na vzdáleném stroji. Princip je zobrazen na obrázku .. . Staèí tedy spustit RMI server a registrovat objekt. Po¾adovaný objekt je zaregistrován v registru. Registr je mo¾né kontaktovat a vy¾ádat si rozhraní daného objektu.
 
-Na obrázku .. je zobrazena implementace distribuované architektury vytvoøeného nástroje. Vzdálené stroje jsou implementovány jako RMI server a ka¾dý server musí mít vlastní registr. Centrální GUI tedy plni roli klienta. V tomto pøípadì jsou instance vzdálených aplikaèních jednotek uchovány v ADT {\it HashMap}. Jednotlivé instance jsou spárovány se zobrazovacím panelem identifikaèním èíslem. Pøi interpretaci pøíkazu z GUI je získáno identifikaèní èíslo z hlavièky panelu. Identifikaèní èíslo je pak pou¾ito jako klíè k vyhledání správné aplikaèní jednotky. Po získání instance aplikaèní jednotky je pøíkaz odeslán.
+Na obrázku \ref{fig:dismodel}. je zobrazena implementace distribuované architektury vytvoøeného nástroje. Vzdálené stroje jsou implementovány jako RMI server a ka¾dý server musí mít vlastní registr. Centrální GUI tedy plni roli klienta. V tomto pøípadì jsou instance vzdálených aplikaèních jednotek uchovány v ADT {\it HashMap}. Jednotlivé instance jsou spárovány se zobrazovacím panelem identifikaèním èíslem. Pøi interpretaci pøíkazu z GUI je získáno identifikaèní èíslo z hlavièky panelu. Identifikaèní èíslo je pak pou¾ito jako klíè k vyhledání správné aplikaèní jednotky. Po získání instance aplikaèní jednotky je pøíkaz odeslán.
 
 \begin{figure}[h]
 \begin{center}
  \includegraphics[scale=0.7]{pic/dismodel.png}
 \caption{Náhled zobrazení proxy jednotky. }
-\label{fig:vrstvy}
+\label{fig:distmodel}
 \end{center}
 \end{figure}
 
