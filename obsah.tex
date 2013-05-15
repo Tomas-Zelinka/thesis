@@ -935,21 +935,21 @@ Pro implementaci naru¹ení zprávy ve formátu JSON byla také pøidána polo¾ka do vý
 \section{Mo¾nost integrace s testovacími nástroji}
 Mo¾nost integrování s testovacími nástroji vychází z pou¾ití rozhraní pøíkazové øádky. Pro integraci s dal¹ími testovacími nástroji je mo¾né pou¾ít nástroj Apache Ant, který disponuje mo¾ností spou¹tìt externí programy pomocí pøíkazové øádky. Pøi vhodné kombinaci konfigurace pøipojení a vytvoøených seznamù testovacích pøípadù je mo¾né pou¾ít vytvoøený nástroj s dal¹ími.
 
-
-
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.7]{pic/dismodel.png}
+\caption{Model delegace zobrazení dat pøijatých aplikaèními jednotkami. }
+\label{fig:distmodel}
+\end{center}
+\end{figure}
 
 \section{Implementace distribuované architektury}
 Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoøeného nástroje. Pro implementaci spojení mezi jednotlivými vzdálenými stroji byla vybrána technologie Java RMI. Nynìj¹í implementace Java RMI splòuje standard CORBA. Pøi dodr¾ení rozhraní lze komunikovat se vzdálenou stranou, která je implementována jinou technologii (C++, Python apod.). Java RMI je technologie umo¾òující volání metod objektù, které jsou umístìny na vzdáleném stroji. Staèí tedy spustit RMI server a registrovat objekt. Po¾adovaný objekt je zaregistrován v registru. Registr je mo¾né kontaktovat a vy¾ádat si rozhraní daného objektu.
 
-Na obrázku \ref{fig:distmodel}. je zobrazen model implementace distribuované architektury vytvoøeného nástroje. Vzdálené stroje jsou implementovány jako RMI server. Ka¾dý server musí mít vlastní registr. Centrální GUI tedy plni roli klienta. V tomto pøípadì jsou instance vzdálených aplikaèních jednotek uchovány v ADT {\it HashMap}. Jednotlivé instance jsou spárovány se zobrazovacím panelem identifikaèním èíslem. Pøi interpretaci pøíkazu z GUI je získáno identifikaèní èíslo z hlavièky panelu. Identifikaèní èíslo je pak pou¾ito jako klíè k vyhledání správné aplikaèní jednotky. Po získání instance aplikaèní jednotky je pøíkaz odeslán.
 
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.7]{pic/dismodel.png}
-\caption{Zobrazení delegace zobrazení dat pøijatých aplikaèními jednotkami. }
-\label{fig:distmodel}
-\end{center}
-\end{figure}
+\noindent Na obrázku \ref{fig:distmodel}. je zobrazen model implementace distribuované architektury vytvoøeného nástroje. Vzdálené stroje jsou implementovány jako RMI server. Ka¾dý server musí mít vlastní registr. Centrální GUI tedy plni roli klienta. V tomto pøípadì jsou instance vzdálených aplikaèních jednotek uchovány v ADT {\it HashMap}. Jednotlivé instance jsou spárovány se zobrazovacím panelem identifikaèním èíslem. Pøi interpretaci pøíkazu z GUI je získáno identifikaèní èíslo z hlavièky panelu. Identifikaèní èíslo je pak pou¾ito jako klíè k vyhledání správné aplikaèní jednotky. Po získání instance aplikaèní jednotky je pøíkaz odeslán.
+
+
 
 \chapter{Prùbìh testování webových slu¾eb}
 Tato sekce se zabývá pou¾itím vytvoøeného nástroje
