@@ -8,10 +8,10 @@
 
 
 \chapter{Základní pojmy}
-V této kapitole je popsána vìt¹ina dùle¾itých pojmù a zkratek, které se vyskytují dále v práci nebo jsou dùle¾ité pro objasnìní nìkterého z pou¾itých principù. Nejdøíve budou popsány dvì základní architektury, kterých týká celá tato práce. Dále budou popsány principy transakcí a jejich roz¹íøení na distribuované systémy. V poslední èásti základních pojmù jsou popsány souèásti platformy programovacího jazyka Java.
+V této kapitole je popsána vìt¹ina dùle¾itých pojmù a zkratek, které se vyskytují dále v práci nebo jsou dùle¾ité pro objasnìní nìkterého z pou¾itých principù.  Dále jsou vysvìtleny principy webových slu¾eb a pou¾itelné pøístupy. V dal¹í èásti pak jsou popsány principy testování softwaru. V poslední èásti základních pojmù jsou popsány souèásti platformy programovacího jazyka Java.
 
 \subsubsection*{Hypermédia}
-Pojem hypermédia \cite{hypermedia} poprvé pou¾il Ted Nelson jako zobecnìní pojmu hypertext. Hypertext jsou textové dokumenty propojené pomocí odkazù, zatímco hypermédia roz¹iøuje pojem hypertext na jakoukoliv formu média. Tedy jsou to média propojené pomocí odkazù.
+Pojem hypermédia \cite{hypermedia} poprvé pou¾il Ted Nelson jako zobecnìní pojmu hypertext. Hypertext jsou textové dokumenty propojené pomocí odkazù, zatímco hypermédia roz¹iøuje pojem hypertext na jakoukoliv formu média. Tedy jsou to média propojené pomocí odkazù na jiná média.
 
 \subsubsection*{Serializace a Deserializace}
 Postup, pøi kterém je objekt nebo datová struktura pøeveden do urèitého formátu \cite{serial}. Tento formát musí umo¾òovat ulo¾ení datové struktury napø. na pevný disk nebo jej odeslat pomocí sítì na vzdálený stroj. Deserializace je inverzní postup, pøi kterém je datová struktura pøevedena z serializované podoby zpìt do své pùvodní.
@@ -35,11 +35,11 @@ SOAP je pùvodnì zkratka pro Simple Object Acsess Protocol, ale od verze 1.2 se p
 
 
 \subsubsection*{REST}
-Zkratka REST znamená REpresentation State Transfer. Oznaèuje architektonický styl pro hypermediální distribuované systémy. V tìchto systémech jsou ulo¾eny dokumenty nebo slu¾by, které jsou identifikovány pomocí URI.  REST není pøímo svázán s konkrétním komunikaèním protokolem. Jeliko¾ HTTP protokol nejlépe vyhovuje principùm REST , je s tímto stylem ve vìt¹inì pøípadù spojován.
+Zkratka REST znamená REpresentation State Transfer. Oznaèuje architektonický styl pro hypermediální distribuované systémy. V tìchto systémech jsou ulo¾eny dokumenty nebo slu¾by, které jsou identifikovány pomocí URI.  REST není pøímo svázán s konkrétním komunikaèním protokolem. Jeliko¾ HTTP protokol nejlépe vyhovuje principùm REST, je s tímto stylem spojován ve vìt¹inì pøípadù .
 
 
 \subsubsection*{Volnì svázaný systém}
-\label{LC}Volnì svázané (loosely coupled)\cite{SOA} systémy obsahují na sobì nezávislé komponenty, které spolu komunikují a tak vytváøejí po¾adovaný systém. Nezávislost tìchto komponent spoèívá v mo¾nosti jejich obmìny. Ve volnì svázaném systému se mohou jednotlivé komponenty uvnitø mìnit (verze, implementace, atd.) ani¾ by to negativnì zasáhlo daný systém.
+\label{LC}Volnì svázané (loosely coupled)\cite{SOA} systémy obsahují na sobì nezávislé komponenty, které spolu komunikují, a tak vytváøejí po¾adovaný systém. Nezávislost tìchto komponent spoèívá v mo¾nosti jejich obmìny. Ve volnì svázaném systému se mohou jednotlivé komponenty uvnitø mìnit (verze, implementace, atd.) ani¾ by to negativnì zasáhlo daný systém.
 
 \subsubsection*{Tìsnì svázaný systém} 
  Tìsnì svázané (tightly coupled)\cite{SOA} systémy obsahují na sobì závislé komponenty, jejich¾ implementace je spojuje dohromady. V tìsnì vázaných systémech si nemù¾eme dovolit mìnit (implementace, verze, atd.) pouze jednu komponentu, ani¾ by to mìlo negativní následky na chod ostatních komponent nebo systému jako celku.
@@ -76,7 +76,7 @@ Slu¾by komunikují pomocí zpráv. Jakmile je zpráva odeslána, slu¾ba nad ní ztrácí
 Základem pro SOAP webové slu¾eby je SOAP protokol. SOAP je navr¾en jako bezstavový protokol. Pou¾ívá jednocestný zpùsob odesílání zpráv (one-way MEP, Message Exchange Pattern), ale je mo¾no jej pøizpùsobit k dal¹ím zpùsobùm odesílání zpráv jako napø. ¾ádost/odpovìï, ¾ádost/více odpovìdí. SOAP protokol je mo¾no pou¾ívat na libovolné platformì s libovolným programovacím jazykem. 
 
 Hlavními specifikacemi pro SOAP webové slu¾by je soubor specifikací s prefixem WS-. Tento soubor specifikací zahrnuje dal¹í funkcionality, které byly vyvinuty nad SOAP protokolem. Patøí mezi nì napø. transakèní zpracování, bezpeènost, spolehlivost atd. Dal¹ími dùle¾itými  technologiemi jsou jazyk pro popis definice webové slu¾by (WSDL, Web Service Definition Language) a registr pro popis a lokalizaci webových slu¾eb (UDDI, Universal Description and Discovery Integration). Nejdøíve si popí¹eme specifikaci SOAP a po té budou pøedstaveny technologie WSDL a UDDI.
-\\\\ 
+\newpage
 Specifikace SOAP protokolu je rozdìlena na 4 èásti:
 
 \begin{itemize}
@@ -210,7 +210,7 @@ Ustanovuje vztah klient-server mezi ¾adatelem o slu¾bu a poskytovatelem. Tento v
 
 
 
-\section{REST}
+\section{Principy REST}
 Architektonický styl REST byl navr¾en Roy Fieldingem  v rámci jeho disertaèní práce v roce 2000 \cite{fielding}. REST není architekturou ani technologii. REST je sada omezení, které musí dané øe¹ení obsahovat. REST byl vytvoøen pro prostøedí internetu a webu. REST je orientován na zdroje, kde zdroj pøedstavují po¾adováná data nebo stav daného vzdáleného systému. Tento styl získávání dat je velmi podobný SQL dotazùm, kde také po¾adujeme urèitá data (deklarativní programování). V kontrastu s tímto je SOAP protokol, pomocí kterého jsou na vzdálené stranì vyvolávány procedury (procedurální programování).
 
 Aèkoliv je mo¾né se doèíst o soupeøení a porovnávání mezi SOA a REST, tak hlavní smysl REST je být alternativou k procedurálnímu charakteru SOA architektury. 
@@ -220,7 +220,7 @@ Nyní se podíváme na základní sadu charakteristik REST:
 \item {\bf Architektura klient/server}\\
 Zde je klientem u¾ivatelské rozhraní a server je úlo¾i¹tì dat. Díky oddìlení u¾ivatelského rozhraní a serveru má být dosa¾eno lep¹í pøenositelnosti u¾ivatelského rozhraní a lep¹í ¹kálovatelnosti serverové strany.
 \item {\bf Bezstavovost}\\
-Kontext nesmí být ulo¾en na stranì serveru a odeslaná odpovìï musí být sebe-popisující. Ve¹keré informace o aktuálním sezení jsou ulo¾eny na stranì klienta. Toto omezení má umo¾òovat lep¹í viditelnost, spolehlivost a ¹kálovatelnost. Lep¹í viditelnosti je dosa¾eno, proto¾e monitorovací systémy mohou monitorovat pouze odesílané po¾adavky a pøijímané odpovìdi, kde jsou kompletní informace. Lep¹í spolehlivosti je dosa¾eno díky snadnìj¹í obnovì po chybách, proto¾e na serveru nejsou ulo¾eny kontextové informace. Díky neukládání kontextových informací na serveru je dosa¾eno i lep¹í ¹kálovatelnosti.
+Kontext nesmí být ulo¾en na stranì serveru a odeslaná odpovìï musí být sebe-popisující. Ve¹keré informace o aktuálním sezení jsou ulo¾eny na stranì klienta. Toto omezení má umo¾òovat lep¹í viditelnost, spolehlivost a ¹kálovatelnost. Lep¹í viditelnosti je dosa¾eno, proto¾e monitorovací systémy mohou monitorovat pouze odesílané po¾adavky a pøijímané odpovìdi, ve kterých jsou uvedeny v¹echny potøebné informace. Lep¹í spolehlivosti je dosa¾eno díky snadnìj¹í obnovì po chybách, proto¾e na serveru nejsou ulo¾eny kontextové informace. Díky neukládání kontextových informací na serveru je dosa¾eno i lep¹í ¹kálovatelnosti.
 \item {\bf Mezi-pamì»}\\
 Pro lep¹í výkonnost dotazù by mìla být pou¾ita na stranì klienta mezi-pamì» (cache), která ukládá výsledky ji¾ provedených dotazù. Toto zlep¹ení výkonnosti je vykoupeno men¹í spolehlivostí dat, které nemusí být v danou chvíli aktuální.
 \item {\bf Vrstvy}\\
@@ -230,17 +230,17 @@ Jednotlivé komponenty systému musí mít jednotné rozhraní. Co¾ mù¾e mít za násled
 \item {\bf Kód na vy¾ádání}\\
 Nepovinnou funkcionalitou je tzv. kód na vy¾ádání. Tento pojem souvisí s roz¹íøeními, které jsou zasílána klientské aplikaci na vy¾ádání. Jedná se o dodateèný kód (Java applet, Javascript), který se spou¹tí na stranì klienta. Kód na vy¾ádání je nepovinnou charakteristikou, proto¾e vykonávání takovéhoto kódu mù¾e být na klientské stranì zakázáno.
 \end{itemize}
-Tyto vlastnosti nemusí být na první pohled úplnì srozumitelné, proto budou dále popsány na konkrétní technologii viz sekce REST webové slu¾by
+Tyto vlastnosti nemusí být na první pohled úplnì srozumitelné, proto budou dále popsány na konkrétní technologii v následující kapitole.
 
 \subsection*{REST webové slu¾by}
- Druhou koncepcí webových slu¾eb \cite{wsupandrunning}, se kterou se mù¾eme setkat a stává se velmi populární, jsou webové slu¾by respektující REST architektonický styl. Proto¾e REST stylu vyhovují vlastnosti HTTP protokolu a HTTP protokol je vyu¾íván ke konstrukci webových slu¾eb, byly vlastnosti REST pou¾ity pro konstrukci webových slu¾eb. Nyní bude popsáno propojení REST vlastností a omezení, která byla pøedstavena døíve v textu, s protokolem HTTP a následnì spojení s technologii webových slu¾eb. 
+ Druhou koncepcí webových slu¾eb \cite{wsupandrunning}, se kterou se mù¾eme setkat, jsou webové slu¾by respektující REST architektonický styl. Proto¾e REST stylu vyhovují vlastnosti HTTP protokolu a HTTP protokol je vyu¾íván ke konstrukci webových slu¾eb, byly vlastnosti REST pou¾ity pro konstrukci webových slu¾eb. Nyní bude popsáno propojení REST vlastností a omezení, která byla pøedstavena døíve v textu, s protokolem HTTP a technologii webových slu¾eb. 
 \\\\\\
 HTTP protokol splòuje REST vlastnosti a omezení díky následujícím vlastnostem:
 \begin{itemize}
 \item {\bf Architektura klient/server}\\
 Samotný protokol HTTP je konstruován stylem dotaz/odpovìï klienta a serveru. 
 \item {\bf Bezstavovost}\\
-Tato vlastnost u¾ musí být implementována specificky na dané architektuøe, která je postavena nad HTTP protokolem. Pokud je kontext ukládán na serveru, tak se nejedná o aplikaci zalo¾enou èistì na principech REST.  
+Tato vlastnost u¾ musí být implementována specificky na dané architektuøe, která je postavena nad HTTP protokolem. Pokud je kontext ukládán na serveru, tak se nejedná o aplikaci zalo¾enou striktnì na principech REST.  
 \item {\bf Mezi-pamì»}\\
 Mezi-pamì» mù¾e vyu¾ívat i HTTP protokol pro ukládání odpovìdí na klientské stranì.
 \item {\bf Vrstvy}\\
@@ -248,16 +248,16 @@ Vícevrstvé rozdìlení je vyu¾ito v rámci HTTP protokolu. Kdy¾ si webový prohlí¾eè
 \item {\bf Identifikace zdrojù}\\
 Zdroje v HTTP mohou být identifikovány pomocí URI.
 \item {\bf Manipulace se zdroji pomocí jejich reprezentace }\\
-Data, která jsou odesílání pomocí HTTP mohou být pøená¹ená v jiné reprezentaci ne¾ jak jsou ulo¾ena, èili mohou být pøená¹eny jednotným zpùsobem (JSON, XML apod.).
+Data, která jsou odesílána pomocí HTTP mohou být pøená¹ená v jiné reprezentaci ne¾ jak jsou ulo¾ena. Data je mo¾no pøená¹et ve standardizovaném formátu (JSON, XML apod.).
 \item {\bf Sebe popisující zprávy }\\
-Tuto vlastnost HTTP protokol implicitnì nesplòuje, je tøeba tuto vlastnost doplnit ve vrstvì, která je implementována nad HTTP protokolem.
+Tuto vlastnost HTTP protokol implicitnì nesplòuje, ale umo¾òuje. Tuto vlastnost je tøeba doplnit ve vrstvì, která je implementována nad HTTP protokolem.
 \item {\bf Hypermédia jako prostøedek stavu aplikace}\\
 Toto omezení se vztahuje k vyu¾ití HTML dokumentù. Klient komunikuje se serverem pomocí hypermédii, které jsou dynamicky zprostøedkovány serverem. Klient nemusí nutnì být schopen interpretovat ka¾dý druh média, který mu je serverem nabídnut. Správnou interpretaci urèitých druhù médii je mo¾no dosáhnout kódem na vy¾ádání, který dodateènì umo¾ní správnou interpretaci.
 \end{itemize}
 
 \noindent Nyní jsme si ukázali, ¾e HTTP protokol je mo¾no pou¾ít pro aplikace zalo¾ených na REST principech. 
 
- Základní princip webových slu¾eb je zprostøedkování aplikaènì nezávislého komunikaèního rozhraní. Pro vytvoøení jednotného a aplikaènì nezávislého komunikaèního rozhraní je mo¾né pou¾ít HTTP protokol, a zprostøedkovat tak aplikace, které jsou vytvoøeny rùznými technologiemi. HTTP disponuje sadou pøíkazù, které je mo¾no vyu¾ít právì ke konstrukci webových slu¾eb respektující omezení REST. Základní pøíkazy, které se nejèastìji pou¾ívají jsou GET, PUT, POST, DELETE. Tato skupina operací se obecnì oznaèuje akronymem CRUD (Create, Read, Update, Delete ) a je mo¾né se s ní setkat v deklarativních zpùsobech programování.
+ Základní princip webových slu¾eb je zprostøedkování aplikaènì nezávislého komunikaèního rozhraní. Pro vytvoøení jednotného a aplikaènì nezávislého komunikaèního rozhraní je mo¾né pou¾ít HTTP protokol, a zprostøedkovat tak aplikace, které jsou vytvoøeny rùznými technologiemi. HTTP disponuje sadou pøíkazù, které je mo¾no vyu¾ít právì ke konstrukci webových slu¾eb respektující omezení REST. Základní pøíkazy, které se nejèastìji pou¾ívají jsou GET, PUT, POST, DELETE. Tato skupina operací se oznaèuje akronymem CRUD (Create, Read, Update, Delete ) a je mo¾né se s ní setkat v deklarativních zpùsobech programování.
 
 \begin{itemize}
 \item {\bf GET}\\
@@ -275,7 +275,7 @@ odstranìní zdroje
 \section{Testování software}
 Testování je souèástí ¾ivotního cyklu software \cite{art_of_testing} \cite{testing_found}. Testování je obecnì neodmyslitelnou souèástí jakéhokoliv produktu, nejenom z oblasti IT. Pøeci jen, pokud chceme zaruèit urèité vlastnosti produktu, je tøeba tyto vlastnosti vyzkou¹et - otestovat. Jeliko¾ software vytváøejí lidé a ti nejsou neomylní, je tøeba provìøit mo¾né pochybení pøi vývoji software.
 
-V ideálním pøípadì bychom pøi testování vyzkou¹eli v¹echny mo¾né zpùsoby pou¾ití, vstupy, prostøedí, abychom dùkladnì otestovali vytvoøený program. V reálném svìtì tento zpùsob není mo¾ný, proto¾e vyzkou¹et v¹echny mo¾né vstupy i jednoduchého programu je prakticky neøe¹itelný problém. K tomuto tvrzení staèí poukázat program, který seète dvì èísla z mno¾iny reálných èísel. Ne v¾dy je kompletní testování neøe¹itelný problém, minimálnì je v¹ak kompletní testování velmi nepraktické a hlavnì neekonomické.
+V ideálním pøípadì bychom pøi testování vyzkou¹eli v¹echny mo¾né zpùsoby pou¾ití, vstupy, prostøedí, abychom dùkladnì otestovali vytvoøený program. V reálném svìtì tento zpùsob není mo¾ný, proto¾e vyzkou¹et v¹echny mo¾né vstupy i jednoduchého programu je prakticky neøe¹itelný problém. K tomuto tvrzení staèí poukázat na program, který seète dvì èísla z mno¾iny reálných èísel. Ne v¾dy je kompletní testování neøe¹itelný problém, minimálnì je v¹ak kompletní testování velmi nepraktické a hlavnì neekonomické.
 
 Proto je tøeba si uvìdomit, ¾e nemù¾eme testovat v¹echny mo¾né vstupy. Aèkoliv nemù¾eme zaruèit absolutní bezchybovost software, mù¾eme se pokusit sní¾it poèet  chyb v software na minimum. Hlavním cílem testování je tedy odhalit co nejvìt¹í poèet chyb. Co¾ je paradox testování, proto¾e úspì¹né testování znamená odhalení chyby. Aby bylo testování úspì¹né a odhalilo co nejvíce chyb, je nutné k nìmu pøistupovat komplexním zpùsobem a poèínat si obdobnì jako pøi vývoji samotného software.  Podívejme se tedy na základní techniky testování software. 
 
@@ -376,7 +376,7 @@ Pro vytváøení vícevrstvých aplikací Java EE obsahuje velké mno¾ství technologii 
 
 
 \chapter{Testování webových slu¾eb}
- Tato èást se bude vìnovat aspektùm testování webových slu¾eb  se zamìøením na testování robustnosti a odolnosti \cite{webservices}. Na testování webových slu¾eb se mù¾eme dívat jako na testování jakéhokoliv jiného software, av¹ak musíme vzít v úvahu nìkolik zásadních skuteèností. Webové slu¾by a» u¾ s pou¾itím SOAP protokolu nebo REST principù jedná se o vzdálené aplikace, které se mohou skládat z nìkolika vrstev. Dále pak webové slu¾by mohou být kompletnì bez grafického u¾ivatelského rozhraní, co¾ znesnadòuje manuální testování, na druhou stranu je zde vìt¹í prostor pro automatizaci testování.
+ Tato èást se bude vìnovat aspektùm testování webových slu¾eb  se zamìøením na testování robustnosti a odolnosti \cite{webservices}. Na testování webových slu¾eb se mù¾eme dívat jako na testování jakéhokoliv jiného software, av¹ak musíme vzít v úvahu nìkolik zásadních skuteèností. Webové slu¾by, a» u¾ s pou¾itím SOAP protokolu nebo REST principù, jsou vzdálené aplikace, které se mohou skládat z nìkolika vrstev. Dále pak webové slu¾by mohou být kompletnì bez grafického u¾ivatelského rozhraní, co¾ znesnadòuje manuální testování, na druhou stranu je zde vìt¹í prostor pro automatizaci testování.
 
 
 \section{Rùzné pohledy na webové slu¾by}
@@ -389,16 +389,16 @@ Pro webové slu¾by je toto základní pohled, proto¾e slu¾ba je umístìna na vzdálen
 Pokud vyu¾íváme webových slu¾eb vìt¹inou se nespokojíme s vygenerovanou klientskou èástí aplikace a je tøeba ji roz¹íøit. Proto je tøeba klientskou èást aplikace také podrobit testování. Nejdøíve otestujeme klientskou èást s tzv. fale¹ným serverem (stub server). Stub server má pouze shodné rozhraní se skuteènì pou¾itým. Co¾ umo¾òuje velmi rychle vytvoøit testovací server, se kterým je mo¾no vyhodnotit vlastnosti odesílaných dotazù.
 
 \section{Rùzné umístìní webových slu¾eb}
-Dále pak je nutné uva¾ovat umístìní webových slu¾eb. Webové slu¾by mohou být dostupné z intranetu, kdy jsou slu¾by umístìny v uvnitø podnikové sítì a pøístup k nim mají pouze zamìstnanci nebo u¾ivatelé s pøístupem do dané uzavøené sítì. Pak existují webové  slu¾by dostupné z internetu, které jsou veøejnì dostupné.
+Dále pak je nutné uva¾ovat umístìní webových slu¾eb. Webové slu¾by mohou být dostupné z intranetu, kdy jsou slu¾by umístìny v uvnitø podnikové sítì. Pøístup k nim mají pouze zamìstnanci nebo u¾ivatelé s pøístupem do dané uzavøené sítì. Pak existují webové  slu¾by dostupné z internetu, které jsou veøejnì dostupné.
 
 \subsection*{Intranet}
-Pokud je slu¾ba dostupná pouze z vnitøní sítì je mo¾né pøibli¾nì odhadnou kolik u¾ivatelù bude danou webovou slu¾bu vyu¾ívat, proto¾e pøístup do vnitøní sítì obvykle má omezený poèet u¾ivatelù. Pokud u¾ivatelé  pøistupují ke slu¾bì ve vnitøní síti z vnìj¹í sítì, mù¾e simulaci tohoto pøípadu u¾ití komplikovat pou¾itá bezpeènostní opatøení ( firewall, autentizace, VPN, apod.).
+Pokud je slu¾ba dostupná pouze z vnitøní sítì, je mo¾né pøibli¾nì odhadnou kolik u¾ivatelù bude danou webovou slu¾bu vyu¾ívat, proto¾e pøístup do vnitøní sítì obvykle má omezený poèet u¾ivatelù. Pokud u¾ivatelé  pøistupují ke slu¾bì ve vnitøní síti z vnìj¹í sítì, mù¾e simulaci tohoto pøípadu u¾ití komplikovat pou¾itá bezpeènostní opatøení (firewall, autentizace, VPN apod.).
 
 \subsection*{Internet}
-U veøejnì dostupných webových slu¾eb je obtí¾nìj¹í odhadnout kolik u¾ivatelù bude tuto slu¾bu vyu¾ívat. Na druhou stranu, zde nemusejí být tak vysoké nároky na zabezpeèení jako na webové slu¾by dostupné z intranetu.
+U veøejnì dostupných webových slu¾eb je obtí¾nìj¹í odhadnout kolik u¾ivatelù bude tuto slu¾bu vyu¾ívat. V tomto pøípadì nemusejí být tak vysoké nároky na zabezpeèení jako na webové slu¾by dostupné z intranetu.
 
 \section{Izolace webových slu¾eb}
-Pøi testování webových slu¾eb je v nìkterých pøípadech potøeba cílovou webovou slu¾bu izolovat. Izolace webové slu¾by se vyu¾ívá v pøípadech, kdy je potøeba simulovat propojení s dal¹ími slu¾bami nebo systémy. Tyto slu¾by jsou simulovány tzv. {\it Mock} slu¾bami. Mock slu¾ba disponuje shodným rozhraním jako její vzorová slu¾ba, av¹ak její funkcionalita není implementována a je omezena na konstantní odpovìï. Toto øe¹ení je výhodné v testovacích prostøedích z více dùvodù. Vzorové slu¾by mohou být placené, jejich implementace nemusí být veøejná, mají del¹í èas odezvy ne¾ Mock slu¾by, Mock slu¾by dovolují testovat jednotlivé celky systému oddìlenì apod.
+Pøi testování webových slu¾eb je v nìkterých pøípadech potøeba cílovou webovou slu¾bu izolovat. Izolace webové slu¾by se vyu¾ívá v pøípadech, kdy je potøeba simulovat propojení s dal¹ími slu¾bami nebo systémy. Tyto slu¾by jsou simulovány tzv. {\it Mock} slu¾bami. {\it Mock}  slu¾ba disponuje shodným rozhraním jako její vzorová slu¾ba, av¹ak její funkcionalita není implementována a je omezena na konstantní odpovìï. Toto øe¹ení je výhodné v testovacích prostøedích z více dùvodù. Vzorové slu¾by mohou být placené, jejich implementace nemusí být veøejná, mají del¹í èas odezvy ne¾ Mock slu¾by, Mock slu¾by dovolují testovat jednotlivé celky systému oddìlenì apod.
 
 Mock slu¾eb se vyu¾ívá také pøi zátì¾ovém testování. Mock slu¾by zatì¾ují cílový systém minimálnì, a tak je mo¾né izolovat cílovou slu¾bu a zamìøit se pouze na testování této slu¾by.
 
@@ -424,16 +424,16 @@ Jeliko¾ jsou webové slu¾by èasto exponovány velkému poètu u¾ivatelù, je nutné se
 Jeliko¾ webové slu¾by patøí mezi distribuované aplikace, je nutné nejdøíve testovat dostupnost dané slu¾by. Pokud slu¾ba není z nìjakého dùvodu dostupná, dal¹í druhy testování (rozhraní, zátì¾ové, bezpeènostní) ztrácejí na významu. Po té co zjistíme, ¾e slu¾ba je dostupná, je vhodné ovìøit její správné fungování funkcionálními testy. Pokud webová slu¾ba vykazuje správnou funkcionalitu, je vhodné otestovat dal¹í vlastnosti jako napøíklad bezpeènost nebo výkonost slu¾by.
 
 \subsection*{Funkcionální testování}
-Cílem funkcionálního testování v rámci webových slu¾eb je zji¹tìní, zda-li slu¾ba je dostupná a její funkcionalita odpovídá její specifikaci. V první øadì se testuje spojení, ve vìt¹inì pøípadù se jedná o HTTP po¾adavek. Pøijaté odpovìdi jsou pak podrobeny patøièné analýze.  
+Cílem funkcionálního testování v rámci webových slu¾eb je zji¹tìní, zda-li slu¾ba je dostupná a její funkcionalita odpovídá její specifikaci. V první øadì se testuje spojení. Ve vìt¹inì pøípadù se jedná o HTTP po¾adavek. Pøijaté odpovìdi jsou pak podrobeny patøièné analýze.  
 
 \subsection*{Testování odolnosti}
-Testování odolnosti software døíve zmínìna nebyla, proto¾e bývá zahrnuta do obvyklého testování. V pøípadì webových slu¾eb v¹ak nabývá zvlá¹tního významu, proto¾e se jedná o distribuovanou technologii. Testování odolnosti se zabývá simulováním prostøedí, kde se vyskytuje vìt¹í èi men¹í mno¾ství chyb. Chyby jsou vkládány do dat, se kterými aplikace pracuje, do komunikace mezi jednotlivými èástmi aplikace apod. Do kategorie testování odolnosti spadá i technika injekce chyb, kdy se testuje reakce webové slu¾by na nevhodný nebo po¹kozený vstup.
+Testování odolnosti software døíve zmínìno nebylo, proto¾e bývá zahrnuta do obvyklého testování. V pøípadì webových slu¾eb v¹ak nabývá zvlá¹tního významu, proto¾e se jedná o distribuovanou technologii. Testování odolnosti se zabývá simulováním prostøedí, kde se vyskytuje vìt¹í èi men¹í mno¾ství chyb. Chyby jsou vkládány do dat, se kterými aplikace pracuje, do komunikace mezi jednotlivými èástmi aplikace apod. Do kategorie testování odolnosti spadá i technika injekce chyb, kdy se testuje reakce webové slu¾by na nevhodný nebo po¹kozený vstup.
 
-Injekce chyb pøedstavuje techniku testování odolnosti aplikace. Pøi injekci chyb se zámìrnì vkládají chyby buï do zdrojového kódu pøed kompilací nebo za bìhu programu. Pøi vkládání chyb do zdrojového kódu programu pøed kompilací se jedná o tzv. {Compile-Time Injection}. Tuto techniku je mo¾no pou¾ít jak pro simulování softwarových chyb, tak i hardwarových. Technika zalo¾ená na vkládání chyb za bìhu programu se nazývá {Run-Time Injection}.Pro injekci chyb do webových slu¾eb lze vyu¾ít  techniku vkládání chyb za bìhu programu. Více informací obsahuje diplomová práce Martina ®ou¾elky, na kterou tato práce bude navazovat.
+Injekce chyb pøedstavuje techniku testování odolnosti aplikace. Pøi injekci chyb se zámìrnì vkládají chyby buï do zdrojového kódu pøed kompilací, nebo za bìhu programu. Pøi vkládání chyb do zdrojového kódu programu pøed kompilací se jedná o tzv. {Compile-Time Injection}. Tuto techniku je mo¾no pou¾ít jak pro simulování softwarových chyb, tak i hardwarových. Technika zalo¾ená na vkládání chyb za bìhu programu se nazývá {Run-Time Injection}.Pro injekci chyb do webových slu¾eb lze vyu¾ít  techniku vkládání chyb za bìhu programu. Více informací obsahuje diplomová práce Martina ®ou¾elky, na kterou tato práce navazuje.
 
 
 \subsection*{Zátì¾ové testování}
-Webová slu¾ba je druh webové aplikace tedy k ní mù¾e pøistupovat velké mno¾ství u¾ivatelù. Proto je nutné vìdìt kolik u¾ivatelù je daná webová slu¾ba schopna obslou¾it za urèitý èasový okam¾ik. V tomto smìru existuje více zpùsobu jak pohlí¾et na výkonnost webové slu¾by. Je mo¾né mìøit poèet zpracovaných po¾adavkù za sekundu, poèet u¾ivatelù pøi zachování stejné latence. Zátì¾ové testy se v¹ak musí provádìt automaticky, proto¾e je obtí¾né testovat napø. obsluhu 1000 u¾ivatelù.
+Webová slu¾ba je druh webové aplikace. Mù¾e k ní pøistupovat velké mno¾ství u¾ivatelù. Proto je nutné vìdìt kolik u¾ivatelù je daná webová slu¾ba schopna obslou¾it za urèitý èasový okam¾ik. V tomto smìru existuje více zpùsobu jak pohlí¾et na výkonnost webové slu¾by. Je mo¾né mìøit poèet zpracovaných po¾adavkù za sekundu, poèet u¾ivatelù pøi zachování stejné latence. Zátì¾ové testy se v¹ak musí provádìt automatizovanì, proto¾e je obtí¾né testovat napø. obsluhu 1000 u¾ivatelù.
 
 
 \subsection*{Bezpeènostní testování}
@@ -447,7 +447,7 @@ Cílem této práce je vytvoøit nástroj pro testování webových slu¾eb. Pøi vytváøen
 
 V této èásti práce jsou vybrány nástroje související s funkèním a zátì¾ovým testováním. Jako poslední bude struènì popsán nástroj FIWS, který je výsledkem pøedcházející diplomové práce.
 \subsection*{soapUI}
-soapUI \cite{soapUI}je nástroj s otevøeným kódem  zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI, lze provádìt i zátì¾ové testy. Roz¹íøení LoadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
+soapUI \cite{soapUI} je nástroj s otevøeným kódem  zamìøený na testování. Disponuje velkým mno¾stvím funkcí vèetnì mo¾nosti testování webových slu¾eb. Umo¾òuje testovat SOAP i REST webové slu¾by funkcionálními testy. Pokud je doinstalováno roz¹íøení loadUI, lze provádìt i zátì¾ové testy. Roz¹íøení loadUI disponuje mo¾ností distribuovaného testování. U¾ivatelské rozhraní je intuitivní a snadné na ovládání. Projekt disponuje i zásuvným modulem pro prostøedí Eclipse i NetBeans, ale tento modul není pøíli¹ stabilní a pro pohodlnìj¹í vytváøení a provádìní testovacích scénáøù je lep¹í pou¾ít nativní u¾ivatelské rozhraní.
 
 Projekt lze provázat s automatizaèním nástrojem Apache Ant. Po vytvoøení a vyladìní testovacích scénáøù pomocí nativního u¾ivatelského rozhraní lze tyto testovací scénáøe provádìt automaticky s pou¾itím nástroje Ant. Tento zpùsob integrace je velmi efektivním øe¹ením a tato práce bude tímto zpùsobem inspirována. Zároveò lze integrovat soapUI s JUnit, co¾ je implementace testování modulù v jazyce Java.
 
@@ -463,11 +463,11 @@ FIWS reprezentuje nástroj pro injekci poruch. Je specializován na vkládání poruc
 
 
 \chapter{Specifikace po¾adavkù}
-V této èásti bude roz¹íøeno a upøesnìno oficiální zznázornìnadání.  Specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje po té dal¹í dva body detailnìji specifikují po¾adavky ze zadání. Dále pak bude následovat roz¹íøení v podobì distribuované architektury. 
+V této èásti bude roz¹íøeno a upøesnìno oficiální zadání.  Specifikace po¾adavkù je dùle¾itou souèástí vývoje softwaru, proto¾e v této fázi jsou jednoznaènì definovány po¾adavky na vytváøený produkt. Nejdøíve budou specifikovány základní funkce nástroje. Dal¹í dvì èásti detailnìji specifikují po¾adavky ze zadání. Dále pak bude následovat roz¹íøení v podobì distribuované architektury. 
 
 
 \section{Základní koncept}
-Základní koncept obsahuje základní po¾adavky, bez kterých by nástroj byl nefunkèní. Jedná se tedy o jádro nástroje. 
+Základní koncept obsahuje základní po¾adavky, bez kterých by nástroj byl nefunkèní. Bude obsahovat po¾adavky na klientskou aplikaci. 
 
 \subsection*{Základní funkce nástroje}
 Nástroj bude umo¾òovat vytvoøení testovacích dat. Testovací data se budou vytváøet automatizovanì z dokumentù WSDL, pomocí grafického u¾ivatelské rozhraní nebo je bude mo¾no importovat ji¾ pøipravené. Testy bude mo¾no upravovat. Testy vygenerované pomocí WSDL dokumentu budou dále v textu nazvány jako kostra testu, proto¾e budou vytvoøeny testy pouze v základní podobì a èasto je bude tøeba upravit.
@@ -487,7 +487,7 @@ Nástroj bude umo¾òovat testování SOAP webových slu¾eb. To znamená, ¾e jednotka b
 Nástroj bude umo¾òovat testování REST webových slu¾eb. To znamená, ¾e jednotka bude podporovat HTTP pøíkazy, které jsou popsány v sekci REST webové slu¾by. Bude také ukládat odpovìdi od slu¾by, pokud to charakter testování bude vy¾adovat.
 
 \subsection*{U¾ivatelské rozhraní pro pøíkazovou øádku}
-Nástroj bude mo¾no ovládat pomocí pøíkazové øádky. Z pøíkazové øádky bude mo¾né ovládat základní funkce nástroje tzn. generováni základních testù, konfigurace testù, spu¹tìní testù, ulo¾ení výsledkù testù. 
+Nástroj bude mo¾no ovládat pomocí pøíkazové øádky. Z pøíkazové øádky bude mo¾né ovládat základní funkce nástroje tzn. konfigurace testù, spu¹tìní testù, ulo¾ení výsledkù testù. 
 
 \subsection*{Grafické u¾ivatelské rozhraní}
 Grafické u¾ivatelské rozhraní bude umo¾òovat pøehledné vytváøení testù dle po¾adavku na strukturu. Testy bude mo¾no vytváøet upravovat i ru¹it. Testy bude mo¾no aplikovat spu¹tìním jednotky pro spou¹tìní testù. Rozhraní bude umo¾òovat pøehledné zobrazení vybraných výsledkù testù. V grafickém u¾ivatelském rozhraní dále bude mo¾né ovládat vzdálené procesy, které budou umo¾òovat pøedání vytvoøených testù a spu¹tìní testovací jednotky.
@@ -498,6 +498,25 @@ Jednotlivé testy budou moci být vytváøeny ve vìt¹ích celcích, které spolu souvis
 \subsection*{Automatizace generování vzorù pro testování}
 Pokud je slu¾ba popsána standardizovaným zpùsobem (WSDL, WADL apod.) bude mo¾no pro tuto slu¾bu vygenerovat základní sadu testù na základì tìchto dokumentù. 
 
+
+\section{Integrace s nástroji pro testování spolehlivosti}
+Tento nástroj bude nabízet pouze nìkteré mo¾nosti testování webových slu¾eb, proto je velmi vhodné umo¾nit u¾ivateli pou¾ití tohoto nástroje spoleènì s dal¹ími nástroji podobného charakteru a docílit tak komplexních mo¾ností testování.
+
+\subsection*{Automatizace provádìní testù}
+Spou¹tìní testovací jednotky bude mo¾né provádìt pomocí automatizaèních nástrojù jako napø Apache Ant, aby bylo mo¾né vytváøet skripty, které by umo¾òovaly integraci více nástrojù do jediného skriptu.
+
+
+\section{Distribuované testování}
+Tato sekce specifikace bude zamìøena  na popis po¾adavkù pro distribuované provádìní testù. Toto roz¹íøení není souèástí zadání, ale je velmi vhodné vyu¾ití distribuované architektury pro zátì¾ové testování.
+
+\subsection*{Správa procesù na vzdálených strojích}
+Proces testovací jednotky musí nejdøíve bì¾et na vzdáleném stroji, pak bude mo¾né otestovat konektivitu s touto vzdálenou jednotkou. Vzdálené jednotky bude mo¾né testovat (konektivitu) a ukonèovat z grafického u¾ivatelského rozhraní i z rozhraní pøíkazové øádky. 
+
+\subsection*{Spu¹tìní testù na vzdálených strojích }
+Z obou u¾ivatelských prostøedí bude taky mo¾né zaslat po¾adované testy urèité jednotce èi více jednotkám a následnì jim odeslat pøíkaz ke spu¹tìní testování pøípadnì pøíkaz ke zastavení testování.
+
+\subsection*{Odesílání výsledkù testù hlavnímu procesu}
+Výsledky testù se budou zaznamenávat a bude na výbìr, zda-li je posílat automaticky centrálnímu ovládání nebo na pouze na vy¾ádání pøíkazem.	
 
 
 
@@ -517,27 +536,6 @@ HTTP proxy jednotka bude podporovat dal¹í formáty dat, do kterých bude mo¾no vkl
 \subsection*{Podpora komprimovaných odpovìdí od webových slu¾eb}
 HTTP proxy jednotka bude roz¹íøena o podporu analýzy komprimovaných odpovìdí od webových slu¾eb. Je tedy nutné implementovat podporu pro ètení dat komprimovaných typem GZIP. 
 
-\section{Integrace s nástroji pro testování spolehlivosti}
-Tento nástroj bude nabízet pouze nìkteré mo¾nosti testování webových slu¾eb, proto je velmi vhodné umo¾nit u¾ivateli pou¾ití tohoto nástroje spoleènì s dal¹ími nástroji podobného charakteru a docílit tak komplexních mo¾ností testování.
-
-\subsection*{Automatizace provádìní testù}
-Spou¹tìní testovací jednotky bude mo¾né provádìt pomocí automatizaèních nástrojù jako napø Apache Ant, aby bylo mo¾né vytváøet skripty, které by umo¾òovaly integraci více nástrojù do jediného skriptu.
-
-
-
-\section{Distribuované testování}
-Tato sekce specifikace bude zamìøena  na popis po¾adavkù pro distribuované provádìní testù. Toto roz¹íøení není souèástí zadání, ale je velmi vhodné vyu¾ití distribuované architektury pro zátì¾ové testování.
-
-\subsection*{Správa procesù na vzdálených strojích}
-Proces testovací jednotky musí nejdøíve bì¾et na vzdáleném stroji, pak bude mo¾né otestovat konektivitu s touto vzdálenou jednotkou. Vzdálené jednotky bude mo¾né testovat (konektivitu) a ukonèovat z grafického u¾ivatelského rozhraní i z rozhraní pøíkazové øádky. 
-
-\subsection*{Spu¹tìní testù na vzdálených strojích }
-Z obou u¾ivatelských prostøedí bude taky mo¾né zaslat po¾adované testy urèité jednotce èi více jednotkám a následnì jim odeslat pøíkaz ke spu¹tìní testování pøípadnì pøíkaz ke zastavení testování.
-
-\subsection*{Odesílání výsledkù testù hlavnímu procesu}
-Výsledky testù se budou zaznamenávat a bude na výbìr, zda-li je posílat automaticky centrálnímu ovládání nebo na pouze na vy¾ádání pøíkazem.	
-
-
 
 \chapter{Návrh implementace}
 Tato sekce popisuje dal¹í èást procesu vývoje softwaru. Návrh je velmi dùle¾itou souèástí vývoje, proto¾e kvalitní návrh ¹etøí prostøedky v dal¹ích fázích vývoje. V návrhu je uveden základní koncept nástroje, který se skládá z nìkolika souèástí. Nìkteré souèásti budou pøevzaty z pøedchozí diplomové práce a upraveny tak, aby splòovaly po¾adavky ze zadání.
@@ -551,11 +549,11 @@ K implementaci jsou vhodné platformy Java a .NET. Platforma Java nabízí multipla
 \section{Základní koncept}
 Základní koncept je znázornìn na obrázku \ref{fig:zaklad}. Základem FIWS 2.0  je testovací jednotka, která bude hrát roli univerzální klientské aplikace pro webové slu¾by, která je schopna odesílat a pøijímat HTTP po¾adavky webovým slu¾bám v po¾adovaném objemu a rychlosti s ohledem na mo¾nosti systému, na kterém je spu¹tìna. Data, která bude testovací jednotka odesílat budou pøedem pøipravena a budou testovací jednotce explicitnì pøedána. Bude tedy mo¾né pøedávat data pro odesílaní podle specifikovaného umístìní. Data pou¾itá pro odesílání musí  mít v¾dy stejný formát. To platí zejména pro data, která nebudou vytvoøena v nativním u¾ivatelském rozhraní.
 
-U¾ivatelské rozhraní bude vytvoøeno v grafické podobì i v podobì ovládání z pøíkazové øádky. Testovací jednotka se bude moci ovládat pomocí dvou rozhraní, ale pouze jedním v daný okam¾ik, proto¾e je nevhodné ovlivòovat chod jedné instance testovací jednotky ze dvou rozhraní. Bude v¹ak mo¾no spustit více vláken testovacích jednotek souèasnì. Tento koncept umo¾ní spustit více instancí testovací jednotky na lokálním stroji a vyu¾ít tak efektivnì prostøedky systému.
+U¾ivatelské rozhraní bude vytvoøeno v grafické podobì i v podobì ovládání z pøíkazové øádky. Testovací jednotka se bude moci ovládat pomocí dvou rozhraní.
 
 Injekce chyb bude realizována oddìleným procesem, který bude hrát roli proxy serveru. Na obrázku znázornìna jako HTTP proxy jednotka. Bude monitorovat ve¹kerou komunikaci mezi testovací jednotkou a webovou slu¾bou. Spu¹tìná proxy jednotka obsahuje analyzátor a injektor chyb.  Více o injekci chyb je mo¾no se doèíst v pøedchozí práci.
 
-Tento koncept lze také pou¾ít pro vytvoøení distribuované architektury, proto¾e dovolí oddìlit testovací jednotku od u¾ivatelských rozhraní. Oddìlení bude spoèívat v lehce rozdílném komunikaèním rozhraní. Testovací jednotka spoleènì s proxy jednotkou budou pod správou monitorovacího procesu, který bude mít Java RMI rozhraní a bude muset být spu¹tìn døíve ne¾ se s ním bude  vzdálenì manipulovat.
+Tento koncept lze také pou¾ít pro vytvoøení distribuované architektury, proto¾e dovolí oddìlit testovací jednotku od u¾ivatelských rozhraní. Oddìlení bude spoèívat v lehce rozdílném komunikaèním rozhraní. Testovací jednotka spoleènì s proxy jednotkou dostupné pøes vzdálenì dostupný proces, který bude mít Java RMI rozhraní a bude muset být spu¹tìn døíve ne¾ se s ním bude  vzdálenì manipulovat.
 
 
 
@@ -575,7 +573,7 @@ Základní pou¾ití FIWS 2.0 znázoròují oèíslované ¹ipky, jejich¾ význam bude nyní 
 \subsection*{Grafické u¾ivatelské rozhraní}
 Grafické u¾ivatelské rozhraní bude slou¾it hlavnì k efektivní pøípravì testovacích dat. Musí obsáhnout mo¾nosti vytvoøit HTTP po¾adavek i s rùznými datovými reprezentacemi uvnitø datové èásti po¾adavku. REST webové slu¾by vy¾adují rùzné typy HTTP po¾adavkù vèetnì konfigurace datové èásti HTTP po¾adavku. SOAP zprávy vy¾adují konfiguraci zejména datové èásti, tedy vytvoøení XML dokumentu.
 
-Testovací data se budou vytváøet v projektech. Ne¾ u¾ivatel bude moci zahájit jakoukoliv práci, musí vytvoøit nový projekt nebo otevøít ji¾ døíve vytvoøený. Struktura projektu bude obsahovat sada testù a jednotlivé testy, které mohou být vytvoøeny uvnitø sady testù nebo i zvlá¹». Struktura a nastavení projektu bude popsána v XML dokumentu. 
+Testovací data se budou vytváøet v projektech. Ne¾ u¾ivatel bude moci zahájit jakoukoliv práci, musí vytvoøit nový projekt nebo pou¾ít ji¾ døíve vytvoøený. Struktura projektu bude obsahovat sada testù a jednotlivé testy, které mohou být vytvoøeny uvnitø sady testù. Struktura a nastavení projektu bude popsána v XML dokumentu. 
 
 Na obrázku \ref{fig:editor} je návrh hlavního okna nástroje, kde je znázornìno rozlo¾ení ovládacích komponent. Na obrázku \ref{fig:modal} je znázornìno ¹ablona dialogového okna, která se bude pou¾ívat pro zadávání rùzných druhù vstupù a nastavení nástroje.
 
@@ -605,14 +603,9 @@ Testovací data se budou skládat z pøedem pøipravených HTTP po¾adavkù nebo z dat 
 Testovací jednotka je jádrem celé práce. Bude zodpovìdná za spojení se s webovou slu¾bou a odeslání a pøijetí HTTP po¾adavku. Testovací jednotka pøevezme nastavení (data, poèet spu¹tìných procesù, objem po¾adavkù apod.) od u¾ivatele a následnì provede po¾adované akce. Mezi základní operace testovací jednotky patøí navázání HTTP spojení s po¾adovanou webovou slu¾bou a odeslání patøièných dat. Spojení s webovou slu¾bou si vy¾ádá dal¹í funkcionality. Hlavní funkcí pøi spojení bude definování proxy serveru, aby mohla být pou¾ita HTTP proxy jednotka. Mezi dal¹í pak bude patøit mo¾nost autentizace a v neposlední øadì je velmi vhodná implementace bezpeènostních protokolù napø. mo¾nost pou¾ití HTTPS.
 
 
-\section{Pou¾ití injekce chyb}	
-HTTP proxy jednotka bude vytvoøena ze zdrojových kódù pøedchozí práce a bude pøizpùsobena ke samostatnému spu¹tìní. Funkce proxy jednotky tedy bude spoèívat v zachycení komunikace mezi testovací jednotkou a webovou slu¾bou. Tento princip lze vyu¾ít k zátì¾ovému testováni spojeném s injekcí chyb. 
-
-Pøedchozí verze FIWS neumo¾òovala analýzu komprimovaných odpovìdí od webových slu¾eb. Pro implementaci této funkcionality je mo¾né pou¾ít knihovnu jazyka Java, která umo¾òuje manipulaci s komprimovanými daty. 
 
 \section{Integrace s nástroji pro testování spolehlivosti}	
 Integrace s ostatními nástroji bude mo¾né díky rozhraní pro pøíkazovou øádku. S pomocí ovládání z pøíkazové øádky bude mo¾né pou¾ít FIWS 2.0 spoleènì s automatizaèními nástroji jako je napøíklad Apache Ant, který umo¾òuje integrovat více nástrojù pro testování do jediného skriptu. 
-
 
 
 	
@@ -621,7 +614,7 @@ Distribuovaný model odesílání po¾adavkù je znázornìn na obrázku \ref{fig:dist}. 
 
 Pro implementaci správy jednotlivých procesù na vzdálených strojích je mo¾no pou¾ít technologii RMI, kterou nabízí platforma Java. V tomto pøípadì musí být obì strany vybaveny rozhraním RMI pro vzdálenou komunikaci. Na vzdáleném stroji musí bì¾et monitorovací jednotka, která bude zprostøedkovávat vzdálené pøíkazy pro testovací a proxy jednotky.
 
-V grafickém u¾ivatelském prostøedí bude mo¾nost spojit se s ji¾ bì¾ícími instancemi monitorovacích jednotek a centralizovanì spravovat vzdálené stroje. V grafickém u¾ivatelském prostøedí se pro ka¾dé vzdálené spojení musí vytvoøit zvlá¹tní vlákno, proto¾e jiným zpùsobem nelze komunikovat s více vzdálenými stroji souèasnì.
+V grafickém u¾ivatelském prostøedí bude mo¾nost spojit se s ji¾ bì¾ícími instancemi monitorovacích jednotek a centralizovanì spravovat vzdálené stroje. V grafickém u¾ivatelském prostøedí bude pro ka¾dé vzdálené spojení vytvoøeno zvlá¹tní vlákno, proto¾e tento pøístup zaji¹»uje vhodnou obsluhu jednotlivých spojení.
 
 
 \begin{figure}[h]
@@ -635,10 +628,79 @@ V grafickém u¾ivatelském prostøedí bude mo¾nost spojit se s ji¾ bì¾ícími instanc
 \subsection*{Centralizovaná správa a výmìna dat}
 V¹echny vzdálené jednotky budou spravovány z jednoho centrálního bodu, kde bylo spu¹tìno grafické u¾ivatelské  rozhraní. Ovládání z pøíkazové øádky bude také mo¾né. Pøi ovládání vzdálených jednotek bude mo¾né provést test konektivity, distribuce dat a spu¹tìní vybraných jednotek. Pomocí skriptù (Bash, Perl, apod.) bude mo¾né distribuovat vybraná data vybraným jednotkám.  
 
-Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distribuci testovacích dat. V centrálním bodì se vytvoøí testovací data a roze¹lou se na vzdálené uzly, kde budou moci být vyu¾ity. 
+Centralizovaná správa v¹ech jednotek je vhodná kvùli vytváøením a následné distribuci testovacích dat. V centrálním bodì se vytvoøí testovací data a roze¹lou se na vzdálené uzly, kde budou moci být vyu¾ity. Výsledky testù budou zpìt odeslány okam¾itì po jejich získání a ulo¾eny pro zobrazení a vyhodnocení u¾ivatelem.
 
-Výsledky testù bude mo¾no zasílat automaticky v urèitých intervalech do centrálního bodu nebo na explicitní pøíkaz u¾ivatele.
-%\newpage
+\section{Pou¾ití injekce chyb}	
+HTTP proxy jednotka bude vytvoøena ze zdrojových kódù pøedchozí práce a bude pøizpùsobena ke samostatnému spu¹tìní. Funkce proxy jednotky bude spoèívat v zachycení komunikace mezi testovací jednotkou a webovou slu¾bou. Tento princip lze vyu¾ít k zátì¾ovému testováni spojeném s injekcí chyb. 
+
+\subsection*{Distribuovaný re¾im}
+Na základì prostudování zdrojových kódù a otestování pùvodní implementace bylo zji¹tìno, ¾e bude nutné provést zmìny v pùvodním návrhu . Na obrázku \ref{fig:zmena} je znázornìno stávající zpracování zprávy proxy serverem a jeho plánovaná zmìna. Pro bli¾¹í pochopení, jak funguje stávající implementace a jak bude fungovat plánovaná implementace, jsou v obrázku umístìna èísla, jejich¾ význam je popsán ní¾e.
+
+Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci delegáta. Zobrazovací panel GUI je pøiøazen ke kontroléru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Po zobrazení je zpráva vlo¾ena na výstup sí»ového rozhraní a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[scale=0.6]{pic/zmenaproxy.png}
+\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
+\label{fig:zmena}
+\end{center}
+\end{figure}
+ 
+\noindent Zmìna spoèívá v pøesunutí úlohy delegáta na monitorovací jednotku a kontrolér bude pouze provádìt pøiøazení monitorovacích panelù GUI v monitorovacích jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou odesílat získaná data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. Stejného principu se vyu¾ije pøi detailním návrhu architektury.
+
+
+
+
+
+
+\subsection*{Vylep¹ení jádra proxy jednotky}
+Pro vylep¹ení vlastností monitorování proxy jednotky jsou nutné dal¹í zásahy do implementace. Tato sekce se zamìøí na rozbor a návrh dal¹ích funkcí proxy jednotky. Zejména se bude jednat o interpretaci dal¹ích zpùsobù kódování a komprimace zachycovaných zpráv. Dále také bude uvedeno seznámení s dal¹ími reprezentacemi dat, které je mo¾né analyzovat pomocí injektoru poruch a pøípadnì naru¹it jejich integritu.
+
+Polo¾ka {\it Content-Encoding} udává zakódování odesílaného obsahu na stranì koncových bodù. Komprimace uvedená v této polo¾ce probíhá {\bf pouze} na stranì klienta nebo serveru. 
+
+Polo¾ka {\it Transfer-Encoding} udává zakódování obsahu zprávy bìhem transportu sítí. Komprimace mù¾e probìhnout kdekoliv na cestì zprávy mezi  koncovými body, vèetnì koncových bodù samotných. Toto zakódování probíhá a¾ po komprimaci udávané v polo¾ce {\it Content-Encoding}. Pokud jsou v hlavièce HTTP zprávy obì polo¾ky znamená to, ¾e zpráva byla zakódována nejdøíve zpùsobem uvedeným v polo¾ce {\it Content-Encoding} a následnì je¹tì zpùsobem uvedeným v polo¾ce {\it Transfer-Encoding}. Zpráva mù¾e mezi koncovými body být zpracována nìkolika proxy jednotkami, kdy poka¾dé mù¾e dojit ke zmìnì zakódování. Poka¾dé se v¹ak mìní pouze pozdìj¹í zpùsob zakódovaní, tedy {\it Transfer-Encoding}.
+
+\noindent Mo¾nosti pro vylep¹ení chování monitorovací jednotky:
+\begin{itemize} 
+\item{ \bf Komprimace zpráv}\\
+Obsah HTTP zprávy je mo¾no pøed odesláním komprimovat. Èasto pou¾ívanými zpùsoby jsou {\it GZip} a {\it Deflate}. Pokud se do hlavièky uvede zpùsob komprimace a daný interpret je schopný tento zpùsob zpracovat, je mo¾né pou¾ít libovolný zpùsob komprimace.  Proxy jednotka bude vylep¹ena o zpracování zpùsobù {\it GZip} a {\it Deflate}. Bude schopná zprávu dekomprimovat, analyzovat, naru¹it, následnì komprimovat a odeslat. Pro komprimaci a dekomprimaci  lze pou¾ít volnì dostupné knihovny.   \\
+\item{ \bf Odesílání po èástech}\\
+Mo¾nost odesílat zprávu po èástech ({\it chunked encoding}) byla zavedena do HTTP protokolu od verze 1.1. To je výhodné v pøípadech nároènìj¹ího zpracování dat, kdy se nemusí èekat a¾ jsou v¹echna data zpracování do jedné zprávy. Pøi odesílání po èástech je odeslána HTTP hlavièka a za ní jsou odeslány jednotlivé èásti. Jednotlivé èásti zprávy jsou oddìlené prázdným øádkem. Ka¾dá èást zprávy má na prvním øádku uvedenou svou velikost a na dal¹ím øádku je obsah zprávy. Tento zpùsob pøenosu v¹ak výraznì zvy¹uje obtí¾nost injekce chyby. Proto proxy jednotka poskládá jednotlivé jednotlivé èásti dohromady, provede analýzu a pøípadné naru¹ení a ode¹le zprávu dále jako celek. Je také vhodné obsah zprávy pøed odesláním komprimovat.
+\item{ \bf Monitorování bez injekce}\\
+V pøede¹lé verzi proxy jednotky nebylo mo¾né zachycovat zprávy bez mo¾nosti naru¹ení. Byly tedy zaznamenány pouze zprávy, které vyhovìly podmínce v injektoru chyb. Toto chování bude vylep¹eno a bude zaznamenán ve¹kerý provoz. Pokud probìhne injekce chyby, bude nastaven pøíznak naru¹ení zprávy. \\
+\end{itemize}
+
+
+
+
+\subsection*{Podpora dal¹ích datových formátù}
+Pøede¹lá verze podporovala zpracování pouze formátu XML. V ostatních pøípadech nebyla data proxy jednotkou vùbec zaznamenána. Nyní je proxy jednotka bude nejprve èíst obsah parametru {\it Content-Type} a podle toho rozhodne, jakým zpùsobem data zpracuje. Pokud parametr nebude pøítomen budou data odeslána na výstup bez zpracování.
+\noindent Dal¹í mo¾nosti pro podporu dal¹ích datových formátù injektoru poruch:
+\begin{itemize} 
+\item{ \bf JSON}\\
+JSON je roz¹íøený datový formát pou¾ívaný pøedev¹ím webovými slu¾bami REST charakteru. Data reprezentována JSON formátem jsou v textové podobì. Lze tedy uplatnit stávájící injekce poruch. Pokud v¹ak je nutné komplexnìj¹í injekci, jako napøíklad zmìna urèité promìnné, je nutné nejdøíve zpracovat data vhodným zpùsobem. Pro komplexnìj¹í zpracování je mo¾no vyu¾ít volnì dostupných knihoven.\\
+\item{ \bf YAML}\\
+YAML je svou charakteristikou i pou¾itím velmi podobný formátu JSON. Také se jedná o reprezentaci dat v textovém formátu. Bohu¾el implementace nebyla nalezena knihovna, která by umo¾òovala zpracování dle modelu YAML bez pøetypování na známý Java objekt nebo kolekci. Pokud není známa implementace objektu, není mo¾né jednoznaènì urèit typ objektu, na který má být pøeètená data pøetypována. Dostupné knihovny pro JSON formát umo¾òují manipulaci s JSON pomocí modelu, tedy není nutné pøetypování na známý objekt nebo kolekci. Tento formát tedy nebude proxy jednotkou pøímo podporován. Z vý¹e uvedených dùvodù bude s tímto formátem zacházeno jak s neformátovaným textem.  \\
+\end{itemize}
+
+
+
+
+
+
+
+\subsection*{Pøidání podmínek a poruch}
+
+\begin{itemize} 
+\item{ \bf Podmínka: Test existence polo¾ky v hlavièce HTTP zprávy}\\
+Bude pøidána podmínka pro detekci polo¾ky v hlavièce HTTP zprávy. Bude mo¾no zadat název parametru a jeho hodnotu. Pokud nebude nebude hodnota zadána bude se testovat pouze výskyt parametru.
+\item{ \bf Porucha: Vlo¾ení hodnoty do promìnné v JSON formátu}\\
+Jeliko¾ bude pøidána podpora pro datový formát JSON, bude mo¾no zadat název promìnné, kam se vlo¾í po¾adovaná hodnota. Tato porucha byla zvolena, proto¾e neoèekávané hodnoty, doká¾í vyvolat neoèekávané chování pøi nedostateèném o¹etøení vstupù. Obzvlá¹tì pak hodnota {\it null} je velmi kvalitním pøíkladem.
+\end{itemize}
+
+
+
+
 \section{Návrh vrstev}
 Návrh obsahuje distribuovanou architekturu a je vhodné rozvrhnout jednotlivé èásti do oddìlených vrstev. Rozdìlit aplikaci pøi návrhu do vrstev je výhodné, proto¾e usnadòuje dekomponovat slo¾itìj¹í problémy na podproblémy a sní¾it tak slo¾itost následné implementace. Obrázek \ref{fig:vrstvy} ukazuje rozlo¾ení jednotlivých vrstev. 
 
@@ -661,53 +723,11 @@ Tato vrstva zprostøedkuje zápis dat na disk a jejich ètení. Manipulaci (ètení/zá
 \end{center}
 \end{figure}
 
-\section{Návrh úpravy proxy jednotky pro distribuovaný re¾im}
-Na základì prostudování zdrojových kódù a otestování pùvodní implementace bylo zji¹tìno, ¾e bude nutné provést zmìny v pùvodním návrhu . Na obrázku \ref{fig:zmena} je znázornìno stávající zpracování zprávy proxy serverem a jeho plánovaná zmìna. Pro bli¾¹í pochopení, jak funguje stávající implementace a jak bude fungovat plánovaná implementace, jsou v obrázku umístìna èísla, jejich¾ význam je popsán ní¾e.
-
-Proxy monitorovací jednotka be¾ící v nekoneèném cyklu pøijme zprávu (1) a vytvoøí nové vlákno pro jeho zpracování (2). Vlákno zpracuje zprávu a ode¹le jí kontroléru. Kontrolér pøedá zprávu injektoru(4,5) poruch, kde se provede analýza zprávy a její pøípadné naru¹ení. Kontrolér zastává funkci delegáta. Zobrazovací panel GUI je pøiøazen ke kontroléru. Kontrolér tedy odesílá(6) zprávu do panelu GUI, kde je zobrazena. Po zobrazení je zpráva vlo¾ena na výstup sí»ového rozhraní a pokraèuje urèeným smìrem. Tento stav je nevyhovující, proto¾e pøi tomto stavu je komplikované vytvoøit více monitorovacích jednotek na více strojích.
-
-\begin{figure}[h]
-\begin{center}
- \includegraphics[scale=0.6]{pic/zmenaproxy.png}
-\caption{Schéma zpracování zprávy pøed a po úpravì proxy serveru. }
-\label{fig:zmena}
-\end{center}
-\end{figure}
- 
-\noindent Zmìna spoèívá v pøesunutí úlohy delegáta na monitorovací jednotku a kontrolér bude pouze provádìt pøiøazení monitorovacích panelù GUI v monitorovacích jednotkách. Pak je mo¾né mít více nezávislých monitorovacích jednotek na rùzných strojích. Tyto jednotky pak budou odesílat získaná data do centrálního GUI, kde dojde k jejich zobrazení a zpracování. 
-
-Stejného principu se vyu¾ije pøi detailním návrhu architektury.
-
-\section{Analýza a návrh podpory dal¹ích datových formátu a chování proxy jednotky}
-Pro vylep¹ení vlastností monitorování proxy jednotky jsou nutné dal¹í zásahy do implementace. Tato sekce se zamìøí na rozbor a návrh dal¹ích funkcí proxy jednotky. Zejména se bude jednat o interpretaci dal¹ích zpùsobù kódování a komprimace zachycovaných zpráv. Dále také bude uvedeno seznámení s dal¹ími reprezentacemi dat, které je mo¾né analyzovat pomocí injektoru poruch a pøípadnì naru¹it jejich integritu.
-
-\subsection*{Podpora dal¹ích zpùsobù kódování}
-V této èásti bude uvedena analýza chování proxy jednotky, pokud by mìla podporovat dal¹í zpùsoby kódování posílané komunikace. Jedná se o interpretaci polo¾ek hlavièky HTTP protokolu {\it Transfer-Encoding }, {\it Content-Encoding} klienty a proxy jednotkami. 
-
-Polo¾ka {\it Content-Encoding} udává zakódování odesílaného obsahu na stranì koncových bodù. Komprimace uvedená v této polo¾ce probíhá {\bf pouze} na stranì klienta nebo serveru. 
-
-Polo¾ka {\it Transfer-Encoding} udává zakódování obsahu zprávy bìhem transportu sítí. Komprimace mù¾e probìhnout kdekoliv na cestì zprávy mezi  koncovými body, vèetnì koncových bodù samotných. Toto zakódování probíhá a¾ po komprimaci udávané v polo¾ce {\it Content-Encoding}. Pokud jsou v hlavièce HTTP zprávy obì polo¾ky znamená to, ¾e zpráva byla zakódována nejdøíve zpùsobem uvedeným v polo¾ce {\it Content-Encoding} a následnì je¹tì zpùsobem uvedeným v polo¾ce {\it Transfer-Encoding}. Zpráva mù¾e mezi koncovými body být zpracována nìkolika proxy jednotkami, kdy poka¾dé mù¾e dojit ke zmìnì zakódování. Poka¾dé se v¹ak mìní pouze pozdìj¹í zpùsob zakódovaní, tedy {\it Transfer-Encoding}.
-
-\noindent Dal¹í mo¾nosti pro vylep¹ení chování monitorovací jednotky
-\begin{itemize} 
-\item{ \bf Komprimace zpráv}\\
-sdafasdfds\\
-\item{ \bf Odesílání po èástech}\\
-adsfasdf\\
-\item{ \bf Monitorování bez injekce}\\
-adsfasdf\\
-\end{itemize}
 
 
-\subsection*{Podpora dal¹ích datových formátù}
 
-\noindent Dal¹í mo¾nosti pro podporu dal¹ích datových formátù injektoru poruchs
-\begin{itemize} 
-\item{ \bf JSON}\\
-sdafasdfds\\
-\item{ \bf YAML}\\
-adsfasdf\\
-\end{itemize}
+
+
 
 \section{Detailní návrh architektury}
 V této sekci budou spojeny jednotlivé postupy z pøede¹lých sekcí a bude pøedstaven detailní návrh architektury vytváøeného nástroje. V sekci jsou nastínìny jednotlivé souèásti nástroje a jak spolu mají komunikovat. Aby tato komunikace ¹la snadno implementovat byl pøedstaven návrh vrstev, do kterých budou jednotlivé souèásti rozmístìny, tak aby spolu komunikovaly pouze sousední vrstvy. Tento zpùsob návrh je výhodný kvùli rozdìlení slo¾itìj¹ích problému na podproblémy. Takováto dekompozice také usnadòuje pøípadné testování jednotlivých souèástí aplikace (Unit testing).
@@ -797,7 +817,7 @@ Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující inst
 \begin{center}
  \includegraphics[scale=0.3]{pic/testunit.jpg}
 \caption{Náhled testovací jednotky. }
-\label{fig:vrstvy}
+\label{fig:testunit}
 \end{center}
 \end{figure}
 
@@ -825,7 +845,7 @@ Navigaèní panel je tvoøen tøídou {\it Navigator}, která umo¾òuje vyvolání kontex
 \begin{figure}[h]
 \begin{center}
  \includegraphics[scale=0.42]{pic/http.jpg}
-\caption{Náhled vytvoøení HTTP po¾adavku. }
+\caption{Náhled vytvoøení HTTP po¾adavku.}
 \label{fig:vrstvy}
 \end{center}
 \end{figure}
@@ -898,13 +918,20 @@ Dále pak v pùvodní implementaci mìla proxy jednotka za úkol monitoring pøíchozíc
 
 
 
-\section{Vylep¹ení injekce chyb}
-V této èásti 
+\section{Vylep¹ení proxy jednotky}
+V této èásti bude popsána implementace navr¾ených zmìn v proxy jednotce. Nejdøíve bylo nutné upravit zpracování HTTP zprávy. Po vylep¹eném pøijmu HTTP zprávy je mo¾né detekovat datový formát dané zprávy a podle toho pøizpùsobit zpracování dané zprávy. Jakmile mù¾eme zpracovat rùzné datové formáty mù¾eme adekvátnì pøizpùsobit i analýzu a naru¹ení pøijaté zprávy. 
+
+\subsection*{Zpracování HTTP zpráv}
+Pro implementaci komprimaèních metod {\it GZip} a {\it Deflate} jsou pou¾ity knihovny ze standardní sady jazyka Java (JDK, Java Development Kit). 
+
+Pro implementaci zpracování zprávy po èástech je nutno upravit algoritmus ètení zprávy. Nejprve je tøeba detekovat, ¾e se jedná o zpracování èástech. Pak se ètou jednotlivé èásti zpùsobem, který je popsán v návrhu. Po pøeètení celé zprávy je se zprávou nalo¾eno jako s bì¾nì pøeètenou zprávou.
 \subsection*{Podpora dal¹ích datových reprezentací }
-asdfasdf
+Pro zpracování obsahu ve formátu JSON je pou¾ita knihovna  {\it GSON}. Podpora formátu v rámci vytvoøeného nástroje znamená, ¾e textové výstupy tohoto formátu jsou pøehlednì naformátovány a je mo¾né pou¾ít obsah zpráv ve formátu JSON pøi injekci poruch.
 
 \subsection*{Pøidání dal¹ích typù injekcí chyb a jejich podmínek}
-asdfasdf
+Pro implementaci dal¹ích funkcí injektoru poruch bylo nejdøíve potøeba vytvoøit mo¾nost zadání dat pro tyto funkce. Do modálního okna pro zadání podmínky injekce  byla pøidána podmínka {\it HeaderCondition}. Pro implementaci funkce této podmínky je implementováno rozhraní  {\it Condition}. Nová tøída je nazvána {\it HeaderCondition}.
+
+Pro implementaci naru¹ení zprávy ve formátu JSON byla také pøidána polo¾ka do výbìru poruch pøi zadávání naru¹ení injektorem. Pro implementaci dal¹í poruchy je implementováno rozhraní {\it Fault}. Nová tøída je nazvaná {\it JSONFault}. Aplikace chyby spoèívá v pøevedení textové reprezentace na objekt, který reprezentuje model formátu JSON a bylo mo¾né najít potøebnou promìnnou a zmìnit její hodnotu.
 
 \newpage
 
@@ -916,7 +943,7 @@ Mo¾nost integrování s testovacími nástroji vychází z pou¾ití rozhraní pøíkazové 
 
 
 \section{Implementace distribuované architektury}
-Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoøeného nástroje. Pro implementaci spojení mezi jednotlivými vzdálenými stroji byl vybrána technologie Java RMI. Nynìj¹í implementace Java RMI splòuje standard CORBA. Pøi dodr¾ení rozhraní lze komunikovat se vzdálenou stranou, která je implementována jinou technologii(C++, Python apod.). Java RMI je technologie umo¾òující volání metod objektù, které jsou umístìny na vzdáleném stroji. Princip je zobrazen na obrázku .. . Staèí tedy spustit RMI server a registrovat objekt. Po¾adovaný objekt je zaregistrován v registru. Registr je mo¾né kontaktovat a vy¾ádat si rozhraní daného objektu.
+Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoøeného nástroje. Pro implementaci spojení mezi jednotlivými vzdálenými stroji byl vybrána technologie Java RMI. Nynìj¹í implementace Java RMI splòuje standard CORBA. Pøi dodr¾ení rozhraní lze komunikovat se vzdálenou stranou, která je implementována jinou technologii(C++, Python apod.). Java RMI je technologie umo¾òující volání metod objektù, které jsou umístìny na vzdáleném stroji. Staèí tedy spustit RMI server a registrovat objekt. Po¾adovaný objekt je zaregistrován v registru. Registr je mo¾né kontaktovat a vy¾ádat si rozhraní daného objektu.
 
 Na obrázku \ref{fig:dismodel}. je zobrazena implementace distribuované architektury vytvoøeného nástroje. Vzdálené stroje jsou implementovány jako RMI server a ka¾dý server musí mít vlastní registr. Centrální GUI tedy plni roli klienta. V tomto pøípadì jsou instance vzdálených aplikaèních jednotek uchovány v ADT {\it HashMap}. Jednotlivé instance jsou spárovány se zobrazovacím panelem identifikaèním èíslem. Pøi interpretaci pøíkazu z GUI je získáno identifikaèní èíslo z hlavièky panelu. Identifikaèní èíslo je pak pou¾ito jako klíè k vyhledání správné aplikaèní jednotky. Po získání instance aplikaèní jednotky je pøíkaz odeslán.
 
