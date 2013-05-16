@@ -3,7 +3,11 @@
 
 \chapter{Úvod}
 
-%zpùsoby testovani webovych sluzeb - funcionalni testovani, 
+Hlavním zamìøením této práce je testování webových slu¾eb. Webové slu¾by dnes patøí mezi populární technologii v oblasti vzdálené komunikace a distribuovaných technologii. Pou¾ívají se ke zveøejnìní rùzných aplikací na webu nebo také k propojení systémù, které pou¾ívají rùzné technologie. Zmínìné pou¾ití pøedurèuje technologii webových slu¾eb k pou¾ití více u¾ivateli v urèitý èasový okam¾ik a náchylnosti na chyby bìhem komunikace. Kvùli jejich popularitì jsou kladeny vysoké nároky na spolehlivost a odolnost. Pro zaruèení tìchto po¾adavkù je nutné webovou slu¾bu podrobit komplexním testùm, které provìøí danou slu¾bu pøed nasazením.
+
+Tato práce navazuje na výsledky diplomové práce na téma injekce poruch pro webové slu¾by. Výsledkem pøedchozí práce byl nástroj pro injekci poruch do komunikace webových slu¾eb, který je mo¾né pou¾ít pro testování odolnosti. Tato práce se bude dále zabývat testováním odolnosti webových slu¾eb. Zamìøí se v¹ak více na chování slu¾eb pøi vysoké zátì¾i. Dal¹ím cílem této práce je spojit mo¾nosti zátì¾ového testování s injekcí poruch a zkoumat odolnost testované webové slu¾by.
+
+Tato práce se nejdøíve zabývá pou¾ívanými technologiemi pro implementaci webových slu¾eb. Jsou pøedstaveny základní architektury a pøístupy, které jsou v dne¹ní dobì pou¾ívány pro tvorbu webových slu¾eb. Jeliko¾ hlavním tématem je testování webových slu¾eb, práce se dále zabývá testováním software obecnì. Dále jsou pøedstaveny rùzné postupy pøi testování webových slu¾eb, aby bylo zøejmé, jak se postupuje pøi testování webových slu¾eb. V dal¹ích kapitolách je pak pøedstaven návrh a implementace nástroje pro testování zátì¾e webových slu¾eb, který vyu¾ívá injekci poruch. V závìru práce je uvedeno shrnutí výsledkù, které byly dosa¾eny pou¾itím vytvoøeného nástroje.
 
 
 
@@ -952,20 +956,63 @@ Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoø
 
 
 \chapter{Prùbìh testování webových slu¾eb}
-Tato sekce se zabývá pou¾itím vytvoøeného nástroje
+Tato kapitola se zabývá pou¾itím vytvoøeného nástroje. Nejdøíve budou popsány parametry, které se budou pomocí vytvoøeného nástroje sledovat. V pøedchozí práci 
+
+\subsection*{Nastavení a spu¹tìní nástroje}
+Pro zátì¾ový test je mo¾né vyu¾ít distribuované architektury a zapojit do testu více fyzických strojù. Nejdøíve je nutné spustit RMI server nástroje na vzdálených strojích, kde se instance aplikaèních jednotek zpøístupní pomocí RMI registru. Klientskou aplikaci i RMI server je {\bf nutné} spou¹tìt s parametrem {\tt -Djava.rmi.server.hostname}, ve kterém je uvedena adresa rozhraní. 
+
+\subsection*{Testovací prostøedí}
+Pro ovìøení funkce nástroje byly vytvoøeny ukázkové webové slu¾by. Jako aplikaèní server byl pou¾it JBoss AS verze 7.0.2, který je spu¹tìn na jiném fyzickém stroji ne¾ testovací nástroj. Slu¾ba {\it BookStore} je pou¾ívá SOAP protokol a slu¾ba {\it Users} je vytvoøena na REST principech. Slu¾ba {\it BookStore} komunikuje zprávami v XML formátu zatímco slu¾ba {\it Users} komunikuje zprávami ve formátu JSON.
+
+
 \section{Sledované parametry}
-parametry
+S
 \section{Testování webových slu¾eb s  dostupným zdrojovým kódem}
-\subsection*{Zátì¾ový test}
-\subsection*{}
+asdaf
+\subsection*{Zátì¾ový test SOAP webové slu¾by}
+adsasdf
+\subsection*{Zátì¾ový test s pou¾itím injekce SOAP webové slu¾by}
+adsfasfd
+\subsection*{Zátì¾ový test REST webové slu¾by}
+asdsaf
+\subsection*{Zátì¾ový test s pou¾itím injekce REST webové slu¾by}
+asdfsf
+
+
 \section{Testování veøejnì dostupných slu¾eb}
-verejne sluzby
+asdaf
+\subsection*{Zátì¾ový test SOAP webové slu¾by}
+adsasdf
+\subsection*{Zátì¾ový test s pou¾itím injekce SOAP webové slu¾by}
+adsfasfd
+\subsection*{Zátì¾ový test REST webové slu¾by}
+asdsaf
+\subsection*{Zátì¾ový test s pou¾itím injekce REST webové slu¾by}
+asdfsf
 
 \section{Shrnutí testování}
 
 \chapter{Závìr}
-zaver
+Cílem práce bylo roz¹íøení výsledkù pøedchozí práce, která se vìnovala injekci poruch do komunikace webových slu¾eb. Roz¹íøení se mìlo zamìøit na sledování chování webových slu¾eb pøi vysoké zátì¾i a pokusit se odhalit mo¾né nedostatky v jejich chování. Nejdøíve se práce vìnovala úvodu do problematiky webových slu¾eb a testování software. Byly pøedstaveny základní architektury pro návrh webových slu¾eb a jednotlivé technologie, které se pou¾ívají pro jejich implementaci. Dále v této kapitole byly pøedstaveny základní principy pro testování jakéhokoliv software a jako poslední byla popsána platforma Java. Popis platformy Java byl zvolen, proto¾e je pou¾ita pro výslednou implementaci nástroje.  Druhá èást práce se vìnuje problematice testování webových slu¾eb. Jsou popsány rùzné pøístupy k testování a jak testování ovlivòuje umístìní webové slu¾by. Na konci této kapitoly byly pøedstaveny ji¾ existující nástroje, které se pou¾ívají pro testování webových slu¾eb.
+
+Dal¹í kapitola je vìnována specifikaci po¾adavkù, kde byly stanoveny po¾adavky na vytváøeny nástroj. Po specifikaci po¾adavkù se práce soustøedila na návrh jednotlivých souèástí nástroje a jakým zpùsobem budou pou¾ity výsledky pøedchozí práce. Byl pøedstaven návrh klientské aplikace, která má za úkol odesílat HTTP po¾adavky k testované webové slu¾bì. Návrh splòuje rozdìlení komponent nástroje do vrstev, èím¾ usnadòuje dal¹í vývoj a roz¹íøení nástroje. Pro efektivnìj¹í pou¾ití nástroje byla pøedstavena distribuovaná architektura nástroje, která pøedstavuje mo¾nost pou¾ít více fyzických strojù souèasnì pro testování cílové webové slu¾by. 
+
+Implementace nástroje se nejdøíve soustøedila na vývoj testovací jednotky. Jakmile testovací jednotka splòovala základní po¾adavky, bylo pøistoupeno k integraci s proxy jednotkou do modulárního nástroje. Pro splnìní základních po¾adavkù na testovací nástroj, byla implementace zamìøena na snadnìj¹í ovládání ve formì grafického u¾ivatelského prostøedí. Po celou dobu implementace byl respektováno rozvr¾ení do vrstev, aby ve finální fázi mohla být zaèlenìna implementaci distribuované architektury. 	
+
+Poslední èást diplomové práce se vìnuje sledování chování webových slu¾eb bìhem testování vytvoøeným nástrojem. Nejdøíve je popsáno jak nástroj nastavit, aby bylo mo¾né pou¾ít distribuovanou architekturu. Následnì jsou popsány sledované parametry a zpùsob vyhodnocení dat, získaných nástrojem. V poslední èásti kapitoly jsou shrnuty dosa¾ené výsledky pøi pou¾ití nástroje.
+
+Tato práce splnila hlavní cíl a dokázala popsat chování vybraných slu¾eb pøi vysoké zátì¾i. Dále práce ukázala, jak lze vyu¾ít spojení zátì¾ového testování s injekcí chyb. Díky distribuované architektuøe jsou má nástroj ¹ir¹í paletu pou¾ití a je mo¾né jej integrovat s dal¹ími nástroji pro testování. Autor práce si vyzkou¹el práci ¹irokou ¹kálou technologii. Zejména zku¹enosti návrhem a implementací rùzných postupù. Autor si cení zejména zku¹enosti s paralelním zpracováním a distribuovanou architekturou na platformì Java. Vytvoøený nástroj je prakticky pou¾itelný a je mo¾né jej pou¾ít pøi sestavení robustnostní charakteristiky testované slu¾by. 
+
+
+
+
 \section{Mo¾nosti dal¹ího vývoje}
-moznosti
+Nástroj má ¹iroký potenciál roz¹íøení a lze vylep¹ovat jádro testovací jednotky, ovládání GUI nebo dal¹í mo¾nosti HTTP dotazù. Zde budou uvedeny jen nìkterá roz¹íøení, která zvy¹ují jednoduchost a efektivnost nástroje.  
+
+ Bìhem distribuovaného testu bylo zji¹tìno, ¾e je vhodné mít více proxy jednotek na nìkterém ze vzdálených strojù. Je mo¾né, ¾e slu¾ba mù¾e vyu¾ívat dal¹í slu¾by a bylo by tak mo¾né vkládat chyby to komunikace mezi jednotlivými slu¾bami. Pro spu¹tìní více proxy jednotek na vzdáleném stroji je potøeba implementovat dynamickou registraci instancí proxy jednotky na RMI serveru. Jako ideální se zdá být implementace návrhového vzoru továrna s vyu¾itím RMI.
+
+Dále by bylo vhodné implementovat více strategii pro zátì¾ové testování, jako napøíklad odesílání HTTP dotazù po dávkách apod. Jeliko¾ je pou¾ita knihovna pro zpracování WSDL dokumentù, je mo¾né implementovat automatické vytvoøení kompletní testovací sady s pøedem nastavenými hodnotami. Roz¹íøeny mohou být dal¹í mo¾nosti nastavení HTTP spojení jako je pou¾ití HTTP autentizace nebo nastavení  SSL certifikátù.
+
+Jako vhodné roz¹íøení se jeví vizualizace výstupù jednotlivých testovacích sad, aby bylo zøetelné chování slu¾eb pøi aktuální zátì¾i.
 
 %=========================================================================
