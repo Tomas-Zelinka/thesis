@@ -230,8 +230,10 @@ Práce je chránìna autorským zákonem a její u¾ití bez udìlení oprávnìní autorem j
 
 \mktxt{11}{BRNO \@year}
 
+
 %===================================================
 \newpage\fontfamily{\familydefault}\selectfont%
+
 }
 
 %-----------------------------------------------------------------------------
@@ -259,7 +261,8 @@ Práce je chránìna autorským zákonem a její u¾ití bez udìlení oprávnìní autorem j
 \mktxt@b{16}{\@cite@CS}
 \noindent\@author: \@title, \MakeLowercase{\@projecttype@CS}, Brno, FIT VUT v~Brnì, \@year
 %===================================================
-\newpage
+\newpage 
+
 }
 
 %-----------------------------------------------------------------------------
@@ -289,9 +292,9 @@ Práce je chránìna autorským zákonem a její u¾ití bez udìlení oprávnìní autorem j
 \vfill
 
 \noindent\copyright\ \@author, \@year.\newline
-{\em \@copyright@CS}
+{\em \@copyright@CS} 
 %===================================================
-\newpage
+\newpage 
 }
 
 %-----------------------------------------------------------------------------
@@ -347,7 +350,10 @@ Práce je chránìna autorským zákonem a její u¾ití bez udìlení oprávnìní autorem j
 
 \mktxt{11}{BRNO \@year}
 
-\newpage\fontfamily{\familydefault}\selectfont%
+\newpage
+{ \Large ZDE PATØÍ ZADÁNÍ} 
+\newpage\fontfamily{\familydefault}\selectfont
+
 %=================================================================================
 \makeabstract\makedeclaration
 \clearpage

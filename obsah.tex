@@ -669,7 +669,7 @@ Polo¾ka {\it Transfer-Encoding} udává zakódování obsahu zprávy bìhem transportu 
 \item{ \bf Komprimace zpráv}\\
 Obsah HTTP zprávy je mo¾no pøed odesláním komprimovat. Èasto pou¾ívanými zpùsoby jsou {\it GZip} a {\it Deflate}. Pokud se do hlavièky uvede zpùsob komprimace a daný interpret je schopný tento zpùsob zpracovat, je mo¾né pou¾ít libovolný zpùsob komprimace.  Proxy jednotka bude vylep¹ena o zpracování zpùsobù {\it GZip} a {\it Deflate}. Bude schopná zprávu dekomprimovat, analyzovat, naru¹it, následnì komprimovat a odeslat. Pro komprimaci a dekomprimaci  lze pou¾ít volnì dostupné knihovny.   \\
 \item{ \bf Odesílání po èástech}\\
-Mo¾nost odesílat zprávu po èástech ({\it chunked encoding}) byla zavedena do HTTP protokolu od verze 1.1. To je výhodné v pøípadech nároènìj¹ího zpracování dat, kdy se nemusí èekat a¾ jsou v¹echna data zpracována do jedné zprávy. Pøi odesílání po èástech je odeslána HTTP hlavièka a za ní jsou odeslány jednotlivé èásti. Jednotlivé èásti zprávy jsou oddìlené prázdným øádkem. Ka¾dá èást zprávy má na prvním øádku uvedenou svou velikost a na dal¹ím øádku je obsah pøíslu¹né èásti. Tento zpùsob pøenosu v¹ak výraznì zvy¹uje obtí¾nost injekce chyby. Proto proxy jednotka poskládá jednotlivé jednotlivé èásti dohromady, provede analýzu a pøípadné naru¹ení a ode¹le zprávu dále jako celek. Je také vhodné obsah zprávy pøed odesláním komprimovat.
+Mo¾nost odesílat zprávu po èástech ({\it chunked encoding}) byla zavedena do HTTP protokolu od verze 1.1 \cite{HTTP}. To je výhodné v pøípadech nároènìj¹ího zpracování dat, kdy se nemusí èekat a¾ jsou v¹echna data zpracována do jedné zprávy. Pøi odesílání po èástech je odeslána HTTP hlavièka a za ní jsou odeslány jednotlivé èásti. Jednotlivé èásti zprávy jsou oddìlené prázdným øádkem. Ka¾dá èást zprávy má na prvním øádku uvedenou svou velikost a na dal¹ím øádku je obsah pøíslu¹né èásti. Tento zpùsob pøenosu v¹ak výraznì zvy¹uje obtí¾nost injekce chyby. Proto proxy jednotka poskládá jednotlivé jednotlivé èásti dohromady, provede analýzu a pøípadné naru¹ení a ode¹le zprávu dále jako celek. Je také vhodné obsah zprávy pøed odesláním komprimovat.
 \item{ \bf Monitorování bez injekce}\\
 V pøede¹lé verzi proxy jednotky nebylo mo¾né zachycovat zprávy bez mo¾nosti naru¹ení. Byly tedy zaznamenány pouze zprávy, které vyhovìly podmínce v injektoru chyb. Toto chování bude vylep¹eno a bude zaznamenán ve¹kerý provoz. Pokud probìhne injekce chyby, bude nastaven pøíznak naru¹ení zprávy. \\
 \end{itemize}
@@ -684,7 +684,7 @@ Pøede¹lá verze podporovala zpracování pouze formátu XML. V ostatních pøípadech n
 \item{ \bf JSON}\\
 JSON je roz¹íøený datový formát, který èasto pou¾ívají webové slu¾by REST charakteru. Data reprezentována JSON formátem jsou v textové podobì. Lze tedy uplatnit stávájící injekce poruch. Pokud v¹ak je nutné komplexnìj¹í injekci, jako napøíklad zmìna urèité promìnné, je nutné nejdøíve zpracovat data vhodným zpùsobem. Pro komplexnìj¹í zpracování je mo¾no vyu¾ít volnì dostupných knihoven.\\
 \item{ \bf YAML}\\
-YAML je svou charakteristikou i pou¾itím velmi podobný formátu JSON. Také se jedná o reprezentaci dat v textovém formátu. Bohu¾el nebyla nalezena knihovna, která by umo¾òovala zpracování dle modelu YAML bez pøetypování na známý Java objekt nebo kolekci. Pokud není známa implementace objektu, není mo¾né jednoznaènì urèit typ objektu, na který má být pøeètená data pøetypována. Dostupné knihovny pro JSON formát umo¾òují manipulaci s JSON pomocí modelu, tedy není nutné pøetypování na známý objekt nebo kolekci. Tento formát tedy nebude proxy jednotkou pøímo podporován. Z vý¹e uvedených dùvodù bude s tímto formátem zacházeno jako s neformátovaným textem.  \\
+YAML \cite{yaml} je svou charakteristikou i pou¾itím velmi podobný formátu JSON. Také se jedná o reprezentaci dat v textovém formátu. Bohu¾el nebyla nalezena knihovna, která by umo¾òovala zpracování dle modelu YAML bez pøetypování na známý Java objekt nebo kolekci. Pokud není známa implementace objektu, není mo¾né jednoznaènì urèit typ objektu, na který má být pøeètená data pøetypována. Dostupné knihovny pro JSON formát umo¾òují manipulaci s JSON pomocí modelu, tedy není nutné pøetypování na známý objekt nebo kolekci. Tento formát tedy nebude proxy jednotkou pøímo podporován. Z vý¹e uvedených dùvodù bude s tímto formátem zacházeno jako s neformátovaným textem.  \\
 \end{itemize}
 
 
@@ -797,7 +797,7 @@ Zprostøedkovatel dat je reprezentován tøídou {\it DataProvider}, která byla ji¾ 
 
 \begin{figure}[h]
 \begin{center}
- \includegraphics[scale=0.3]{pic/menu.jpg}
+ \includegraphics[scale=0.3]{pic/menu2.jpg}
 \caption{Náhled schématu dat zobrazeného v navigaèním panelu. }
 \label{fig:schema}
 \end{center}
@@ -811,9 +811,9 @@ V kontroléru existují tøídy  {\it ProxyUnitWorker} a  {\it TestUnitWorker}. Tyto
 Kontrolér má také na starosti registraci zobrazovacích panelù do aplikaèních jednotek. Kontrolér má ulo¾eny v¹echny aplikaèní jednotky v abstraktním datovém typu {\it HashMap} s asociativním pøístupem. Ka¾dá jednotka je ulo¾ena pod poøadovým èíslem, se kterým byla vytvoøena. Po vytvoøení a ulo¾ení instance aplikaèní jednotky je vytvoøen v GUI zobrazovací panel se stejným poøadovým èíslem. Pomocí poøadového èísla je pak v kontroléru vyhledána patøièná aplikaèní jednotka a v ní je ulo¾en odkaz na zobrazovací panel. Po registraci zobrazovacího panelu ji¾ kontrolér ztrácí svou delegaèní úlohu, proto¾e ve¹kerá komunikace probíhá mezi aplikaèní jednotkou a zobrazovacím panelem.
  
 \subsection*{Testovací jednotka}
-Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾ita informace o poètu vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu vláken dopøedu vytvoøí instance po¾adovaných vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je vlákna je odkaz na toto vlákno pøedán do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty vlákna.
+Testovací jednotka je jádrem této práce. Jejím hlavním úkolem je získat odpovìï od webové slu¾by. Základem jsou data pro testování. Data jsou ji¾ ve formì instance tøíd, která obsahují potøebné informace. Testovací jednotce jsou pøedány instance tøíd pro nastavení testu a HTTP po¾adavku. Z dat nastavení testu je pou¾ita informace o poètu vláken, který se má pou¾ít pro jeden testovací pøípad. Testovací jednotka podle pøidìleného poètu vláken dopøedu vytvoøí instance po¾adovaných vláken pomocí tøídy   {\it Executors}. Tøída  {\it Executors} doká¾e dopøedu vytvoøit fixní poèet vláken a spustit je a¾ jsou potøeba. Dopøedu vytvoøená vlákna ¹etøí výpoèetní prostøedky, proto¾e pøi jejich spu¹tìní odpadá re¾ie na jejich vytvoøení. Jednotlivá vlákna implementují rozhraní  {\it Callable}, tak¾e pøed ukonèením vlákna je vrácena hodnota. Pøi spu¹tìní je vlákna je odkaz na toto vlákno pøedán do instance tøídy {\it Future}. Instance  tøídy {\it Future} zaji¹»uje asynchronní zpracování výsledku vrácené návratové hodnoty vlákna. 
 
-Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující instance tøíd {\it Future}. Po spu¹tìní následuje dal¹í cyklus, který blokujícím zpùsobem èeká na dokonèení jednotlivých vláken. Pøi ka¾dém pøijetí výsledku od vlákna je tento výsledek testovací jednotkou odeslán do zobrazujícího panelu, kde je výsledek okam¾itì zobrazen. Po skonèení blokujícího cyklu jsou v¹echna vlákna ukonèena øádným zpùsobem pomocí instance tøídy  {\it Executors}. Tento zpùsob zaruèuje paralelní provedení vláken, ale odeslání jejich výsledkù do zobrazovacího panelu se ji¾ dìje sekvenèním zpùsobem. Sekvenèní zpùsob odeslání je zaruèen èekáním na výsledky v druhém cyklu. Díky sekvenènímu odeslání odpovìdí je tak zachován výkon paralelního zpracování a odpadá synchronizace pøi zápisu do zobrazovacího panelu. 
+Vlákna jsou spou¹tìny v poèítaném cyklu a jsou pøidìlena do pole obsahující instance tøíd {\it Future}. Po spu¹tìní následuje dal¹í cyklus, který blokujícím zpùsobem èeká na dokonèení jednotlivých vláken. Pøi ka¾dém pøijetí výsledku od vlákna je tento výsledek testovací jednotkou odeslán do zobrazujícího panelu, kde je výsledek okam¾itì zobrazen. Po skonèení blokujícího cyklu jsou v¹echna vlákna ukonèena øádným zpùsobem pomocí instance tøídy  {\it Executors}. Tento zpùsob zaruèuje paralelní provedení vláken, ale odeslání jejich výsledkù do zobrazovacího panelu se ji¾ dìje sekvenèním zpùsobem. Sekvenèní zpùsob odeslání je zaruèen èekáním na výsledky v druhém cyklu. Díky sekvenènímu odeslání odpovìdí je tak zachován výkon paralelního zpracování a odpadá synchronizace pøi zápisu do zobrazovacího panelu. Odeslání a pøíjem po¾adavku bylo realizováno pomocí knihovny {\it Apache HTTPComponents}.
 
 
 \begin{figure}[h]
@@ -860,7 +860,7 @@ Panel editoru je rozdìlen na sekce pro editování nastavení testu, HTTP po¾adavku
 
 \begin{figure}[h]
 \begin{center}
- \includegraphics[scale=0.42]{pic/proxyunit.jpg}
+ \includegraphics[scale=0.3]{pic/proxyunit.jpg}
 \caption{Náhled zobrazení proxy jednotky. }
 \label{fig:proxyunit}
 \end{center}
@@ -928,7 +928,7 @@ Pro implementaci komprimaèních metod {\it GZip} a {\it Deflate} jsou pou¾ity kni
 
 Pro implementaci zpracování zprávy po èástech je nutno upravit algoritmus ètení zprávy. Nejprve je tøeba detekovat, ¾e se jedná o zpracování èástech. Pak se ètou jednotlivé èásti zpùsobem, který je popsán v návrhu. Po pøeètení celé zprávy je se zprávou nalo¾eno jako s bì¾nì pøeètenou zprávou.
 \subsection*{Podpora dal¹ích datových reprezentací }
-Pro zpracování obsahu ve formátu JSON je pou¾ita knihovna  {\it GSON}. Podpora formátu v rámci vytvoøeného nástroje znamená, ¾e textové výstupy tohoto formátu jsou pøehlednì naformátovány a je mo¾né pou¾ít obsah zpráv ve formátu JSON pøi injekci poruch.
+Pro zpracování obsahu ve formátu JSON je pou¾ita knihovna  {\it GSON} \cite{gson}. Podpora formátu v rámci vytvoøeného nástroje znamená, ¾e textové výstupy tohoto formátu jsou pøehlednì naformátovány a je mo¾né pou¾ít obsah zpráv ve formátu JSON pøi injekci poruch.
 
 \subsection*{Pøidání dal¹ích typù injekcí chyb a jejich podmínek}
 Pro implementaci dal¹ích funkcí injektoru poruch bylo nejdøíve potøeba vytvoøit mo¾nost zadání dat pro tyto funkce. Do modálního okna pro zadání podmínky injekce  byla pøidána podmínka {\it HeaderCondition}. Pro implementaci funkce této podmínky je implementováno rozhraní  {\it Condition}. Nová tøída je nazvána {\it HeaderCondition}.
@@ -948,7 +948,7 @@ Mo¾nost integrování s testovacími nástroji vychází z pou¾ití rozhraní pøíkazové 
 \end{figure}
 
 \section{Implementace distribuované architektury}
-Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoøeného nástroje. Pro implementaci spojení mezi jednotlivými vzdálenými stroji byla vybrána technologie Java RMI. Nynìj¹í implementace Java RMI splòuje standard CORBA. Pøi dodr¾ení rozhraní lze komunikovat se vzdálenou stranou, která je implementována jinou technologii (C++, Python apod.). Java RMI je technologie umo¾òující volání metod objektù, které jsou umístìny na vzdáleném stroji. Staèí tedy spustit RMI server a registrovat objekt. Po¾adovaný objekt je zaregistrován v registru. Registr je mo¾né kontaktovat a vy¾ádat si rozhraní daného objektu.
+Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoøeného nástroje. Pro implementaci spojení mezi jednotlivými vzdálenými stroji byla vybrána technologie Java RMI \cite{rmi}. Nynìj¹í implementace Java RMI splòuje standard CORBA. Pøi dodr¾ení rozhraní lze komunikovat se vzdálenou stranou, která je implementována jinou technologii (C++, Python apod.). Java RMI je technologie umo¾òující volání metod objektù, které jsou umístìny na vzdáleném stroji. Staèí tedy spustit RMI server a registrovat objekt. Po¾adovaný objekt je zaregistrován v registru. Registr je mo¾né kontaktovat a vy¾ádat si rozhraní daného objektu.
 
 
 \noindent Na obrázku \ref{fig:distmodel}. je zobrazen model implementace distribuované architektury vytvoøeného nástroje. Vzdálené stroje jsou implementovány jako RMI server. Ka¾dý server musí mít vlastní registr. Centrální GUI tedy plni roli klienta. V tomto pøípadì jsou instance vzdálených aplikaèních jednotek uchovány v ADT {\it HashMap}. Jednotlivé instance jsou spárovány se zobrazovacím panelem identifikaèním èíslem. Pøi interpretaci pøíkazu z GUI je získáno identifikaèní èíslo z hlavièky panelu. Identifikaèní èíslo je pak pou¾ito jako klíè k vyhledání správné aplikaèní jednotky. Po získání instance aplikaèní jednotky je pøíkaz odeslán.
@@ -956,7 +956,7 @@ Tato sekce je zamìøena na detaily implementace distribuované architektury vytvoø
 
 
 \chapter{Prùbìh testování webových slu¾eb}
-Tato kapitola se zabývá pou¾itím vytvoøeného nástroje. V pøedchozí práci .. bylo pøedlo¾eno schéma {\it wsCrash} pro klasifikaci poruch, které vychází z této práce .. . Tato práce se této klasifikace bude dr¾et a pøi testování se bude sna¾it vzniklé chyby zaøadit do této klasifikace. 
+Tato kapitola se zabývá pou¾itím vytvoøeného nástroje. V pøedchozí práci \cite{predchozi} bylo pøedlo¾eno schéma {\it wsCrash} pro klasifikaci poruch, které vychází z této práce \cite{4272964}. Tato práce se této klasifikace bude dr¾et a pøi testování se bude sna¾it vzniklé chyby zaøadit do této klasifikace. 
 \begin{itemize}
 \item {\bf Catastrophic} - Aplikaèní server, na kterém bì¾ela slu¾ba, musel být restartován nebo byl po¹kozen.\\
 \item  {\bf Restart} - Slu¾ba je pozastavena nebo musí být ukonèena.\\
@@ -964,100 +964,102 @@ Tato kapitola se zabývá pou¾itím vytvoøeného nástroje. V pøedchozí práci .. bylo
 \item  {\bf Silent} - V tomto pøípadì by mìla být vráceno chybové hlá¹ení, ale slu¾ba vrací standardní odpovìï. \\
 \item  {\bf Hindering} - Slu¾bou je vrácen nesprávný chybový kód nebo odpovìï slu¾by je významnì zpo¾dìna.
 \end{itemize}
-Zátì¾ové testování bude nejprve zkoumat, jestli slu¾ba správnì zpracovává více po¾adavkù v krátkém èasovém okam¾iku. Tímto zpùsobem mù¾eme ovìøit základní pøedpoklad správného zpracování více po¾adavkù. Následnì mù¾eme spustit zátì¾ový test a hledat hranici pou¾itelnosti na základì doby odezvy testované slu¾by. Hranici mù¾eme nastavit èasovým limitem HTTP spojení a sledovat od jakého poètu odeslaných po¾adavkù a spu¹tìných vláken zaène klientská aplikace uzavírat spojení.
+Zátì¾ové testování bude nejprve zkoumat, jestli slu¾ba správnì zpracovává více po¾adavkù v krátkém èasovém okam¾iku. Tímto zpùsobem mù¾eme ovìøit základní pøedpoklad správného zpracování více po¾adavkù. Následnì mù¾eme spustit zátì¾ový test a hledat hranici pou¾itelnosti na základì doby odezvy testované slu¾by. Hranici mù¾eme nastavit èasovým limitem HTTP spojení, po¾adavku a sledovat od jakého poètu odeslaných po¾adavkù a spu¹tìných vláken zaène klientská aplikace uzavírat spojení.
 \newpage
 
 \subsection*{Nastavení a spu¹tìní nástroje}
-Pro zátì¾ový test je mo¾né vyu¾ít distribuované architektury a zapojit do testu více fyzických strojù. Nejdøíve je nutné spustit RMI server nástroje na vzdálených strojích, kde se instance aplikaèních jednotek zpøístupní pomocí RMI registru. Klientskou aplikaci i RMI server je {\bf nutné} spou¹tìt s parametrem {\tt -Djava.rmi.server.hostname}, ve kterém je uvedena adresa rozhraní. 
+Pro zátì¾ový test je mo¾né vyu¾ít distribuované architektury a zapojit do testu více fyzických strojù. Nejdøíve je nutné spustit RMI server nástroje na vzdálených strojích, kde se instance aplikaèních jednotek zpøístupní pomocí RMI registru. Klientskou aplikaci i RMI server je {\bf nutné	} spou¹tìt s parametrem {\tt -Djava.rmi.server.hostname}, ve kterém je uvedena adresa rozhraní. 
 
 \subsection*{Testovací prostøedí}
-Pro ovìøení funkce nástroje byly vytvoøeny ukázkové webové slu¾by. Jako aplikaèní server byl pou¾it JBoss AS verze 7.0.2, který je spu¹tìn na jiném fyzickém stroji ne¾ testovací nástroj. Slu¾ba {\it BookStore} je pou¾ívá SOAP protokol a slu¾ba {\it Users} je vytvoøena na REST principech. Slu¾ba {\it BookStore} komunikuje zprávami v XML formátu zatímco slu¾ba {\it Users} komunikuje zprávami ve formátu JSON.
+Pro ovìøení funkce nástroje byla vytvoøena ukázková webová slu¾ba. Jako aplikaèní server byl pou¾it JBoss AS verze 7.0.2, který je spu¹tìn na jiném fyzickém stroji ne¾ testovací nástroj. Slu¾ba {\it BookStore} pou¾ívá SOAP protokol, který pou¾ívá zprávy v XML formátu. Pro klientskou aplikaci byly k dispozici dva fyzické stroje jejich¾ konfigurace je uvedena ní¾e.
 
 
 \section{Testování webových slu¾eb s  dostupným zdrojovým kódem}
-Tato sekce se zabývá testováním slu¾eb se známým kódem. Vytvoøené slu¾by jsou pouze ukázkové aplikace, do které jsou zámìrnì implementovány jako chybné. V prvním pøípadì se jedná o webovou slu¾bu, která pøidává a odebírá knihy ze skladu. Zámìrnì byla opomenuta synchronizace vláken, které pøistupují k poèítadlu knih.
+Tato sekce se zabývá testováním slu¾eb se známým kódem. Vytvoøená slu¾ba jsou pouze ukázková aplikace, která slou¾í k demonstraci práce nástroje.
 \subsection*{Zátì¾ový test SOAP webové slu¾by {\it BookStore}}
+limit spojeni: 1000 ms, limit po¾adavku: 1000ms\\
 \begin{tabular}{| c | c | c | c |}
 \hline
-vlákno & sekvence & výsledek& doba odezvy [ms]\\ \hline
-0&0 & 2& 31\\ \hline
+poèet vláken & poèet opakování & limit spojení& limit po¾adavku\\ \hline
+1&200 & 0&0\\ \hline
 
-0& 1&3 & 4\\ \hline
+5& 200&0 & 0\\ \hline
 
-0& 2&4 &3 \\ \hline
+5& 1000&0 &5 \\ \hline
 
-0&3 &5&3 \\ \hline
-
-0&4 &7 &4 \\  \hline
-
-1& 0&1& 53 \\ \hline
-
-1& 1& 6& 7\\ \hline
-
-1 &2 &8 & 6\\ \hline
-
- 1& 3& 9&3\\ \hline
-
-1&4 & 10& 3\\  \hline
+10&1000&0&40 \\ 
 
 \hline
-\end{tabular}
-
-\subsection*{Zátì¾ový test REST webové slu¾by {\it Users}}
-asdsaf
-
-
-\begin{tabular}{| c | c | c | c |}
-\hline
-vlákno & sekvence & výsledek& doba odezvy [ms]\\ \hline
-0&0 & 2& 31\\ \hline
-
-0& 1&3 & 4\\ \hline
-
-0& 2&4 &3 \\ \hline
-
-0&3 &5&3 \\ \hline
-
-0&4 &7 &4 \\  \hline
-
-1& 0&1& 53 \\ \hline
-
-1& 1& 6& 7\\ \hline
-
-1 &2 &8 & 6\\ \hline
-
- 1& 3& 9&3\\ \hline
-
-1&4 & 10& 3\\  \hline
-
-\hline
-\end{tabular}
-
+\end{tabular}\\\\
+\noindent Z tabulky je patrné, ¾e slu¾ba zaèala po urèitém poètu po¾adavkù zvy¹ovat dobu odezvy nad èasový limit a spojení zaèaly pøeru¹ovat.
 
 \section{Testování veøejnì dostupných slu¾eb}
+Tato sekce se bude zabývat testováním webových slu¾eb, které jsou veøejnì dostupné a jejich implementace je neznámá. Pøi testování budou nastaveny èasové limity pro spojení a po¾adavek. Testování bude probíhat v iteracích, pøièem¾ se zátì¾ bude pøi ka¾dé dal¹í iteraci zvy¹ovat. Jakmile slu¾ba projeví známky pøetí¾ení, testování bude ukonèeno.
+
+Slu¾by pro testování byly vybrány náhodnì a jejich názvy a adresy jsou uvedeny ní¾e. Bìhem prvních zku¹ebních testù bylo zji¹tìno, ¾e nìkteré slu¾by doká¾í vyhodnotit automatizovanì odesílané po¾adavky ji¾ pøi malém poètu (5 - 25). Pro detailnìj¹í zátì¾ové testování byly autorem vyhledány slu¾by, které touto kontrolou nedisponují.
+
+\newpage
+\subsection*{Zátì¾ový test REST webové slu¾by}
+
+\noindent Název: ZipCode\\
+\noindent URL: http://www.ripedevelopment.com/webservices/ZipCode.asmx
+\\\\
+\noindent limit spojeni: 3000 ms, limit po¾adavku: 1000ms\\
+\begin{tabular}{| c | c | c | c |}
+\hline
+poèet vláken & poèet opakování & limit spojení& limit po¾adavku\\ \hline
+1&200 & 0&0\\ \hline
+
+5& 200&0 & 0\\ \hline
+
+5& 1000&0 &0 \\ \hline
+
+10&1000&0&0 \\ \hline
+
+20&1000 &2 &56 \\  
+
+
+\hline
+\end{tabular}\\\\
+Tato slu¾ba se jevila po prvních testech jako pomìrnì odolná, proto byl pøidán dal¹í fyzický stroj. Poslední test je tedy výsledkem zatí¾ení pomocí dvou fyzických strojù. Jeden stroj pracoval s 10 vlákny a 1000 po¾adavky na vlákno.
+
 
 \subsection*{Zátì¾ový test SOAP webové slu¾by}
-adsasdf
 
-\subsection*{Zátì¾ový test REST webové slu¾by}
-asdsaf
+\noindent Název: INVOICE\\
+\noindent URL: http://www.thomas-bayer.com/sqlrest/INVOICE/
+\\\\
+\noindent limit spojeni: 3000 ms, limit po¾adavku: 1000ms\\
+\begin{tabular}{| c | c | c | c |}
+\hline
+poèet vláken & poèet opakování & limit spojení& limit po¾adavku\\ \hline
+1&200 & 0& 0\\ \hline
+
+5& 200&0 & 4\\ \hline
+
+10& 1000&0 &232 \\ 
+
+\hline
+\end{tabular}\\
+
 
 
 \section{Shrnutí testování}
-Prùbìh testování ukázal, ¾e pøi nevhodné implementaci je mo¾né se setkat s chybným chováním slu¾by ji¾ pøi nízkém poètu vláken. Dále bylo zji¹tìno, ¾e pøi vy¹¹ím zatí¾ení je mo¾no pozorovat nìkolik negativních rysù chování slu¾by. V nejlep¹ím pøípadì je vrácen chybový kód 500 a patøièná zpráva. Dále bylo zji¹tìno, ¾e pøi vysokém zatí¾ení je mo¾né se setkat s dvìma druhy èasových limitù. Ov¹em musíme pøedpokládat, ¾e jsou nastaveny. V opaèném pøípadì mù¾e celá aplikace zamrznout na neurèitou dobu. Pokud je slu¾ba opravdu pøetí¾ena není s ní mo¾no ani navázat spojení a je uplatnìn èasový limit schránky (socket). Pokud zatí¾ení není tak kritické, je spojení navázáno, ale je mo¾né se setkat s dobou èekání na data v øádech sekund. Zde se uplatní èasový limit na HTTP po¾adavek.
-
+Prùbìh testování ukázal, ¾e pøi nevhodné implementaci je mo¾né se setkat s chybným chováním slu¾by ji¾ pøi nízkém poètu vláken. Dále bylo zji¹tìno, ¾e pøi vy¹¹ím zatí¾ení je mo¾no pozorovat nìkolik negativních rysù chování slu¾by. V nejlep¹ím pøípadì je vrácen chybový kód 500, patøièná zpráva a pøi sní¾ení zatí¾ení slu¾ba funguje správnì. Dále bylo zji¹tìno, ¾e pøi vysokém zatí¾ení je mo¾né se setkat s dvìma druhy èasových limitù. Musíme pøedpokládat, ¾e jsou nastaveny na klientské stranì. V opaèném pøípadì mù¾e celá aplikace zamrznout na neurèitou dobu. Pokud je slu¾ba opravdu pøetí¾ena není s ní mo¾no navázat spojení a je uplatnìn èasový limit pro navázání spojení. Pokud zatí¾ení není tak kritické, je spojení navázáno, ale je mo¾né se setkat s dobou èekání na data v øádech sekund. Zde se uplatní èasový limit na HTTP po¾adavek. Ukonèení spojení díky uplatnìní èasového limitu je mo¾né zaøadit do kategorie {\it Abort}.
+ 
+Dvì veøejnì dostupné slu¾by byly podrobeny detailnímu zátì¾ovému testování, proto¾e bìhem zku¹ebního testu neprojevily známky ochranných mechanismù. Tøetí slu¾ba {\it Search} od spoleènosti Google v¹ak ji¾ po nìkolika (5 - 25) po¾adavcích zaèala odesílat odpovìdi, kde byla uvedena zpráva o mo¾ném výskytu zneu¾ití slu¾by. Pøi této odpovìdi byl kód HTTP odpovìdi 200 (OK), ale v tìle odpovìdi byla polo¾ka {\it Status code} s èíslem 403 (Forbidden - zakázáno).
 
 
 \chapter{Závìr}
-Cílem práce bylo roz¹íøení výsledkù pøedchozí práce, která se vìnovala injekci poruch do komunikace webových slu¾eb. Roz¹íøení se mìlo zamìøit na sledování chování webových slu¾eb pøi vysoké zátì¾i a pokusit se odhalit mo¾né nedostatky v jejich chování. Nejdøíve se práce vìnovala úvodu do problematiky webových slu¾eb a testování software. Byly pøedstaveny základní architektury pro návrh webových slu¾eb a jednotlivé technologie, které se pou¾ívají pro jejich implementaci. Dále v této kapitole byly pøedstaveny základní principy pro testování jakéhokoliv software a jako poslední byla popsána platforma Java. Popis platformy Java byl zvolen, proto¾e je pou¾ita pro výslednou implementaci nástroje.  Druhá èást práce se vìnuje problematice testování webových slu¾eb. Jsou popsány rùzné pøístupy k testování a jak testování ovlivòuje umístìní webové slu¾by. Na konci této kapitoly byly pøedstaveny ji¾ existující nástroje, které se pou¾ívají pro testování webových slu¾eb.
+Cílem práce bylo roz¹íøení výsledkù pøedchozí práce, která se vìnovala injekci poruch do komunikace webových slu¾eb. Roz¹íøení se mìlo zamìøit na sledování chování webových slu¾eb pøi vysoké zátì¾i a pokusit se odhalit mo¾né nedostatky v jejich chování. Nejdøíve se práce vìnovala úvodu do problematiky webových slu¾eb a testování software. Byly pøedstaveny základní architektury pro návrh webových slu¾eb a jednotlivé technologie, které se pou¾ívají pro jejich implementaci. Dále v této kapitole byly pøedstaveny základní principy pro testování jakéhokoliv software a jako poslední byla popsána platforma Java. Popis platformy Java byl zvolen, proto¾e je pou¾ita pro výslednou implementaci nástroje. Druhá èást práce se vìnuje problematice testování webových slu¾eb. Jsou popsány rùzné pøístupy k testování a jak testování ovlivòuje umístìní webové slu¾by. Na konci této kapitoly byly pøedstaveny ji¾ existující nástroje, které se pou¾ívají pro testování webových slu¾eb.
 
 Dal¹í kapitola je vìnována specifikaci po¾adavkù, kde byly stanoveny po¾adavky na vytváøeny nástroj. Po specifikaci po¾adavkù se práce soustøedila na návrh jednotlivých souèástí nástroje a jakým zpùsobem budou pou¾ity výsledky pøedchozí práce. Byl pøedstaven návrh klientské aplikace, která má za úkol odesílat HTTP po¾adavky k testované webové slu¾bì. Návrh splòuje rozdìlení komponent nástroje do vrstev, èím¾ usnadòuje dal¹í vývoj a roz¹íøení nástroje. Pro efektivnìj¹í pou¾ití nástroje byla pøedstavena distribuovaná architektura nástroje, která pøedstavuje mo¾nost pou¾ít více fyzických strojù souèasnì pro testování cílové webové slu¾by. 
 
 Implementace nástroje se nejdøíve soustøedila na vývoj testovací jednotky. Jakmile testovací jednotka splòovala základní po¾adavky, bylo pøistoupeno k integraci s proxy jednotkou do modulárního nástroje. Pro splnìní základních po¾adavkù na testovací nástroj, byla implementace zamìøena na snadnìj¹í ovládání ve formì grafického u¾ivatelského prostøedí. Po celou dobu implementace byl respektováno rozvr¾ení do vrstev, aby ve finální fázi mohla být zaèlenìna implementaci distribuované architektury. 	
 
-Poslední èást diplomové práce se vìnuje sledování chování webových slu¾eb bìhem testování vytvoøeným nástrojem. Nejdøíve je popsáno jak nástroj nastavit, aby bylo mo¾né pou¾ít distribuovanou architekturu. Následnì jsou popsány sledované parametry a zpùsob vyhodnocení dat, získaných nástrojem. V poslední èásti kapitoly jsou shrnuty dosa¾ené výsledky pøi pou¾ití nástroje.
+Poslední èást diplomové práce se vìnuje sledování chování webových slu¾eb bìhem testování vytvoøeným nástrojem. Nejdøíve je popsáno jak nástroj nastavit, aby bylo mo¾né pou¾ít distribuovanou architekturu. Následnì je popsán zpùsob testování a vyhodnocení dat získaných nástrojem. V závìru kapitoly jsou shrnuty dosa¾ené výsledky pøi pou¾ití nástroje.
 
-Tato práce splnila hlavní cíl a dokázala popsat chování vybraných slu¾eb pøi vysoké zátì¾i. Dále práce ukázala, jak lze vyu¾ít spojení zátì¾ového testování s injekcí chyb. Díky distribuované architektuøe jsou má nástroj ¹ir¹í paletu pou¾ití a je mo¾né jej integrovat s dal¹ími nástroji pro testování. Autor práce si vyzkou¹el práci ¹irokou ¹kálou technologii. Zejména zku¹enosti návrhem a implementací rùzných postupù. Autor si cení zejména zku¹enosti s paralelním zpracováním a distribuovanou architekturou na platformì Java. Vytvoøený nástroj je prakticky pou¾itelný a je mo¾né jej pou¾ít pøi sestavení robustnostní charakteristiky testované slu¾by. 
+Tato práce splnila hlavní cíl a dokázala popsat chování vybraných slu¾eb pøi vysoké zátì¾i. Dále pak navázala na pøedchozí práci o injekci chyb do webových slu¾eb a roz¹íøila její výsledky. Díky distribuované architektuøe má nástroj ¹ir¹í paletu pou¾ití a je mo¾né jej integrovat s dal¹ími nástroji pro testování. Autor práce si vyzkou¹el práci ¹irokou ¹kálou technologii. Zejména zku¹enosti s návrhem a implementací rùzných postupù. Autor si cení zejména zku¹enosti s paralelním zpracováním a distribuovanou architekturou na platformì Java. Vytvoøený nástroj je prakticky pou¾itelný a je mo¾né jej pou¾ít pøi testování webových slu¾eb. 
 
 
 
@@ -1065,7 +1067,7 @@ Tato práce splnila hlavní cíl a dokázala popsat chování vybraných slu¾eb pøi vys
 \section{Mo¾nosti dal¹ího vývoje}
 Nástroj má ¹iroký potenciál roz¹íøení a lze vylep¹ovat jádro testovací jednotky, ovládání GUI nebo dal¹í mo¾nosti HTTP dotazù. Zde budou uvedeny jen nìkterá roz¹íøení, která zvy¹ují jednoduchost a efektivnost nástroje.  
 
- Bìhem distribuovaného testu bylo zji¹tìno, ¾e je vhodné mít více proxy jednotek na nìkterém ze vzdálených strojù. Je mo¾né, ¾e slu¾ba mù¾e vyu¾ívat dal¹í slu¾by a bylo by tak mo¾né vkládat chyby to komunikace mezi jednotlivými slu¾bami. Pro spu¹tìní více proxy jednotek na vzdáleném stroji je potøeba implementovat dynamickou registraci instancí proxy jednotky na RMI serveru. Jako ideální se zdá být implementace návrhového vzoru továrna s vyu¾itím RMI.
+ Bìhem distribuovaného testu bylo zji¹tìno, ¾e je vhodné mít více proxy jednotek na nìkterém ze vzdálených strojù. Je mo¾né, ¾e slu¾ba mù¾e vyu¾ívat dal¹í slu¾by a bylo by tak mo¾né vkládat chyby do komunikace mezi jednotlivými slu¾bami. Pro spu¹tìní více proxy jednotek na vzdáleném stroji je potøeba implementovat dynamickou registraci instancí proxy jednotky na RMI serveru. Jako ideální se zdá být implementace návrhového vzoru továrna s vyu¾itím RMI.
 
 Dále by bylo vhodné implementovat více strategii pro zátì¾ové testování, jako napøíklad odesílání HTTP dotazù po dávkách apod. Jeliko¾ je pou¾ita knihovna pro zpracování WSDL dokumentù, je mo¾né implementovat automatické vytvoøení kompletní testovací sady s pøedem nastavenými hodnotami. Roz¹íøeny mohou být dal¹í mo¾nosti nastavení HTTP spojení jako je pou¾ití HTTP autentizace nebo nastavení  SSL certifikátù.
 
